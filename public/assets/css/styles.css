@@ -1,0 +1,821 @@
+:root {
+    --color-1: #e12e2a;
+    --color-2: #c22228;
+    --color-3: #ffcbca;
+    --color-4: #ffe9e8;
+    --color-5: #000000;
+    --color-6: #cecece;
+    --color-7: #e6e6e6;
+    --color-8: #f9f9fb;
+    --color-9: #00da3d;
+    --color-10: #626262;
+    --color-11: #fb0202;
+    --btn-red: #fb0202;
+    --btn-black: #000000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+table {
+    font-family: Atlanlight;
+    font-size: small;
+}
+
+@font-face {
+    font-family: Atlansemibold;
+    src: url("../fonts/Atlan-SemiBold.otf");
+}
+
+@font-face {
+    font-family: Atlanregular;
+    src: url("../fonts/Atlan-Regular.otf");
+}
+
+@font-face {
+    font-family: Atlanbold;
+    src: url("../fonts/Atlan-BoldIt.otf");
+}
+
+@font-face {
+    font-family: Atlanthin;
+    src: url("../fonts/Atlan-Thin.otf");
+}
+
+/* @font-face {
+    font-family: Atlanlight;
+    src: url(Atlan_light.otf);
+} */
+
+body {
+    font-family: Atlansemibold;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.main-container {
+    padding: 0;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+    height: 100vh;
+}
+
+.logo-container {
+    /* width: 300px; */
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 15px 0px 0px;
+    background: var(--color-5, #000000);
+}
+
+/* .logo {
+    width: 186.6px;
+    height: 81.6px;
+    background: url(<path-to-image>), lightgray -29.545px -81.146px / 131.301% 300.27% no-repeat;
+} */
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+#left-side-bar {
+    position: relative;
+    height: 100vh;
+    padding: 0%;
+}
+
+.icon-logo {
+    padding: 11.5px;
+    border-radius: 7px;
+    background: var(--color-5);
+    box-shadow: 0px 0px 5.5px 0px rgba(0, 0, 0, 0.07);
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.extra {
+    width: 300px;
+    height: 4px;
+    background: linear-gradient(90deg, #e9322c 0%, rgba(233, 50, 44, 0) 98.91%);
+}
+
+.logout {
+    /* margin-top: 200px; */
+    /* height: 55px; */
+    position: absolute;
+    font-family: Atlanthin;
+    font-size: 26px;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 0px 0px 15px 0px;
+    background: var(--Red-color, #e12e2a);
+}
+
+/* .button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 5px;
+    padding-left: 50px;
+    margin: 10px 0;
+    background-color: #ffffff;
+    color: #626262;
+    text-align: left;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+} */
+
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 5px;
+    padding-left: 50px;
+    margin: 10px 0;
+    background-color: #ffffff;
+    color: #626262;
+    text-align: left;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    position: relative; /* Add this line for positioning */
+}
+
+.button:hover::before {
+    content: ""; /* Empty content for the pseudo-element */
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    top: 50%; /* Position it vertically in the middle */
+    border-top: 8px solid transparent; /* Create the arrowhead */
+    border-bottom: 8px solid transparent; /* Create the arrowhead */
+    border-right: 8px solid #e12e2a; /* Set the arrow color */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+}
+
+.button:hover .icon-logo {
+    padding: 11.5px;
+    border-radius: 7px;
+    background: var(--color-1);
+    box-shadow: 0px 0px 5.5px 0px rgba(41, 25, 25, 0.959);
+}
+
+/* .button:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #007bff; Change the color as needed
+    transition: width 0.3s ease;
+} */
+
+.button:hover p {
+    color: #131212; /* Change the text color on hover if needed */
+}
+
+/* Rest of your existing CSS remains unchanged */
+
+p {
+    padding-left: 15px;
+    /* margin-top: 15px; */
+}
+
+#center {
+    background-color: #f9f9fb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.color01 {
+    color: var(--color-1);
+    font-size: smaller;
+}
+
+.center-heading {
+    font-family: Atlanregular;
+}
+
+.color02 {
+    color: var(--color-10);
+    padding-left: 10px;
+    font-size: smaller;
+}
+
+h2 {
+    font-family: Atlanbold;
+}
+
+#car-logo {
+    height: 23px;
+    width: 33px;
+}
+
+#customer-logo {
+    height: 29;
+    width: 42;
+}
+
+#bookings-logo {
+    height: 32;
+    width: 32;
+}
+
+.center-element {
+    padding-left: 10px;
+}
+
+#main-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .card-container1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 220px;
+    border-radius: 10px;
+    background-color: #E12E2A;
+} */
+
+.card-container2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 220px;
+    border-radius: 10px;
+    background-color: #000000;
+}
+
+.card-container2.red {
+    background-color: #e12e2a;
+}
+
+.card-text {
+    padding-left: 20px;
+    color: #ffffff;
+}
+
+.card-container2:hover {
+    background-color: var(--color-1);
+}
+
+#graph {
+    /* max-height: 354px; */
+    width: 100%;
+}
+
+.average_customer_heading {
+    padding: 0;
+    font-family: Atlanbold;
+    margin: 0;
+}
+
+.how_many_more {
+    padding: 0;
+    font-family: Atlanregular;
+    font-size: small;
+    color: var(--color-1);
+    margin: 0;
+}
+
+.booking_status {
+    padding: 5px;
+    border-radius: 10;
+}
+
+.which_year {
+    padding: 0px 0px 0px 5px;
+    font-family: Atlanregular;
+    font-size: small;
+    margin: 0;
+}
+
+#bookingtable_wrapper .dataTables_length,
+.dataTables_filter,
+#bookingtable_info,
+#bookingtable_paginate,
+.paging_simple_numbers,
+tfoot {
+    display: none;
+}
+
+#bookingtable_in_booking_wrapper .dataTables_length,
+.dataTables_info,
+.dataTables_paginate,
+.paging_simple_numbers {
+    display: block;
+}
+
+#bookingtable_in_booking_wrapper #bookingtable_in_booking_length,
+tfoot,
+.dataTables_filter {
+    display: none;
+}
+
+#bookingtable_in_booking_filter {
+    display: flex;
+    justify-content: right;
+}
+
+/* #bookingtable_in_booking_wrapper #bookingtable_in_booking_filter{
+    position: absolute;
+    right: 0;
+}
+
+#bookingtable_in_booking_wrapper #bookingtable_in_booking{
+    margin-top: 50px;
+} */
+
+#bookingtable_in_booking_wrapper {
+    position: relative;
+    margin: 20px;
+    width: 95%;
+}
+
+/* #bookingtable thead, tbody .row{
+    display: flex;
+    justify-content: space-between;
+} */
+
+.chat_title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.chat_title_heading {
+    display: flex;
+    flex-direction: column;
+}
+
+.yearly-more {
+    display: flex;
+    justify-content: start;
+}
+
+.weekly_yearly {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekly_yearly_btn {
+    color: #ffffff;
+    font-family: Atlanthin;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    /* background-color: #E12E2A; */
+    border-radius: 50px;
+    width: 80px;
+    /* height: 25px; */
+}
+
+.bookingtable {
+    border-collapse: collapse;
+    height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    margin: 20px auto;
+}
+
+#table_div {
+    width: 100%;
+}
+
+tbody tr {
+    /* margin-top: 50px; */
+    border-radius: 10px;
+    /* padding-top: 20px; */
+    box-shadow: 0px 0px 5.5px 0px rgba(212, 211, 211, 0.959);
+}
+
+#bookingtable_in_booking {
+    width: 80%;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+td,
+th {
+    padding: 8px;
+}
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+}
+
+th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+    position: relative;
+}
+
+th::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    margin-left: 5px;
+}
+
+th.asc::after {
+    content: '\25B2';
+}
+
+th.desc::after {
+    content: '\25BC';
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}*/
+
+.table_header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.booking_heading {
+    font-family: Atlanbold;
+}
+
+.new_booking_btn {
+    color: #ffffff;
+    font-family: Atlanthin;
+    font-size: 14px;
+    /* background-color: #E12E2A; */
+    border-radius: 50px;
+    width: 80px;
+    /* height: 25px; */
+}
+
+.nameentry {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.customerpic {
+    height: 35px;
+    width: 35px;
+    border-radius: 10px;
+}
+
+.dateentry {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.datepart {
+    padding: 0;
+    margin: 0;
+}
+
+.booking_status {
+    background-color: #00da3d;
+    color: #f4f4f4;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+#table_div {
+    height: 200px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-icon {
+    margin-right: 30px;
+}
+
+.admin-name {
+    color: #000;
+}
+
+.admin-pic {
+    border-radius: 100px;
+}
+
+.center-heading {
+    display: flex;
+}
+
+.heading_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.view-all {
+    color: #ffffff;
+    font-family: Atlanthin;
+    font-size: 14px;
+    /* background-color: #E12E2A; */
+    border-radius: 50px;
+    width: 80px;
+    /* height: 25px; */
+}
+
+.customer-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 40px;
+    border-radius: 20px;
+}
+
+.list_text {
+    color: #000000;
+    font-family: Atlanbold;
+}
+
+#right-side-bar {
+    background-color: #f4f4f4;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.driverpic {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+
+.name {
+    font-family: Atlanregular;
+    font-size: smaller;
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.email {
+    font-family: Atlanthin;
+    font-size: small;
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.list-item {
+    display: flex;
+    height: 50px;
+}
+
+.list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.driver-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 40px;
+    border-radius: 20px;
+}
+
+.booking_header_part {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 100px;
+    margin-left: 40px;
+}
+
+.booking_header_title > h2 {
+    text-transform: uppercase;
+}
+
+table.dataTable {
+    font-family: "Atlanregular";
+}
+
+.booking_container .add_btn {
+    display: none;
+}
+
+div#bookingtable_in_booking_filter > label {
+    background-color: #f5f5f5;
+    margin: 0 20px 0 0;
+    line-height: 0;
+    border-radius: 30px;
+    padding: 10px;
+    width: 25%;
+}
+
+div#bookingtable_in_booking_filter > label input {
+    border: 0;
+    background-color: transparent;
+    padding: 0 0 0 10px;
+    margin: 0 0 0 0px;
+    line-height: 0;
+    font-family: "Atlanregular";
+    font-weight: 400;
+    color: #626262;
+    width: 90%;
+}
+
+div#bookingtable_in_booking_filter > label input:focus-visible {
+    outline: 0;
+}
+
+.add_btn {
+    background-color: var(--btn-red);
+    border: 1px solid var(--btn-red);
+    border-radius: 35px;
+}
+
+/* .add_btn:hover {
+    background-color: transparent;
+    color: var(--btn-red);
+    border-color: var(--btn-red);
+}
+
+.add_btn:focus,
+.add_btn:active {
+    box-shadow: unset !important;
+    background-color: var(--btn-red) !important;
+    border-color: var(--btn-red) !important;
+} */
+
+.btn-red {
+    background-color: var(--btn-red);
+    border: 1px solid var(--btn-red);
+    color: #ffffff;
+}
+
+.btn-red:hover {
+    background-color: transparent;
+    color: var(--btn-red);
+    border-color: var(--btn-red);
+}
+
+.add_btn:focus,
+.add_btn:active {
+    box-shadow: unset !important;
+    background-color: var(--btn-red) !important;
+    border-color: var(--btn-red) !important;
+    color: #fff;
+}
+
+.btn-black {
+    background-color: var(--btn-black);
+    border: 1px solid var(--btn-black);
+    color: #ffffff;
+}
+
+.btn-black:hover {
+    background-color: transparent;
+    color: var(--btn-black);
+    border-color: var(--btn-black);
+}
+
+.btn-black:focus,
+.btn-black:active {
+    box-shadow: unset !important;
+    background-color: var(--btn-black) !important;
+    border-color: var(--btn-black) !important;
+}
+
+.modal_form .btn-black {
+    border-radius: 25px;
+    width: 100px;
+}
+
+.modal-header {
+    background-color: var(--color-11);
+    color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 100px;
+    margin-top: -30px;
+}
+
+.modal-header > button {
+    opacity: 1;
+    color: #fff;
+}
+
+.modal.fade > div {
+    margin-top: 80px;
+}
+
+.form-control {
+    border-radius: 100px;
+}
+
+input.form-control::file-selector-button {
+    border: 0;
+    padding: 0px 10px;
+    border-radius: 15px;
+}
+
+#addRideModal > div {
+    max-width: 80%;
+}
+
+.ecs_alert {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    box-shadow: 0 0 5px 1px #00000024;
+}
+
+.modal {
+    background-color: #0000008a;
+    backdrop-filter: blur(12.5px);
+}
+
+.edit_modal_img {
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+}
+.booking_status_completed {
+    background-color: #00da3d;
+    color: #f4f4f4;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10;
+}
+.booking_status_created {
+    background-color: #b6da00;
+    color: #f4f4f4;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10;
+}
+.booking_status_driver {
+    background-color: #da9c00;
+    color: #f4f4f4;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10;
+}
+.booking_status_waiting {
+    background-color: #0b00da;
+    color: #f4f4f4;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10;
+}
