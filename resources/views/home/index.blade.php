@@ -41,17 +41,41 @@
         margin-top: 20px;
 
     }
-    .widthsideber{
-        width: 23%;
+
+    .widthsideberopen{
+        width: 22%;
+        border-radius: 0px 18px 0px 0px;
+    background-color: white;
     }
-    .widthmain{
-        width: 77%;
+    .widthsideberclose{
+        width: 0%;
+        visibility: hidden
+    }
+    .widthmainopen{
+        width: 78%;
         padding-left: 30px;
     }
+    .widthmainclose{
+        width: 100%;
+        padding-left: 30px;
+    }
+
+
+    .togle {
+    width: 42px;
+    border: white;
+    background: white;
+    padding: 4px;
+    position: relative;
+    top: 20;
+    }
+
+    
     
 </style>
 @section('content')
-   <div class="d-flex flex-column widthsideber">
+
+   <div id="sidebarleft" class="d-flex flex-column widthsideberopen" >
     @include('layouts.partials.left-sidebar')
    </div>
     
@@ -76,14 +100,23 @@
         ];
     ?>
     <!-- Center -->
-    <div id="center"  class="widthmain" style="padding-right: 40px">
+   
+   
+    <div id="center"  class="widthmainopen" style="padding-right: 40px">
+        <button class="togle" onclick="toggleSidebar()">
+            <span class="material-symbols-outlined">
+                menu
+                </span>
+        </button>
         <div class="center-element" id="Title">
             <h2 class="mt-5">HI! WELCOME ADMIN</h2>
+            
             <div class="center-heading mb-3">
                 <h6 class="color">Home >></h6>
                 <h6>Dashboard</h6>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-7">
                 <div class="row" id="left-row">
@@ -221,8 +254,39 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
+    //  .widthsideberopen{
+    //     width: 23%;
+    // }
+    // .widthsideberclose{
+    //     width: 0%;
+    //     visibility: hidden
+    // }
+    // .widthmainopen{
+    //     width: 77%;
+    //     padding-left: 30px;
+    // }
+    // .widthmainclose{
+    //     width: 100%;
+    //     padding-left: 30px;
+    // }
     
-        
+    function toggleSidebar() {
+            const sidebar = document.getElementById("sidebarleft");
+            const mainContent = document.getElementById("center");
+            if (sidebar.classList.contains("widthsideberopen")) {
+                sidebar.classList.remove("widthsideberopen");
+                mainContent.classList.remove("widthmainopen");
+                sidebar.classList.add("widthsideberclose");
+                mainContent.classList.add("widthmainclose");
+            } else {
+                sidebar.classList.remove("widthsideberclose");
+                mainContent.classList.remove("widthmainclose");
+                sidebar.classList.add("widthsideberopen");
+                mainContent.classList.add("widthmainopen");
+            }
+
+           
+        }
     
     $(document).ready(function() {
         // Bind change event to the date input

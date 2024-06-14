@@ -12,7 +12,9 @@
         integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    {{-- <script src="https://kit.fontawesome.com/0125718118.js" crossorigin="anonymous"></script> --}}
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -27,11 +29,35 @@
                 font-size: 3.5rem;
             }
         }
+
+        .topbarheader {
+            background-color: black;
+            margin: 2px 11px 10px 2px;
+            border-radius: 0px 0px 6px 7px;
+            height: 56px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 17px 36px 0px 30px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid main-container">
+
+    <div class="container-fluid main-container" style="background-color: #343434">
+        <div class="topbarheader">
+            <div>
+                <h5 style="color: white;">DASHBOARD</h5>
+            </div>
+            <div style="display: flex;flex-direction:row;color: white;" >
+                <div><span class="material-symbols-outlined">
+                    notifications
+                    </span></div>
+                <div><p>Mutazir</p></div>
+               
+            </div>
+        </div>
         <div class="row">
             @yield('content')
         </div>

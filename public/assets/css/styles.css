@@ -49,10 +49,7 @@ table {
     src: url("../fonts/Atlan-Thin.otf");
 }
 
-/* @font-face {
-    font-family: Atlanlight;
-    src: url(Atlan_light.otf);
-} */
+
 
 body {
     font-family: Atlansemibold;
@@ -75,7 +72,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 0px 15px 0px 0px;
-    
+    width: 300px;
 }
 
 /* .logo {
@@ -87,7 +84,12 @@ body {
 .buttons {
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
+    padding-top: 15px;
+    padding-left: 16px;
+}
+
+.buttons a{
+    text-decoration: none;
 }
 
 #left-side-bar {
@@ -96,21 +98,7 @@ body {
     padding: 0%;
 }
 
-.icon-logo {
-    padding: 11.5px;
-    border-radius: 7px;
-    background: var(--color-5);
-    box-shadow: 0px 0px 5.5px 0px rgba(0, 0, 0, 0.07);
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
 
-.extra {
-    width: 300px;
-    height: 4px;
-    background: linear-gradient(90deg, #e9322c 0%, rgba(233, 50, 44, 0) 98.91%);
-}
 
 .logout {
     /* margin-top: 200px; */
@@ -119,28 +107,13 @@ body {
     font-family: Atlanthin;
     font-size: 26px;
     bottom: 0;
-    padding: 10px;
+    /* padding: 10px; */
     width: 100%;
     border-radius: 0px 0px 15px 0px;
     background: var(--Red-color, #e12e2a);
 }
 
-/* .button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    width: 100%;
-    padding: 5px;
-    padding-left: 50px;
-    margin: 10px 0;
-    background-color: #ffffff;
-    color: #626262;
-    text-align: left;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-} */
+
 
 .button {
     display: flex;
@@ -149,54 +122,45 @@ body {
     justify-content: start;
     width: 100%;
     padding: 5px;
-    padding-left: 50px;
-    margin: 10px 0;
+    padding-left: 40px;
+    margin: 10px auto;
     background-color: #ffffff;
     color: #626262;
     text-align: left;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    position: relative; /* Add this line for positioning */
+    position: relative; 
+    width: 255px;
+    height: 48.23px;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 0px;
+    
+   
+}
+.icon-logo {
+    padding: 7px;
+    border-radius: 8px;
+    
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
-.button:hover::before {
-    content: ""; /* Empty content for the pseudo-element */
-    position: absolute;
-    right: 10px; /* Adjust as needed */
-    top: 50%; /* Position it vertically in the middle */
-    border-top: 8px solid transparent; /* Create the arrowhead */
-    border-bottom: 8px solid transparent; /* Create the arrowhead */
-    border-right: 8px solid #e12e2a; /* Set the arrow color */
-    transform: translateY(-50%); /* Adjust for vertical centering */
+
+.button:hover  {
+   color: #e12e2a;
+   background-color: #f9d9d8;
 }
 
-.button:hover .icon-logo {
-    padding: 11.5px;
-    border-radius: 7px;
-    background: var(--color-1);
-    box-shadow: 0px 0px 5.5px 0px rgba(41, 25, 25, 0.959);
-}
 
-/* .button:hover::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 100%;
-    background-color: #007bff; Change the color as needed
-    transition: width 0.3s ease;
-} */
 
-.button:hover p {
-    color: #131212; /* Change the text color on hover if needed */
-}
+
 
 /* Rest of your existing CSS remains unchanged */
 
 p {
-    padding-left: 15px;
+    padding-left: 21px;
     /* margin-top: 15px; */
 }
 
@@ -205,10 +169,13 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100vh;
     overflow-y: scroll;
 }
 
+body::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+  
 .color01 {
     color: var(--color-1);
     font-size: smaller;

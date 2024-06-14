@@ -6,31 +6,47 @@
     </div>
     <div class="buttons ">
         <a href="{{ url('/') }}" class="button" id="dashboard">
-            <img src="{{ asset('/assets/images/Home.png') }}" class="icon-logo">
+            <span class="material-symbols-outlined icon-logo">
+                Dashboard
+                </span>
             <p>Dashboard</p>
         </a>
+        <a href="{{ url('rides') }}" class="button" id="vehicles">
+            <span class="material-symbols-outlined icon-logo">
+                airport_shuttle
+                </span>
+            <p>Rides</p>
+        </a>
+        <div class="buttons" style="border-bottom: 2px solid #D3D3D3;"></div>
+
         <!-- <a href="{{ url('booking') }}" class="button" id="booking">
             <img src="{{ asset('/assets/images/Booking.png') }}" class="icon-logo">
             <p>Bookings</p>
         </a> -->
+
         <a href="{{ url('drivers') }}" class="button" id="drivers">
-            <img src="{{ asset('/assets/images/Drivers.png') }}" class="icon-logo">
+            <span class="material-symbols-outlined icon-logo">
+                person
+                </span>
             <p>Drivers</p>
         </a>
         <a href="{{ url('vehicles') }}" class="button" id="vehicles">
-            <img src="{{ asset('/assets/images/Vehicles.png') }}" class="icon-logo">
+            <span class="material-symbols-outlined icon-logo">
+                directions_car
+                </span>
             <p>Vehicles</p>
         </a>
-        <a href="{{ url('rides') }}" class="button" id="vehicles">
-            <img src="{{ asset('/assets/images/ride-icon.png') }}" class="icon-logo">
-            <p>Booking</p>
-        </a>
+        <div class="buttons" style="border-bottom: 2px solid #D3D3D3;"></div>
         <a href="{{ url('customers') }}" class="button" id="vehicles">
-            <img src="{{ asset('/assets/images/client-icon.png') }}" class="icon-logo">
-            <p>Customers</p>
+            <span class="material-symbols-outlined icon-logo">
+                group
+                </span>
+            <p>Clients</p>
         </a>
         <a href="{{ url('finance') }}" class="button" id="vehicles">
-            <img src="{{ asset('/assets/images/bookingrs.png') }}" class="icon-logo">
+            <span class="material-symbols-outlined icon-logo">
+                Finance
+                </span>
             <p>Finance</p>
         </a>
     </div>
@@ -43,6 +59,7 @@
     #left-side-bar {
         display: flex;
         flex-direction: column;
+        Width:301px;
     }
 
     .buttons {
@@ -51,5 +68,12 @@
 
     .logout {
         margin-top: auto;
+        width: 301px;
+        height: 50px;
+        top: 750px;
+        gap: 0px;
+        border-radius: 5px 5px 0px 0px;
+        opacity: 0px;
+
     }
 </style>
