@@ -3,119 +3,139 @@
     .card {
         padding: 20px
     }
+
     .card-header {
         display: flex;
         justify-content: space-between;
-        background:#fff !important;
+        background: #fff !important;
         border-bottom: none !important;
     }
-    .card-body p{
+
+    .card-body p {
         color: #6F7D7F;
         font-size: 14px
     }
+
     #left-row {
         display: flex;
         flex-direction: row;
         row-gap: 5px;
     }
+
     .card-body h3 {
         color: #000000;
         font-size: 15px;
     }
+
     #right-card .card-body {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
     }
+
     #filter {
         color: white;
         background: #E12E2A;
         max-width: 130px;
     }
+
     #states-cards-row {
         margin: 15px 0px 15px 0px;
         display: flex;
         justify-content: center;
     }
+
     .center-element {
         margin-top: 20px;
 
     }
 
-    .widthsideberopen{
+    .widthsideberopen {
         width: 22%;
         border-radius: 0px 18px 0px 0px;
-    background-color: white;
+        background-color: white;
     }
-    .widthsideberclose{
+
+    .widthsideberclose {
         width: 0%;
         visibility: hidden
     }
-    .widthmainopen{
+
+    .widthmainopen {
         width: 78%;
         padding-left: 30px;
     }
-    .widthmainclose{
+
+    .widthmainclose {
         width: 100%;
         padding-left: 30px;
     }
 
 
     .togle {
-    width: 42px;
-    border: white;
-    background: white;
-    padding: 4px;
-    position: relative;
-    top: 20;
+        width: 35px;
+        border: white;
+        background: white;
+        padding: 2px;
+        position: relative;
+        top: 20;
     }
 
-    
-    
+    .outerbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+
+    .hidebars {
+        /* visibility: hidden ; */
+        display: none;
+       
+    }
+
+    .showbars {
+      height: 60px;
+        display: block;
+        visibility: visible;
+    }
+
 </style>
 @section('content')
 
-   <div id="sidebarleft" class="d-flex flex-column widthsideberopen" >
-    @include('layouts.partials.left-sidebar')
-   </div>
-    
-  
+    <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
+        @include('layouts.partials.left-sidebar')
+    </div>
+
+
     <?php
-        $filters_data =
-        [
-            'today'=>'Today',
-            'yesterday'=>'Yesterday',
-            '1'=>'January',
-            '2'=>'February',
-            '3'=>'March',
-            '4'=>'April',
-            '5'=>'May',
-            '6'=>'June',
-            '7'=>'July',
-            '8'=>'August',
-            '9'=>'September',
-            '10'=>'October',
-            '11'=>'November',
-            '12'=>'December',
-        ];
+    $filters_data = [
+        'today' => 'Today',
+        'yesterday' => 'Yesterday',
+        '1' => 'January',
+        '2' => 'February',
+        '3' => 'March',
+        '4' => 'April',
+        '5' => 'May',
+        '6' => 'June',
+        '7' => 'July',
+        '8' => 'August',
+        '9' => 'September',
+        '10' => 'October',
+        '11' => 'November',
+        '12' => 'December',
+    ];
     ?>
     <!-- Center -->
-   
-   
-    <div id="center"  class="widthmainopen" style="padding-right: 40px">
-        <button class="togle" onclick="toggleSidebar()">
-            <span class="material-symbols-outlined">
-                menu
+
+
+    <div id="center" class="widthmainopen" style="padding-right: 40px">
+        <div id="onmain"  class="hidebars"> <button class="togle" onclick="toggleSidebar()">
+                <span class="material-symbols-outlined">
+                    menu
                 </span>
-        </button>
-        <div class="center-element" id="Title">
-            <h2 class="mt-5">HI! WELCOME ADMIN</h2>
-            
-            <div class="center-heading mb-3">
-                <h6 class="color">Home >></h6>
-                <h6>Dashboard</h6>
-            </div>
-        </div>
+            </button></div>
 
         <div class="row">
             <div class="col-md-7">
@@ -124,7 +144,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="heading">Total Drivers</div>
-                                <img src="{{asset('assets/images/drivers_img.png')}}" alt="">
+                                <img src="{{ asset('assets/images/drivers_img.png') }}" alt="">
                             </div>
                             <div class="card-body">
                                 <p class="count pl-0 mb-2">{{ count($drivers) }}</p>
@@ -132,23 +152,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="heading">Total Customers</div>
-                                <img src="{{asset('assets/images/bookings_img.png')}}" alt="">
-                            </div>
-                            <div class="card-body">
-                                <p class="count pl-0 mb-2">{{ count($customers) }}</p>
-                                <p class="desc pl-0">Customers who Booked rides</p>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
                                 <div class="heading">Total Rides</div>
-                                <img src="{{asset('assets/images/rides_img.png')}}" alt="">
+                                <img src="{{ asset('assets/images/rides_img.png') }}" alt="">
                             </div>
                             <div class="card-body">
                                 <p class="count pl-0 mb-2">{{ count($rides) }}</p>
@@ -156,31 +165,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="heading">Total Vehicles</div>
-                                <img src="{{asset('assets/images/vehicles_img.png')}}" alt="">
-                            </div>
-                            <div class="card-body">
-                                <p class="count pl-0 mb-2">{{ count($vehicles) }}</p>
-                                <p class="desc pl-0">All Categories from all Vehicals</p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-           <div class="col-md-5">
+            <div class="col-md-5">
                 <div class="card" id="right-card">
                     <div class="card-header">
                         <div class="heading">
                             <p class="pl-0">Total Revenue</p>
                             {{-- <p style="color: #6B7D7F" class="count pl-0 mb-2">data updated 8 minutes ago</p> --}}
                         </div>
-                        <input type="date" class="form-control" name="date_filter" id="date_filter" placeholder="" required>
+                        <input type="date" class="form-control" name="date_filter" id="date_filter" placeholder=""
+                            required>
 
                         {{-- <select name="filter" class="form-control" id="filter" onchange="getFilterRecords(this)">
-                            @foreach ($filters_data as $key=>$month)
+                            @foreach ($filters_data as $key => $month)
                                 <option value="{{$key}}">{{$month}}</option>
                             @endforeach
                             <option value="">Last Month</option>
@@ -192,9 +191,13 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <br><br>
-                <table id="booking" class="display" style="width:100%">
+        </div>
+        <div class="outerbox">
+            <div>adasd</div>
+            <div>asdasda</div>
+        </div>
+        <br><br>
+        <table id="booking" class="display" style="width:100%">
             <thead>
                 <tr>
                     <th>Customer</th>
@@ -249,10 +252,11 @@
                 </tr>
             </tfoot>
         </table>
-        </div>
-      
+    </div>
+
 @endsection
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
     //  .widthsideberopen{
     //     width: 23%;
@@ -269,25 +273,32 @@
     //     width: 100%;
     //     padding-left: 30px;
     // }
-    
-    function toggleSidebar() {
-            const sidebar = document.getElementById("sidebarleft");
-            const mainContent = document.getElementById("center");
-            if (sidebar.classList.contains("widthsideberopen")) {
-                sidebar.classList.remove("widthsideberopen");
-                mainContent.classList.remove("widthmainopen");
-                sidebar.classList.add("widthsideberclose");
-                mainContent.classList.add("widthmainclose");
-            } else {
-                sidebar.classList.remove("widthsideberclose");
-                mainContent.classList.remove("widthmainclose");
-                sidebar.classList.add("widthsideberopen");
-                mainContent.classList.add("widthmainopen");
-            }
 
-           
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebarleft");
+        const mainContent = document.getElementById("center");
+        const onnav = document.getElementById("onnav");
+        const onmain = document.getElementById("onmain");
+        if (sidebar.classList.contains("widthsideberopen")) {
+            sidebar.classList.remove("widthsideberopen");
+            mainContent.classList.remove("widthmainopen");
+            sidebar.classList.add("widthsideberclose");
+            mainContent.classList.add("widthmainclose");
+            onmain.classList.remove("hidebars");
+            onmain.classList.add("showbars");
+
+        } else {
+            sidebar.classList.remove("widthsideberclose");
+            mainContent.classList.remove("widthmainclose");
+            sidebar.classList.add("widthsideberopen");
+            mainContent.classList.add("widthmainopen");
+            onmain.classList.add("hidebars");
+            onmain.classList.remove("showbars");
         }
-    
+
+
+    }
+
     $(document).ready(function() {
         // Bind change event to the date input
         $('#date_filter').change(function() {
@@ -300,7 +311,7 @@
         let filter = $(value).val();
         $.ajax({
             type: "GET",
-            url: "{{route('get.fare')}}",
+            url: "{{ route('get.fare') }}",
             data: {
                 filter: filter
             },
