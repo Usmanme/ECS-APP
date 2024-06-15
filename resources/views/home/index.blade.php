@@ -79,28 +79,84 @@
         padding: 2px;
         position: relative;
         top: 20;
+        border-radius: 3px;
     }
 
     .outerbox {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
         align-items: center;
-        background-color: white;
+        justify-content: center;
+    }
+
+    .innerbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .drivers {
+        width: 462px;
+        height: 164px;
+        top: 86px;
+        left: 311px;
+        gap: 0px;
+        border: 1px 0px 0px 0px;
+        opacity: 0px;
+        border-radius: 3px;
+        margin: 5px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Earnings {
+        width: 462px;
+        height: 258px;
+        gap: 0px;
+        opacity: 0px;
+        margin: 5px;
+        border-radius: 4px;
+        background: white;
+    }
+
+    .rides {
+        width: 597.5px;
+        height: 431px;
+        gap: 0px;
+        opacity: 0px;
+        margin: 5px;
+        border-radius: 4px;
+        background: white;
+    }
+
+    .containered {
+        border: 1px solid #DFDFDF;
+        padding: 10px 12px 8px 11px;
+        margin-top: -19px;
+        display: flex;
+        align-items: center;
+    }
+
+    .material-symbols-outlined {
+        margin-right: 8px;
+        /* Adjust the spacing between the icon and the text */
+        font-size: 24px;
+        /* Adjust the icon size as needed */
     }
 
     .hidebars {
         /* visibility: hidden ; */
         display: none;
-       
+
     }
 
     .showbars {
-      height: 60px;
+        height: 60px;
         display: block;
         visibility: visible;
     }
-
 </style>
 @section('content')
 
@@ -131,13 +187,13 @@
 
 
     <div id="center" class="widthmainopen" style="padding-right: 40px">
-        <div id="onmain"  class="hidebars"> <button class="togle" onclick="toggleSidebar()">
+        <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
                 <span class="material-symbols-outlined">
                     menu
                 </span>
             </button></div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-7">
                 <div class="row" id="left-row">
                     <div class="col-md-6">
@@ -173,17 +229,11 @@
                     <div class="card-header">
                         <div class="heading">
                             <p class="pl-0">Total Revenue</p>
-                            {{-- <p style="color: #6B7D7F" class="count pl-0 mb-2">data updated 8 minutes ago</p> --}}
                         </div>
                         <input type="date" class="form-control" name="date_filter" id="date_filter" placeholder=""
                             required>
 
-                        {{-- <select name="filter" class="form-control" id="filter" onchange="getFilterRecords(this)">
-                            @foreach ($filters_data as $key => $month)
-                                <option value="{{$key}}">{{$month}}</option>
-                            @endforeach
-                            <option value="">Last Month</option>
-                        </select> --}}
+                     
                     </div>
                     <div class="card-body pt-0">
                         <p class="desc pl-0">All Time Customers</p>
@@ -191,13 +241,134 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="outerbox">
-            <div>adasd</div>
-            <div>asdasda</div>
+            <div class="innerbox">
+                <div class="drivers" style="background: white">
+                    <div style="display: flex;flex-direction:row; padding:15px">
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
+                            Drivers</div>
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 18px;font-weight: 400;line-height: 21.78px;text-align: left;padding-top:8px">
+                            5000</div>
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:#9F9F9F;padding-top:9px">
+                            (Total Drivers)</div>
+                        <div style="padding: 5px;width:90px;"></div>
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:var(--Red-color, #E12E2A);">
+                            View Drivers</div>
+                    </div>
+                    <div style="padding: 23px 10px 10px 20px;">
+                        <div
+                            style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
+                            500</div>
+                        <div
+                            style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
+                            Active Drivers ></div>
+                    </div>
+
+                </div>
+                <div class="Earnings">
+                    <div style="display: flex;flex-direction:row; padding:15px">
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
+                            Overall Earnings</div>
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 18px;font-weight: 400;line-height: 21.78px;text-align: left;padding-top:8px">
+                            SAR 500,380</div>
+                        <div
+                            style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:#9F9F9F;padding-top:9px">
+                            (Total Earnings)</div>
+                    </div>
+                    <div
+                        style="display: flex;flex-direction:row;justify-content:space-between;padding:11px 23px 10px 22px ;font-family: Inter;font-size: 12px;font-weight: 400;">
+                        <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F;">TODAY</div>
+                        <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F">THIS MONTH</div>
+                        <div class="containered">
+                            <span class="material-symbols-outlined">
+                                calendar_month
+                            </span>
+                            Choose Dates
+                        </div>
+                    </div>
+
+                    <div class="buttons" style="border-bottom: 2px solid #D3D3D3;"></div>
+
+                    <div style="padding: 23px 10px 10px 20px;">
+                        <div
+                            style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
+                            SAR 500</div>
+                        <div
+                            style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
+                            Overall Earnings </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="rides" >
+                <div style="display: flex;flex-direction:row; padding:15px">
+                    <div
+                        style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
+                        Rides</div>
+                    <div
+                        style="padding: 5px;font-family: Inter;font-size: 18px;font-weight: 400;line-height: 21.78px;text-align: left;padding-top:8px">
+                        100,560</div>
+                    <div
+                        style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:#9F9F9F;padding-top:9px">
+                        (Total Rides Completed)</div>
+                    <div style="padding: 5px;width:70px;"></div>
+                    <div
+                        style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:var(--Red-color, #E12E2A);">
+                        View Rides</div>
+                </div>
+                <div
+                    style="display: flex;flex-direction:row;justify-content:space-between;padding:11px 23px 10px 22px ;font-family: Inter;font-size: 12px;font-weight: 400; margin-top:33px">
+                    <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F;">TODAY</div>
+                    <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F">THIS MONTH</div>
+                    <div class="containered">
+                        <span class="material-symbols-outlined">
+                            calendar_month
+                        </span>
+                        Choose Dates
+                    </div>
+                </div>
+                <div class="buttons" style="border-bottom: 2px solid #D3D3D3;"></div>
+                <div style="display: flex;flex-direction:row;margin-top:30px">
+                    <div style="display: flex;flex-direction:column;width:50%">
+                        <div style="padding: 23px 10px 10px 20px;">
+                            <div
+                                style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
+                                500</div>
+                            <div
+                                style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
+                                Rides Created ></div>
+                        </div>
+                        <div style="padding: 23px 10px 10px 20px;">
+                            <div
+                                style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
+                                500</div>
+                            <div
+                                style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
+                                 Driver Assigned ></div>
+                        </div>
+                    </div>
+                    <div style="padding: 23px 10px 10px 20px; width:50%">
+                        <div
+                            style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
+                            500</div>
+                        <div
+                            style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
+                            Completed ></div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
+
         <br><br>
-        <table id="booking" class="display" style="width:100%">
+        <table id="booking" class="display" style="width:100% ;background:white;">
             <thead>
                 <tr>
                     <th>Customer</th>
