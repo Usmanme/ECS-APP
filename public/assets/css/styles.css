@@ -867,10 +867,8 @@ div#bookingtable_in_booking_filter > label input:focus-visible {
 .modal-header {
     background-color: var(--color-11);
     color: #fff;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    border-radius: 100px;
-    margin-top: -30px;
 }
 
 .modal-header > button {
