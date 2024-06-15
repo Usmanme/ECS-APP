@@ -18,14 +18,16 @@ $(document).ready(function () {
         "pageLength": 25
     });
 
-    // Remove Search text
+    // Rem  
+    
+
     $('div#bookingtable_in_booking_filter input[type="search"]').attr('placeholder', 'Search here..');
     $('<img src="./assets/images/search_icon.png" alt="Search" />').insertBefore($('div#bookingtable_in_booking_filter input[type="search"]'));
     $('div#bookingtable_in_booking_filter>label')[0].childNodes[0].textContent = '';
 
     let btn_name = $('.booking_header_title > h2').text();
     let modal_id = $('.modal_form').attr('id');
-    $('div#bookingtable_in_booking_filter').append(`<button type="button" class="btn add_btn btn-red" data-toggle="modal" data-target="#${modal_id}">Add ${btn_name}</button>`);
+    $('div#bookingtable_in_booking_filter').append(`<button type="button" class="btn add_btn btn-red" data-toggle="modal" data-target="#${modal_id}">Book A Ride ${btn_name}</button>`);
 
     // Remove alert msg
     setTimeout(() => {

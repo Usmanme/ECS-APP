@@ -37,7 +37,8 @@
             </div>
         @endif
 
-        <table id="bookingtable_in_booking" class="display" style="width:100%">
+      
+        <table id="bookingtable_in_booking" class="display" style="width:100%; background:white;">
             <thead>
                 <tr>
                     <th>ID</th>

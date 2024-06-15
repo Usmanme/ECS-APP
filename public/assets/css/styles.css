@@ -805,7 +805,6 @@ div#bookingtable_in_booking_filter > label input:focus-visible {
 .add_btn {
     background-color: var(--btn-red);
     border: 1px solid var(--btn-red);
-    border-radius: 35px;
 }
 
 /* .add_btn:hover {
