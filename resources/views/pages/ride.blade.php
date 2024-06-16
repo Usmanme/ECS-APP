@@ -170,7 +170,7 @@
         aria-hidden="true">
 
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background: rgba(245, 245, 245, 1)">
+            <div class="modal-content" style="background: rgba(245, 245, 245, 1);width:80%;margin:auto;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addRideModalLabel">Add New Ride</h5>
                 </div>
@@ -183,7 +183,7 @@
                         <div class="row formstylling" >
                             <div class="col-md-3" style="margin-top: -15px;">
                                 <label for="customer_id">ID Number</label>
-                                <select class="form-control" name="customer_id" id="customer_id" required>
+                                <select class="form-control" style="width:110%;" name="customer_id" id="customer_id" required>
                                     <option value="">Select Customer ID</option>
                                     @foreach ($customers as $customer)
                                         <option value="{{ $customer->id }}">{{ $customer->name }}</option>
