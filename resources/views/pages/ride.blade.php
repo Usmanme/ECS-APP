@@ -173,9 +173,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addRideModalLabel">Add New Ride</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <form action="{{ url('/rides/store') }}" method="post" enctype="multipart/form-data" id="rideForm">
 
@@ -229,7 +226,7 @@
                                         id="booking_drop_airport" placeholder="936 Route" required>
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding:17px 8px 9px 11px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Pick Up Date</label>
                                     <input type="date" class="form-control" name="booking_pickup_date_airport"
@@ -246,7 +243,7 @@
                                 <input type="number" class="form-control" name="passengers_airport"
                                     id="passengers_airport" placeholder="0" required>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding:20px 10px 15px 0px;">
                                 <div class="col-md-5">
                                     <label for="category">Category</label>
                                     <select name="category" class="form-control" onchange="getVehicleByCategory(this)"
@@ -263,7 +260,7 @@
                                 </div>
                             </div>
                             <h2>Driver Information:</h2>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding:20px 10px 10px 2px;">
                                 <div class="col-md-3">
                                     <label for="">Driver Pickup Sign</label>
                                     <input type="text" class="form-control" name="driver_sign_airport"
@@ -277,7 +274,7 @@
                             </div>
                             <h2>Fare:</h2>
                             <div class="row mb-2">
-                                <div class="col-md-3" style="padding-left: 0px;">
+                                <div class="col-md-3" style="padding: 13px;">
                                     <label for="">Fare</label>
                                     <input type="text" class="form-control" name="auto_fare" id="auto_fare"
                                         placeholder="Auto Fare"required>
@@ -288,7 +285,7 @@
                                 <!--</div>-->
                             </div>
                             <h2>Airport Ride:</h2>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding:16px 10px 15px 13px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Flight Number</label>
                                     <input type="text" class="form-control" name="flight_number_airport"
@@ -394,7 +391,7 @@
                                         id="booking_drop_full_day" placeholder="936 Route">
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding: 20px 0px 8px 0px;">
                                 <div class="col-md-3">
                                     <label for="">Pick Up Date</label>
                                     <input type="date" class="form-control" name="booking_pickup_date_full_day"
@@ -430,7 +427,7 @@
                                 </div>
                             </div>
                             <h2>Driver Information:</h2>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding-top: 10px;">
                                 <div class="col-md-3">
                                     <label for="">Driver Pickup Sign</label>
                                     <input type="text" class="form-control" name="driver_sign_full_day"
@@ -443,7 +440,7 @@
                                 </div>
                             </div>
                             <h2>Fare:</h2>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding: 15px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Auto Fare</label>
                                     <input type="text" class="form-control" name="auto_fare" id="auto_fare"
