@@ -32,12 +32,12 @@ p {
 }
 
 @font-face {
-    font-family: Atlanregular;
+    font-family: Poppins;
     src: url("../fonts/Atlan-Regular.otf");
 }
 
 @font-face {
-    font-family: Atlanbold;
+    font-family: Poppins;
     src: url("../fonts/Atlan-BoldIt.otf");
 }
 
@@ -179,7 +179,7 @@ body::-webkit-scrollbar {
 }
 
 .center-heading {
-    font-family: Atlanregular;
+    font-family: Poppins;
 }
 
 .color02 {
@@ -346,8 +346,17 @@ body::-webkit-scrollbar {
     visibility: visible;
 }
 
+.modelheadings{
+    font-family: Poppins;
+font-size: 20px;
+font-weight: 700;
+line-height: 30px;
+text-align: left;
+margin: 15px 10px 14px 0px;
+}
+
 h2 {
-    font-family: Atlanbold;
+    font-family: Poppins;
 }
 
 #car-logo {
@@ -418,13 +427,13 @@ h2 {
 
 .average_customer_heading {
     padding: 0;
-    font-family: Atlanbold;
+    font-family: Poppins;
     margin: 0;
 }
 
 .how_many_more {
     padding: 0;
-    font-family: Atlanregular;
+    font-family: Poppins;
     font-size: small;
     color: var(--color-1);
     margin: 0;
@@ -437,7 +446,7 @@ h2 {
 
 .which_year {
     padding: 0px 0px 0px 5px;
-    font-family: Atlanregular;
+    font-family: Poppins;
     font-size: small;
     margin: 0;
 }
@@ -593,7 +602,7 @@ tr {
 }
 
 .booking_heading {
-    font-family: Atlanbold;
+    font-family: Poppins;
 }
 
 .new_booking_btn {
@@ -695,7 +704,7 @@ tr {
 
 .list_text {
     color: #000000;
-    font-family: Atlanbold;
+    font-family: Poppins;
 }
 
 #right-side-bar {
@@ -713,7 +722,7 @@ tr {
 }
 
 .name {
-    font-family: Atlanregular;
+    font-family: Poppins;
     font-size: smaller;
     padding-top: 0;
     margin-top: 0;
@@ -764,7 +773,7 @@ tr {
 }
 
 table.dataTable {
-    font-family: "Atlanregular";
+    font-family: "Poppins";
 }
 
 .booking_container .add_btn {
@@ -786,7 +795,7 @@ div#bookingtable_in_booking_filter > label input {
     padding: 0 0 0 10px;
     margin: 0 0 0 0px;
     line-height: 0;
-    font-family: "Atlanregular";
+    font-family: "Poppins";
     font-weight: 400;
     color: #626262;
     width: 90%;

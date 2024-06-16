@@ -179,7 +179,7 @@
                     @csrf
 
                     <div class="modal-body">
-                        <h2 style="padding:3px">B2B Booking</h2>
+                        <h2 style="padding:3px" class="modelheadings">B2B Booking:</h2>
                         <div class="row formstylling" >
                             <div class="col-md-3" style="margin-top: -15px;">
                                 <label for="customer_id">ID Number</label>
@@ -259,7 +259,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <h2>Driver Information:</h2>
+                            <h2 class="modelheadings">Driver Information:</h2>
                             <div class="row mb-2" style="padding:20px 10px 10px 2px;">
                                 <div class="col-md-3">
                                     <label for="">Driver Pickup Sign</label>
@@ -272,7 +272,7 @@
                                         placeholder="" required>
                                 </div>
                             </div>
-                            <h2>Fare:</h2>
+                            <h2 class="modelheadings">Fare:</h2>
                             <div class="row mb-2">
                                 <div class="col-md-3" style="padding: 13px;">
                                     <label for="">Fare</label>
@@ -284,7 +284,7 @@
                                 <!--    <input type="text" class="form-control" name="trip_fare" placeholder="Trip Fare" required>-->
                                 <!--</div>-->
                             </div>
-                            <h2>Airport Ride:</h2>
+                            <h2 class="modelheadings">Airport Ride:</h2>
                             <div class="row mb-2" style="padding:16px 10px 15px 13px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Flight Number</label>
@@ -352,7 +352,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <h2 style="padding:13px 7px 13px 0px;">Driver Information:</h2>
+                            <h2 style="padding:13px 7px 13px 0px;" class="modelheadings">Driver Information:</h2>
                             <div class="row mb-2">
                                 <div class="col-md-3">
                                     <label for="">Driver Pickup Sign</label>
@@ -364,7 +364,7 @@
                                     <input type="text" class="form-control" name="driver_note" placeholder="">
                                 </div>
                             </div>
-                            <h2>Fare:</h2>
+                            <h2 class="modelheadings">Fare:</h2>
                             <div class="row mb-2" style="padding: 10px;">
                                 <div class="col-md-3" style="padding: 6px;">
                                     <label for="">Fare</label>
@@ -426,7 +426,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <h2>Driver Information:</h2>
+                            <h2 class="modelheadings">Driver Information:</h2>
                             <div class="row mb-2" style="padding-top: 10px;">
                                 <div class="col-md-3">
                                     <label for="">Driver Pickup Sign</label>
@@ -439,7 +439,7 @@
                                         placeholder="">
                                 </div>
                             </div>
-                            <h2>Fare:</h2>
+                            <h2 class="modelheadings">Fare:</h2>
                             <div class="row mb-2" style="padding: 15px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Auto Fare</label>
@@ -453,7 +453,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-3" style="padding:0px 6px 5px 13px ;">
-                            <button type="button"  data-dismiss="modal" aria-label="Close" class="btn btn-white" style=" box-shadow: 0px 4px 4px 0px #00000040;    margin-top: -5px; margin-right: 10px;"><-- Back</button>
+                            <button type="button"  data-dismiss="modal" aria-label="Close" class="btn btn-white" style=" box-shadow: 0px 4px 4px 0px #00000040;    margin-top: -5px; margin-right: 10px;">&#8592; Back</button>
                             <button type="submit" class="btn btn-black">Submit</button>
                         </div>
                     </div>
