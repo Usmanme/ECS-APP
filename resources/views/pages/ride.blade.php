@@ -170,11 +170,11 @@
         aria-hidden="true">
 
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background: rgba(245, 245, 245, 1)">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addRideModalLabel">Add New Ride</h5>
                 </div>
-                <form action="{{ url('/rides/store') }}" method="post" enctype="multipart/form-data" id="rideForm">
+                <form action="{{ url('/rides/store') }}" method="post" enctype="multipart/form-data" id="rideForm" style="margin: 20px;background: white;">
 
                     @csrf
 

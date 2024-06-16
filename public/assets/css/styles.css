@@ -896,7 +896,7 @@ input.form-control::file-selector-button {
 }
 
 .modal {
-    background-color: #0000008a;
+    background-color: white;
     backdrop-filter: blur(12.5px);
 }
 
