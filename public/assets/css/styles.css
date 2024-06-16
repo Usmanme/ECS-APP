@@ -860,7 +860,7 @@ div#bookingtable_in_booking_filter > label input:focus-visible {
 }
 
 .modal_form .btn-black {
-    border-radius: 25px;
+    border-radius: 5px;
     width: 100px;
 }
 
@@ -881,7 +881,7 @@ div#bookingtable_in_booking_filter > label input:focus-visible {
 }
 
 .form-control {
-    border-radius: 100px;
+    border-radius: 5px;
 }
 
 input.form-control::file-selector-button {

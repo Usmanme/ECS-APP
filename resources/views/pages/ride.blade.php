@@ -1,5 +1,9 @@
 @extends('layouts.app-master')
-
+<style>
+    .formstylling{
+       padding: 37px 0px 0px 10px;
+    }
+</style>
 @section('content')
     <!-- Left Sidebar -->
     <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
@@ -178,9 +182,9 @@
                     @csrf
 
                     <div class="modal-body">
-                        <h2>B2B Booking</h2>
-                        <div class="row">
-                            <div class="col-md-3">
+                        <h2 style="padding:3px">B2B Booking</h2>
+                        <div class="row formstylling" >
+                            <div class="col-md-3" style="margin-top: -15px;">
                                 <label for="customer_id">ID Number</label>
                                 <select class="form-control" name="customer_id" id="customer_id" required>
                                     <option value="">Select Customer ID</option>
@@ -194,7 +198,7 @@
                                     <input onclick="showTab(this)" type="radio" id="airport" value="airport"
                                         name="catgory" checked />
                                     <label class="checkbox-container btn btn-default" for="airport">Airport
-                                        Transfer</label>
+                                        Pickup</label>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -299,7 +303,7 @@
 
                         </div>
                         <div class="container hourly-div d-none">
-                            <div class="row">
+                            <div class="row " style="padding:7px 0px;">
                                 <div class="col-md-3">
                                     <label for="">Pick & Drop</label>
                                     <input type="text" class="form-control" name="booking_pickup_hourly"
@@ -311,7 +315,7 @@
                                         id="booking_drop_hourly" placeholder="936 Route">
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding:10px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Pick Up Date</label>
                                     <input type="date" class="form-control" name="booking_pickup_date"
@@ -323,7 +327,7 @@
                                         id="booking_drop_time" placeholder="936 Kiehn Route">
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding: 13px;">
                                 <div class="col-md-3" style="padding-left: 0px;">
                                     <label for="">Passengers</label>
                                     <input type="number" class="form-control" name="passengers_hourly"
@@ -335,7 +339,7 @@
                                         placeholder="0">
                                 </div>
                             </div>
-                            <div class="row mb-2">
+                            <div class="row mb-2" style="padding: 8px -8px 11px 11px;">
                                 <div class="col-md-5">
                                     <label for="category">Category</label>
                                     <select name="category" class="form-control" onchange="getVehicleByCategory(this)"
@@ -351,7 +355,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <h2>Driver Information:</h2>
+                            <h2 style="padding:13px 7px 13px 0px;">Driver Information:</h2>
                             <div class="row mb-2">
                                 <div class="col-md-3">
                                     <label for="">Driver Pickup Sign</label>
@@ -364,8 +368,8 @@
                                 </div>
                             </div>
                             <h2>Fare:</h2>
-                            <div class="row mb-2">
-                                <div class="col-md-3" style="padding-left: 0px;">
+                            <div class="row mb-2" style="padding: 10px;">
+                                <div class="col-md-3" style="padding: 6px;">
                                     <label for="">Fare</label>
                                     <input type="text" class="form-control" name="auto_fare" id="auto_fare"
                                         placeholder="Auto Fare">
@@ -451,7 +455,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-3" style="padding:0px 6px 5px 13px ;">
+                            <button type="button"  data-dismiss="modal" aria-label="Close" class="btn btn-white" style=" box-shadow: 0px 4px 4px 0px #00000040;    margin-top: -5px; margin-right: 10px;"><-- Back</button>
                             <button type="submit" class="btn btn-black">Submit</button>
                         </div>
                     </div>
@@ -471,9 +476,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editRideModalLabel">Edit Ride</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="#" method="post" enctype="multipart/form-data">
