@@ -24,10 +24,7 @@ p {
     margin: 0;
 }
 
-table {
-    font-family: Atlanlight;
-    font-size: small;
-}
+
 
 @font-face {
     font-family: Atlansemibold;
@@ -537,60 +534,57 @@ tfoot,
     width: 100%;
 }
 
-tbody tr {
-    /* margin-top: 50px; */
-    border-radius: 10px;
-    /* padding-top: 20px; */
-    box-shadow: 0px 0px 5.5px 0px rgba(212, 211, 211, 0.959);
-}
 
 #bookingtable_in_booking {
     width: 80%;
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 0 10px;
+th {
+    height: 55px;
+    gap: 0px;
+    background: #f6f6f6;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: rgba(92, 89, 89, 1);
+}
+
+th:first-child {
+    border-radius: 15px 0 0 0;
+}
+
+th:last-child {
+    border-radius: 0 15px 0 0;
+}
+
+tr {
+    box-shadow: none !important;
+    border-bottom: 1px solid rgb(231 225 225);
+    height: 70px;
+    background: white !important;
+}
+
+td {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: right;
+    color: rgba(143, 143, 143, 1);
+    padding: 10px;
+
+}
+table{
+    text-align: center;
+    padding: 10px;
 }
 
 td,
-th {
-    padding: 8px;
+tr {
+    text-align: center;
 }
 
-/* table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px auto;
-}
-
-th {
-    background-color: #f2f2f2;
-    cursor: pointer;
-    position: relative;
-}
-
-th::after {
-    content: '';
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    margin-left: 5px;
-}
-
-th.asc::after {
-    content: '\25B2';
-}
-
-th.desc::after {
-    content: '\25BC';
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}*/
 
 .table_header {
     display: flex;

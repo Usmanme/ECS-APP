@@ -1,5 +1,6 @@
 @extends('layouts.app-master')
 
+
 @section('content')
 
     <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
@@ -34,6 +35,7 @@
                     menu
                 </span>
             </button></div>
+
 
         {{-- <div class="row">
             <div class="col-md-7">
@@ -149,7 +151,7 @@
 
                 </div>
             </div>
-            <div class="rides" >
+            <div class="rides">
                 <div style="display: flex;flex-direction:row; padding:15px">
                     <div
                         style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
@@ -193,7 +195,7 @@
                                 500</div>
                             <div
                                 style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
-                                 Driver Assigned ></div>
+                                Driver Assigned ></div>
                         </div>
                     </div>
                     <div style="padding: 23px 10px 10px 20px; width:50%">
@@ -204,13 +206,15 @@
                             style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
                             Completed ></div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
 
+
+
         <br><br>
-        <table id="booking" class="display" style="width:100% ;background:white;">
+        <table id="booking" class="display" style="width:100% ;">
             <thead>
                 <tr>
                     <th>Customer</th>
