@@ -167,6 +167,7 @@ p {
     flex-direction: column;
     justify-content: space-around;
     overflow-y: scroll;
+  
 }
 
 body::-webkit-scrollbar {
@@ -275,17 +276,19 @@ body::-webkit-scrollbar {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .innerbox {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50%;
 
 }
 
 .drivers {
-    width: 462px;
+    width: 96%;
     height: 164px;
     top: 86px;
     left: 311px;
@@ -300,7 +303,7 @@ body::-webkit-scrollbar {
 }
 
 .Earnings {
-    width: 462px;
+    width: 96%;
     height: 258px;
     gap: 0px;
     opacity: 0px;
@@ -310,7 +313,7 @@ body::-webkit-scrollbar {
 }
 
 .rides {
-    width: 597.5px;
+    width: 50%;
     height: 431px;
     gap: 0px;
     opacity: 0px;
