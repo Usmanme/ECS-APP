@@ -2,26 +2,21 @@
 
 @section('content')
     <!-- Left Sidebar -->
-    @include('layouts.partials.left-sidebar')
+    <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
+        @include('layouts.partials.left-sidebar')
+    </div>
     <!-- ./Left Sidebar -->
 
     <!-- Customer -->
-    <div class="col-lg-9 p-0" id="booking_right_part">
-        <div class="booking_header_part">
-            <div class="booking_header_title" id="Title">
-                <h2>Customer</h2>
-                <div class="center-heading">
-                    <h6 class="color01">Home >></h6>
-                    <h6 class="color02">Dashboard</h6>
-                </div>
-            </div>
-            <div class="profile">
-                <img src="./assets/images/notification.png" class="notification-icon">
-                <img src="./assets/images/admin.png" class="admin-pic">
-                <p class="admin-name">king Albert</p>
-            </div>
-        </div>
+    <div class="widthmainopen" id="booking_right_part">
+     
 
+        <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
+            <span class="material-symbols-outlined">
+                menu
+            </span>
+        </button></div>
+        
         <!-- Save -->
         @if (session('status_save') === 'true')
             <div class="ecs_alert alert alert-success" role="alert">
@@ -234,3 +229,27 @@
     </div>
     <!-- ./ Edit Modal -->
 @endsection
+<script>
+    function toggleSidebar() {
+    const sidebar = document.getElementById("sidebarleft");
+    const mainContent = document.getElementById("booking_right_part");
+    const onnav = document.getElementById("onnav");
+    const onmain = document.getElementById("onmain");
+    if (sidebar.classList.contains("widthsideberopen")) {
+        sidebar.classList.remove("widthsideberopen");
+        mainContent.classList.remove("widthmainopen");
+        sidebar.classList.add("widthsideberclose");
+        mainContent.classList.add("widthmainclose");
+        onmain.classList.remove("hidebars");
+        onmain.classList.add("showbars");
+
+    } else {
+        sidebar.classList.remove("widthsideberclose");
+        mainContent.classList.remove("widthmainclose");
+        sidebar.classList.add("widthsideberopen");
+        mainContent.classList.add("widthmainopen");
+        onmain.classList.add("hidebars");
+        onmain.classList.remove("showbars");
+    }
+}
+</script>
