@@ -42,7 +42,7 @@
         @endif
 
       
-        <table id="bookingtable_in_booking" class="display" style="width:100%; background:white;">
+        <table id="bookingtable_in_booking" class="display" style="width:100%; ">
             <thead>
                 <tr>
                     <th>ID</th>
