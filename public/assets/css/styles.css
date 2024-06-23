@@ -279,6 +279,7 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
+
 .innerbox {
     display: flex;
     flex-direction: column;
@@ -329,6 +330,21 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
 }
+
+@media only screen and (max-width:680px) {
+    .outerbox {
+        flex-direction: column;
+    }
+    .innerbox {
+        width: 100%;
+    }
+    .rides{
+        width: 100%;
+    }
+    
+}
+
+
 
 .material-symbols-outlined {
     margin-right: 8px;
