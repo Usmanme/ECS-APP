@@ -98,7 +98,7 @@ body {
 
 
 .logout {
-    /* margin-top: 200px; */
+    margin-top: 200px;
     /* height: 55px; */
     position: absolute;
     font-family: Atlanthin;
@@ -106,7 +106,7 @@ body {
     bottom: 0;
     /* padding: 10px; */
     width: 95%;
-    border-radius: 0px 0px 15px 0px;
+    border-radius: 10px 10px 0px 0px;
     background: var(--Red-color, #e12e2a);
 }
 
@@ -166,11 +166,12 @@ p {
 
 #center {
     background-color: #343434;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-around; */
+   
+    height: 100vh;
     overflow-y: scroll;
-  
 }
 
 body::-webkit-scrollbar {
@@ -255,7 +256,7 @@ body::-webkit-scrollbar {
 
 .widthmainopen {
     width: 78%;
-    padding-left: 30px;
+    padding-right: 2px;
 }
 
 .widthmainclose {

@@ -1,6 +1,15 @@
 @extends('layouts.app-master')
 
-
+<style>
+    .dataTables_length label{
+    color: white;
+    padding:10px;
+    }
+    .dataTables_info {
+    color: white;
+    padding:10px;
+       }
+</style>
 @section('content')
 
     <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
@@ -29,7 +38,7 @@
     <!-- Center -->
 
 
-    <div id="center" class="widthmainopen" style="padding-right: 40px">
+    <div id="center" class="widthmainopen" >
         <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
                 <span class="material-symbols-outlined">
                     menu
@@ -212,8 +221,6 @@
         </div>
 
 
-
-        <br><br>
         <table id="booking" class="display" style="width:100% ;">
             <thead>
                 <tr>
