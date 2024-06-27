@@ -9,7 +9,7 @@
             <img src="./assets/images/logo.png" class="logo">
         </div>
     </div>
-    <div>
+    <div style="height: 86vh">
         <div class="buttons">
             <a href="{{ url('/') }}" class="button {{ Request::is('/') ? 'active' : '' }}" id="dashboard">
                 <span class="material-symbols-outlined icon-logo">Dashboard</span>

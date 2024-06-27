@@ -70,6 +70,7 @@ body {
     justify-content: center;
     border-radius: 0px 15px 0px 0px;
     width: 300px;
+    margin: auto;
 }
 
 /* .logo {
@@ -105,7 +106,7 @@ body {
     font-size: 26px;
     bottom: 0;
     /* padding: 10px; */
-    width: 95%;
+    width: 100%;
     border-radius: 10px 10px 0px 0px;
     background: var(--Red-color, #e12e2a);
 }
