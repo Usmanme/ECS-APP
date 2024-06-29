@@ -1,4 +1,4 @@
-<div id="left-side-bar">
+{{-- <div id="left-side-bar">
     <div id="onnav">
         <button class="togle" style="left:240" onclick="toggleSidebar()">
             <span class="material-symbols-outlined">menu</span>
@@ -41,4 +41,30 @@
         </div>
         <a href="{{ url('/logout') }}" class="btn btn-danger logout mt-auto">Logout</a>
     </div>
-</div>
+</div> --}}
+
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <!-- Use active class for highlighted menu option -->
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-van-shuttle fa-fw me-3"></i><span>Rides</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-user fa-fw me-3"></i><span>Drivers</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-car fa-fw me-3"></i><span>Vehicles</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-users fa-fw me-3"></i><span>Clients</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-chart-area fa-fw me-3"></i><span>Finance</span>
+        </a>
+      </div>
+    </div>
+  </nav>

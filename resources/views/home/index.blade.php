@@ -4,80 +4,10 @@
 
 <header>
     <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-      <div class="position-sticky">
-        <div class="list-group list-group-flush mx-3 mt-4">
-          <!-- Use active class for highlighted menu option -->
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-            <i class="fas fa-van-shuttle fa-fw me-3"></i><span>Rides</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-user fa-fw me-3"></i><span>Drivers</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-car fa-fw me-3"></i><span>Vehicles</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-users fa-fw me-3"></i><span>Clients</span>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-              class="fas fa-chart-area fa-fw me-3"></i><span>Finance</span>
-          </a>
-        </div>
-      </div>
-    </nav>
+    @include('layouts.partials.left-sidebar')
     <!-- Sidebar -->
     <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top ecs-navbar">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-        <!-- Toggle button -->
-        <button data-mdb-button-init class="navbar-toggler" type="button" data-mdb-collapse-init
-          data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
-
-        <!-- Brand -->
-        <a class="navbar-brand ecs-logo-text" href="#">
-          DASHBOARD
-        </a>
-        <!-- Right links -->
-        <ul class="navbar-nav ms-auto d-flex flex-row">
-          <!-- Notification dropdown -->
-          <li class="nav-item dropdown">
-            <a data-mdb-dropdown-init class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
-              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-bell" id="ecs-notify"></i>
-              <span class="badge rounded-pill badge-notification bg-danger">1</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Some news</a></li>
-              <li><a class="dropdown-item" href="#">Another news</a></li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </li>
-          <!-- Avatar -->
-          <li class="nav-item dropdown">
-            <a data-mdb-dropdown-init class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
-              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-              <span class="ecs-user-name">Mutazir</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">My profile</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <!-- Container wrapper -->
-    </nav>
+    @include('layouts.partials.nav')
     <!-- Navbar -->
   </header>
   <!-- NAVBAR ENDS -->
@@ -304,10 +234,13 @@
             </select>
             <p class="rows-txt">1-75 of 89,33</p>
             <div class="rows-clicks-main">
-              <img src="./assets/icons/fast-left.png" alt="arrow-fast-left" />
-              <img src="./assets/icons/left.png" alt="arrow-left" />
-              <img src="./assets/icons/right.png" alt="arrow-right" />
-              <img src="./assets/icons/fast-right.png" alt="arrow-fast-right" />
+                
+                
+            
+              <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
+              <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
+              <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
+              <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
             </div>
           </div>
         </div>
