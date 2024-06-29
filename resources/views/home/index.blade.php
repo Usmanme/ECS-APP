@@ -1,347 +1,318 @@
 @extends('layouts.app-master')
 
-<style>
-    .dataTables_length label{
-    color: white;
-    padding:10px;
-    }
-    .dataTables_info {
-    color: white;
-    padding:10px;
-       }
-</style>
 @section('content')
 
-    <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
-        @include('layouts.partials.left-sidebar')
-    </div>
-
-
-    <?php
-    $filters_data = [
-        'today' => 'Today',
-        'yesterday' => 'Yesterday',
-        '1' => 'January',
-        '2' => 'February',
-        '3' => 'March',
-        '4' => 'April',
-        '5' => 'May',
-        '6' => 'June',
-        '7' => 'July',
-        '8' => 'August',
-        '9' => 'September',
-        '10' => 'October',
-        '11' => 'November',
-        '12' => 'December',
-    ];
-    ?>
-    <!-- Center -->
-
-
-    <div id="center" class="widthmainopen" >
-        <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
-                <span class="material-symbols-outlined">
-                    menu
-                </span>
-            </button></div>
-
-
-        {{-- <div class="row">
-            <div class="col-md-7">
-                <div class="row" id="left-row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="heading">Total Drivers</div>
-                                <img src="{{ asset('assets/images/drivers_img.png') }}" alt="">
-                            </div>
-                            <div class="card-body">
-                                <p class="count pl-0 mb-2">{{ count($drivers) }}</p>
-                                <p class="desc pl-0">All Time Customers</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="heading">Total Rides</div>
-                                <img src="{{ asset('assets/images/rides_img.png') }}" alt="">
-                            </div>
-                            <div class="card-body">
-                                <p class="count pl-0 mb-2">{{ count($rides) }}</p>
-                                <p class="desc pl-0">All the Rides</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="card" id="right-card">
-                    <div class="card-header">
-                        <div class="heading">
-                            <p class="pl-0">Total Revenue</p>
-                        </div>
-                        <input type="date" class="form-control" name="date_filter" id="date_filter" placeholder=""
-                            required>
-
-                     
-                    </div>
-                    <div class="card-body pt-0">
-                        <p class="desc pl-0">All Time Customers</p>
-                        <h3>SAR. <span id="total_revenue"></span></h3>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <div class="outerbox">
-            <div class="innerbox">
-                <div class="drivers" style="background: white">
-                    <div style="display: flex;flex-direction:row; padding:15px">
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
-                            Drivers</div>
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 18px;font-weight: 400;line-height: 21.78px;text-align: left;padding-top:8px">
-                            5000</div>
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:#9F9F9F;padding-top:9px">
-                            (Total Drivers)</div>
-                        <div style="padding: 5px;width:90px;"></div>
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:var(--Red-color, #E12E2A);">
-                            View Drivers</div>
-                    </div>
-                    <div style="padding: 23px 10px 10px 20px;">
-                        <div
-                            style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
-                            500</div>
-                        <div
-                            style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
-                            Active Drivers ></div>
-                    </div>
-
-                </div>
-                <div class="Earnings">
-                    <div style="display: flex;flex-direction:row; padding:15px">
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
-                            Overall Earnings</div>
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 18px;font-weight: 400;line-height: 21.78px;text-align: left;padding-top:8px">
-                            SAR 500,380</div>
-                        <div
-                            style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:#9F9F9F;padding-top:9px">
-                            (Total Earnings)</div>
-                    </div>
-                    <div
-                        style="display: flex;flex-direction:row;justify-content:space-between;padding:11px 23px 10px 22px ;font-family: Inter;font-size: 12px;font-weight: 400;">
-                        <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F;">TODAY</div>
-                        <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F">THIS MONTH</div>
-                        <div class="containered">
-                            <span class="material-symbols-outlined">
-                                calendar_month
-                            </span>
-                            Choose Dates
-                        </div>
-                    </div>
-
-                    <div class="buttons" style="border-bottom: 2px solid #D3D3D3;"></div>
-
-                    <div style="padding: 23px 10px 10px 20px;">
-                        <div
-                            style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
-                            SAR 500</div>
-                        <div
-                            style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
-                            Overall Earnings </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="rides">
-                <div style="display: flex;flex-direction:row; padding:15px">
-                    <div
-                        style="padding: 5px;font-family: Inter;font-size: 22px;font-weight: 700;line-height: 26.63px;text-align: left;">
-                        Rides</div>
-                    <div
-                        style="padding: 5px;font-family: Inter;font-size: 18px;font-weight: 400;line-height: 21.78px;text-align: left;padding-top:8px">
-                        100,560</div>
-                    <div
-                        style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:#9F9F9F;padding-top:9px">
-                        (Total Rides Completed)</div>
-                    <div style="padding: 5px;width:70px;"></div>
-                    <div
-                        style="padding: 5px;font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;color:var(--Red-color, #E12E2A);">
-                        View Rides</div>
-                </div>
-                <div
-                    style="display: flex;flex-direction:row;justify-content:space-between;padding:11px 23px 10px 22px ;font-family: Inter;font-size: 12px;font-weight: 400; margin-top:33px">
-                    <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F;">TODAY</div>
-                    <div style=" 400;line-height: 14.52px;text-align: left;color:#9F9F9F">THIS MONTH</div>
-                    <div class="containered">
-                        <span class="material-symbols-outlined">
-                            calendar_month
-                        </span>
-                        Choose Dates
-                    </div>
-                </div>
-                <div class="buttons" style="border-bottom: 2px solid #D3D3D3;"></div>
-                <div style="display: flex;flex-direction:row;margin-top:30px">
-                    <div style="display: flex;flex-direction:column;width:50%">
-                        <div style="padding: 23px 10px 10px 20px;">
-                            <div
-                                style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
-                                500</div>
-                            <div
-                                style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
-                                Rides Created ></div>
-                        </div>
-                        <div style="padding: 23px 10px 10px 20px;">
-                            <div
-                                style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
-                                500</div>
-                            <div
-                                style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
-                                Driver Assigned ></div>
-                        </div>
-                    </div>
-                    <div style="padding: 23px 10px 10px 20px; width:50%">
-                        <div
-                            style="font-family: Inter;font-size: 32px;font-weight: 400;line-height: 38.73px;text-align: left;padding-bottom:3px;">
-                            500</div>
-                        <div
-                            style="font-family: Inter;font-size: 14px;font-weight: 400;line-height: 16.94px;text-align: left;">
-                            Completed ></div>
-                    </div>
-
-                </div>
-            </div>
+<header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <div class="position-sticky">
+        <div class="list-group list-group-flush mx-3 mt-4">
+          <!-- Use active class for highlighted menu option -->
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="fas fa-van-shuttle fa-fw me-3"></i><span>Rides</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-user fa-fw me-3"></i><span>Drivers</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-car fa-fw me-3"></i><span>Vehicles</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-users fa-fw me-3"></i><span>Clients</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+              class="fas fa-chart-area fa-fw me-3"></i><span>Finance</span>
+          </a>
         </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top ecs-navbar">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button data-mdb-button-init class="navbar-toggler" type="button" data-mdb-collapse-init
+          data-mdb-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
 
+        <!-- Brand -->
+        <a class="navbar-brand ecs-logo-text" href="#">
+          DASHBOARD
+        </a>
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row">
+          <!-- Notification dropdown -->
+          <li class="nav-item dropdown">
+            <a data-mdb-dropdown-init class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
+              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-bell" id="ecs-notify"></i>
+              <span class="badge rounded-pill badge-notification bg-danger">1</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Some news</a></li>
+              <li><a class="dropdown-item" href="#">Another news</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Avatar -->
+          <li class="nav-item dropdown">
+            <a data-mdb-dropdown-init class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+              <span class="ecs-user-name">Mutazir</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">My profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </header>
+  <!-- NAVBAR ENDS -->
+  <!--Main layout-->
+  <main class="ecs-main-body">
+    <div class="container-fluid pt-4">
+      <!-- STATS STARTS -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header ecs-card-header-main">
+              <div class="ecs-card-header-left">
+                <span class="heading">Drivers</span>
+                <span class="stats"><span class="num">5,889</span> (Total Drivers)</span>
+              </div>
+              <div class="ecs-card-header-right">
+                <a class="ecs-stats-btn" href="#">View Drivers</a>
+              </div>
+            </div>
+            <div class="card-body ecs-body-main">
+              <p class="ecs-stats-num">5,321</p>
+              <p class="ecs-stats-num-txt">Active Drivers ></p>
+            </div>
+          </div>
+          <br />
+          <div class="card">
+            <div class="card-header ecs-card-header-main">
+              <div class="ecs-card-header-left">
+                <span class="heading">Overall Earnings</span>
+                <span class="stats"><span class="num">SAR 500,380</span> (Total Earnings)</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Tabs navs -->
+              <ul class="nav nav-tabs mb-3 ecs-tab-main" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a data-mdb-tab-init class="nav-link active" id="ex1-tab-1" href="#ex1-tabs-1" role="tab"
+                    aria-controls="ex1-tabs-1" aria-selected="true">Today</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a data-mdb-tab-init class="nav-link" id="ex1-tab-2" href="#ex1-tabs-2" role="tab"
+                    aria-controls="ex1-tabs-2" aria-selected="false">This Month</a>
+                </li class="nav-item">
+                <li>
+                  <form>
+                    <div class="form-outline datepicker ecs-datepicker">
+                      <input type="date" class="form-control" placeholder="Choose dates" />
+                    </div>
+                  </form>
+                </li>
+              </ul>
+              <!-- Tabs navs -->
+              <!-- Tabs content -->
+              <div class="tab-content" id="ex1-content">
+                <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                  <p class="ecs-stats-num2">SAR 12,892</p>
+                  <p class="ecs-stats-num-txt2">Overall Earnings</p>
+                </div>
+                <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                  <p class="ecs-stats-num2">SAR 15,892</p>
+                  <p class="ecs-stats-num-txt2">Overall Earnings</p>
+                </div>
+              </div>
+              <!-- Tabs content -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card ecs-mobile-stats">
+            <div class="card-header ecs-card-header-main">
+              <div class="ecs-card-header-left">
+                <span class="heading">Rides</span>
+                <span class="stats"><span class="num">100,598</span> (Total Rides Completed)</span>
+              </div>
+              <div class="ecs-card-header-right">
+                <a class="ecs-stats-btn" href="#">View Rides</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Tabs navs -->
+              <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a data-mdb-tab-init class="nav-link active" id="ex3-tab-3" href="#ex3-tabs-3" role="tab"
+                    aria-controls="ex3-tabs-3" aria-selected="true">Today</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a data-mdb-tab-init class="nav-link" id="ex3-tab-2" href="#ex3-tabs-2" role="tab"
+                    aria-controls="ex3-tabs-2" aria-selected="false">This Month</a>
+                </li>
+                <li class="nav-item">
+                  <form>
+                    <div class="form-outline datepicker ecs-datepicker">
+                      <input type="date" class="form-control" placeholder="Choose dates" />
+                    </div>
+                  </form>
+                </li>
+              </ul>
+              <!-- Tabs navs -->
+              <!-- Tabs content -->
+              <div class="tab-content" id="ex1-content">
+                <div class="tab-pane fade show active" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="ecs-stats-num2">3,052</p>
+                      <p class="ecs-stats-num-txt2">Ride Created ></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="ecs-stats-num2">380</p>
+                      <p class="ecs-stats-num-txt2">Completed ></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="ecs-stats-num2">1,021</p>
+                      <p class="ecs-stats-num-txt2">Driver Assigned ></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
+                  <div class="row">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p class="ecs-stats-num2">5,052</p>
+                        <p class="ecs-stats-num-txt2">Ride Created ></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p class="ecs-stats-num2">232</p>
+                        <p class="ecs-stats-num-txt2">Completed ></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p class="ecs-stats-num2">2,021</p>
+                        <p class="ecs-stats-num-txt2">Driver Assigned ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tabs content -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- STATS ENDS -->
 
-        <table id="booking" class="display" style="width:100% ;">
-            <thead>
+      <!-- TABLE STARTS -->
+      <div class="ecs-table-card">
+        <p class="ecs-table-heading-main">Completed Rides</p>
+        <div class="ecs-table-container">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="ecs-custom-header">
                 <tr>
-                    <th>Customer</th>
-                    <th>Ride Date</th>
-                    <th>Pick Up</th>
-                    <th>Drop Up</th>
-                    <th>Vehicle</th>
-                    <th>Status</th>
-                    <th>Fare</th>
-                    {{-- <th>Action</th> --}}
+                  <th class="th-sm">Trip Id</th>
+                  <th class="th-sm">Customer Name</th>
+                  <th class="th-sm">Date & Time</th>
+                  <th class="th-sm">Pick Up</th>
+                  <th class="th-sm">Drop Up</th>
+                  <th class="th-sm">Booking Type</th>
+                  <th class="th-sm">Driver Name</th>
+                  <th class="th-sm">Vehicle Assigned</th>
+                  <th class="th-sm">Status</th>
+                  <th class="th-sm">Fare</th>
                 </tr>
-            </thead>
-            <tbody>
-                @if (!empty($completed_rides))
-                    @foreach ($completed_rides as $value)
-                        <tr>
-                            <td>
-                                <div class="nameentry">
-                                    <img src="{{ asset('/assets/images/avarat.png') }}" class="customerpic">
-                                    <p>{{ $value->customer_name }}</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="dameentry">
-                                    <p class="datepart">{{ $value->booking_pickup }}</p>
-                                    <p class="datepart">{{ $value->booking_drop }}</p>
-                                </div>
-                            </td>
-                            <td>{{ $value->hotel_pickup }}</td>
-                            <td>{{ $value->hotel_drop }}</td>
-
-                            <td>{{ $value->car_name }}</td>
-                            <td>
-                                <div class="booking_status">Completed</div>
-                            </td>
-                            <td>{{ $value->fare }} SAR</td>
-
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-            <tfoot>
+              </thead>
+              <tbody class="ecs-custom-body">
                 <tr>
-                    <th>Customer</th>
-                    <th>Ride Date</th>
-                    <th>Pick Up</th>
-                    <th>Drop Up</th>
-                    <th>Vehicle</th>
-                    <th>Status</th>
-                    <th>Fare</th>
-                    {{-- <th>Action</th> --}}
+                  <td>001</td>
+                  <td>Tiger Nixon</td>
+                  <td>12-06-2024</td>
+                  <td>
+                    Airport Road, King Khalid International Airport, Riyadh
+                    Saudi Arabia
+                  </td>
+                  <td>Al Olaya, Riyadh Saudi Arabia</td>
+                  <td class="type">Economy</td>
+                  <td>Drake</td>
+                  <td>Tahoe</td>
+                  <td class="status-success">
+                    Completed
+                  </td>
+                  <td>200 SAR</td>
                 </tr>
-            </tfoot>
-        </table>
+                <tr>
+                  <td>001</td>
+                  <td>Tiger Nixon</td>
+                  <td>12-06-2024</td>
+                  <td>
+                    Airport Road, King Khalid International Airport, Riyadh
+                    Saudi Arabia
+                  </td>
+                  <td>Al Olaya, Riyadh Saudi Arabia</td>
+                  <td class="type">Economy</td>
+                  <td>Drake</td>
+                  <td>Tahoe</td>
+                  <td class="status-fail">
+                    Driver Assigned
+                  </td>
+                  <td>200 SAR</td>
+                </tr>
+                <tr>
+                  <td>001</td>
+                  <td>Tiger Nixon</td>
+                  <td>12-06-2024</td>
+                  <td>
+                    Airport Road, King Khalid International Airport, Riyadh
+                    Saudi Arabia
+                  </td>
+                  <td>Al Olaya, Riyadh Saudi Arabia</td>
+                  <td class="type">Economy</td>
+                  <td>Drake</td>
+                  <td>Tahoe</td>
+                  <td class="status-warn">
+                    Ride Created
+                  </td>
+                  <td>200 SAR</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ecs-table-pagination-main">
+            <p class="rows-txt">Rows per page</p>
+            <select class="custom-pages-ddl">
+              <option>25</option>
+              <option>55</option>
+              <option>75</option>
+            </select>
+            <p class="rows-txt">1-75 of 89,33</p>
+            <div class="rows-clicks-main">
+              <img src="./assets/icons/fast-left.png" alt="arrow-fast-left" />
+              <img src="./assets/icons/left.png" alt="arrow-left" />
+              <img src="./assets/icons/right.png" alt="arrow-right" />
+              <img src="./assets/icons/fast-right.png" alt="arrow-fast-right" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- TABLE ENDS -->
     </div>
-
+  </main>
 @endsection
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script>
-    //  .widthsideberopen{
-    //     width: 23%;
-    // }
-    // .widthsideberclose{
-    //     width: 0%;
-    //     visibility: hidden
-    // }
-    // .widthmainopen{
-    //     width: 77%;
-    //     padding-left: 30px;
-    // }
-    // .widthmainclose{
-    //     width: 100%;
-    //     padding-left: 30px;
-    // }
-
-    function toggleSidebar() {
-        const sidebar = document.getElementById("sidebarleft");
-        const mainContent = document.getElementById("center");
-        const onnav = document.getElementById("onnav");
-        const onmain = document.getElementById("onmain");
-        if (sidebar.classList.contains("widthsideberopen")) {
-            sidebar.classList.remove("widthsideberopen");
-            mainContent.classList.remove("widthmainopen");
-            sidebar.classList.add("widthsideberclose");
-            mainContent.classList.add("widthmainclose");
-            onmain.classList.remove("hidebars");
-            onmain.classList.add("showbars");
-
-        } else {
-            sidebar.classList.remove("widthsideberclose");
-            mainContent.classList.remove("widthmainclose");
-            sidebar.classList.add("widthsideberopen");
-            mainContent.classList.add("widthmainopen");
-            onmain.classList.add("hidebars");
-            onmain.classList.remove("showbars");
-        }
-    }
-
-    $(document).ready(function() {
-        // Bind change event to the date input
-        $('#date_filter').change(function() {
-            // Call the getFilterRecords function with the value of the date input
-            getFilterRecords(this);
-        });
-    });
-
-    function getFilterRecords(value) {
-        let filter = $(value).val();
-        $.ajax({
-            type: "GET",
-            url: "{{ route('get.fare') }}",
-            data: {
-                filter: filter
-            },
-            success: function(response) {
-                if (response.status) {
-                    $('#total_revenue').html(response.fare);
-                }
-            }
-        });
-    }
-</script>
