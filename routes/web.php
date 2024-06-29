@@ -37,7 +37,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/booking', [BookingContoller::class, 'index']);
 
         // Drivers
-        Route::get('/drivers', [DriversContoller::class, 'index']);
+        Route::get('/drivers', [DriversContoller::class, 'index'])->name('drivers');
         Route::post('/drivers/store', [DriversContoller::class, 'store']);
         Route::post('/drivers/update/{id}', [DriversContoller::class, 'update']);
 
@@ -47,7 +47,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/vehicles/update/{id}', [VehiclesContoller::class, 'update']);
 
         // Rides
-        Route::get('/rides', [RidesContoller::class, 'index']);
+        Route::get('/rides', [RidesContoller::class, 'index'])->name('rides');
+
         // Route::post('/rides/store', [RidesContoller::class, 'store']);
           Route::get('/rides/edit',[RidesContoller::class,'edit'])->name('rides.edit');
         Route::post('/rides/store', [RidesContoller::class, 'store'])->name('ride.store');
@@ -65,7 +66,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Finance
         Route::get('/finance', [FinanceController::class, 'index']);
-        
+
         // Logout Routes
         Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
     });

@@ -21,8 +21,12 @@ class HomeController extends Controller
         // ->join('drivers', 'rides.driver_id', '=', 'drivers.id')
         // ->join('vehicles', 'rides.vehicle_id', '=', 'vehicles.id')
         // ->get();
-                $completed_rides = DB::table('rides')->where('status', 'Completed')->get();
-        return view('home.index', compact('rides', 'customers', 'vehicles', 'drivers', 'completed_rides'));
+        $completed_rides = DB::table('rides')->where('status', 'Completed')->get();
+
+        $fare = DB::table('rides')->whereStatus('Completed')->sum('fare');
+        $ride_created = DB::table('rides')->where('status', 'Ride Created')->get();
+        $driver_assigned = DB::table('rides')->where('status', 'Driver Assigned')->get();
+        return view('home.index', compact('rides', 'customers', 'vehicles', 'drivers', 'completed_rides', 'fare', 'ride_created', 'driver_assigned'));
     }
     public function getBookRidesFare(Request $request)
     {
