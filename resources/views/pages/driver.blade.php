@@ -43,16 +43,17 @@
                 <div class="d-flex flex-row">
                     <span class="material-symbols-outlined p-2">
                         refresh
-                        </span>
+                    </span>
                     <span class="material-symbols-outlined p-2">
                         download
-                        </span>
+                    </span>
                     <button class="bigbutton">Add Driver</button>
                 </div>
             </div>
+            <div class="miniheading">(Total Drivers)</div>
+            <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
+            </span><input class="searchbars" placeholder="Search" type="text"></div>
 
-            <div>div2</div>
-                <div>div3</div>
             <div class="ecs-table-card">
                 <p class="ecs-table-heading-main">Drivers</p>
                 <div class="ecs-table-container">
