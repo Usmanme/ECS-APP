@@ -10,6 +10,27 @@
     <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
 
+
+            <div class="d-flex flex-row justify-content-between text-light">
+                <div class="ecs-card-header-left">
+                    <span class="heading pageheading">Finance</span>
+                    <span class="stats totalnumber"><span class="num">500</span></span>
+                </div>
+                <div class="d-flex flex-row">
+                    <span class="material-symbols-outlined p-2">
+                        refresh
+                    </span>
+                    <span class="material-symbols-outlined p-2">
+                        download
+                    </span>
+                    <button class="bigbutton">Add Driver</button>
+                </div>
+            </div>
+            <div class="miniheading">(Revenue)</div>
+            <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
+            </span><input class="searchbars" placeholder="Search" type="text"></div>
+
+
             <div class="ecs-table-card">
                 <p class="ecs-table-heading-main">Finance</p>
                 <div class="ecs-table-container">
