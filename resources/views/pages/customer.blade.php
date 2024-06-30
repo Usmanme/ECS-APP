@@ -1,21 +1,17 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <!-- Left Sidebar -->
-    <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
-        @include('layouts.partials.left-sidebar')
-    </div>
-    <!-- ./Left Sidebar -->
+     <!-- Sidebar -->
+     @include('layouts.partials.left-sidebar')
+     <!-- Sidebar -->
+     <!-- Navbar -->
+     @include('layouts.partials.nav')
+     <!-- Navbar -->
 
     <!-- Customer -->
-    <div class="widthmainopen" id="booking_right_part">
+    <main class="ecs-main-body" style="height: 100vh;">
+        <div class="container-fluid pt-4">
      
-
-        <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
-            <span class="material-symbols-outlined">
-                menu
-            </span>
-        </button></div>
         
         <!-- Save -->
         @if (session('status_save') === 'true')
@@ -39,7 +35,12 @@
             </div>
         @endif
 
-        <table id="bookingtable_in_booking" class="display" style="width:100%">
+        <div class="ecs-table-card">
+            <p class="ecs-table-heading-main">Customers</p>
+            <div class="ecs-table-container">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="ecs-custom-header">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -54,14 +55,14 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="ecs-custom-body">
                 @if (!empty($data))
                     @foreach ($data as $key => $value)
                         <tr>
                             <td>{{$value->id}}</td>
                             <td>
                                 <div class="nameentry">
-                                    <img src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
+                                    <img width="100px" src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
                                         class="customerpic">
                                 </div>
                             </td>
@@ -83,21 +84,34 @@
                     @endforeach
                 @endif
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                    <th>Email</th>
-                    <th>Nationality</th>
-                    <th>Company</th>
-                    <th>Department if B2B</th>
-                    <th>Designation If B2B</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
+    <div class="ecs-table-pagination-main">
+        <p class="rows-txt">Rows per page</p>
+        <select class="custom-pages-ddl">
+            <option>25</option>
+            <option>55</option>
+            <option>75</option>
+        </select>
+        <p class="rows-txt">1-75 of 89,33</p>
+        <div class="rows-clicks-main">
+
+
+
+            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
+            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
+            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
+            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+        </div>
+    </div>
+</div>
+</div>
+
+    </div>
+    </main>
+
+
+
     <!-- ./Customer -->
 
     <!-- Add Modal -->

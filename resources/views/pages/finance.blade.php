@@ -1,23 +1,21 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <!-- Left Sidebar -->
-    <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
-        @include('layouts.partials.left-sidebar')
-    </div>
-    <!-- ./Left Sidebar -->
-
+   <!-- Sidebar -->
+   @include('layouts.partials.left-sidebar')
+   <!-- Sidebar -->
+   <!-- Navbar -->
+   @include('layouts.partials.nav')
     <!-- Ride -->
-    <div class="widthmainopen" id="booking_right_part">
-
-
-        <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
-            <span class="material-symbols-outlined">
-                menu
-            </span>
-        </button></div>
+    <main class="ecs-main-body" style="height: 100vh;">
+        <div class="container-fluid pt-4">
         
-        <table id="booking" class="display" style="width:100%">
+        <div class="ecs-table-card">
+            <p class="ecs-table-heading-main">Finance</p>
+            <div class="ecs-table-container">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="ecs-custom-header">
             <thead>
                 <tr>
                     <th>Customer</th>
@@ -30,13 +28,13 @@
                     {{-- <th>Action</th> --}}
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="ecs-custom-body">
                 @if (!empty($completed_rides))
                     @foreach ($completed_rides as $value)
                         <tr>
                             <td>
                                 <div class="nameentry">
-                                    <img src="{{ asset('/assets/images/avarat.png') }}" class="customerpic">
+                                    <img width="100px" src="{{ asset('/assets/images/avarat.png') }}" class="customerpic">
                                     <p>{{ $value->customer_name }}</p>
                                 </div>
                             </td>
@@ -58,44 +56,31 @@
                     @endforeach
                 @endif
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Customer</th>
-                    <th>Ride Date</th>
-                    <th>Pick Up</th>
-                    <th>Drop Up</th>
-                    <th>Vehicle</th>
-                    <th>Status</th>
-                    <th>Fare</th>
-                    {{-- <th>Action</th> --}}
-                </tr>
-            </tfoot>
         </table>
     </div>
+    <div class="ecs-table-pagination-main">
+        <p class="rows-txt">Rows per page</p>
+        <select class="custom-pages-ddl">
+            <option>25</option>
+            <option>55</option>
+            <option>75</option>
+        </select>
+        <p class="rows-txt">1-75 of 89,33</p>
+        <div class="rows-clicks-main">
+
+
+
+            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
+            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
+            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
+            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+        </div>
+    </div>
+</div>
+</div>
+
+    </div>
+    </main>
     <!-- ./Ride -->
 @endsection
 
-<script>
-    function toggleSidebar() {
-    const sidebar = document.getElementById("sidebarleft");
-    const mainContent = document.getElementById("booking_right_part");
-    const onnav = document.getElementById("onnav");
-    const onmain = document.getElementById("onmain");
-    if (sidebar.classList.contains("widthsideberopen")) {
-        sidebar.classList.remove("widthsideberopen");
-        mainContent.classList.remove("widthmainopen");
-        sidebar.classList.add("widthsideberclose");
-        mainContent.classList.add("widthmainclose");
-        onmain.classList.remove("hidebars");
-        onmain.classList.add("showbars");
-
-    } else {
-        sidebar.classList.remove("widthsideberclose");
-        mainContent.classList.remove("widthmainclose");
-        sidebar.classList.add("widthsideberopen");
-        mainContent.classList.add("widthmainopen");
-        onmain.classList.add("hidebars");
-        onmain.classList.remove("showbars");
-    }
-}
-</script>
