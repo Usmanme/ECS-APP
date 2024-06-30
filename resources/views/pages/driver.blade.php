@@ -35,51 +35,78 @@
                 </div>
             @endif
 
-            <table  class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Driver</th>
-                        <th>Email Address</th>
-                        <th>Number</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (!empty($data))
-                        @foreach ($data as $key => $value)
-                            <tr>
-                                <td>{{ $value->phone_number }}</td>
-                                <td>
-                                    <div class="nameentry">
-                                        <img  height="100px" src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
-                                            class="customerpic">
-                                        <p>{{ $value->firstname . ' ' . $value->lastname }}</p>
-                                    </div>
-                                </td>
-                                <td>{{ $value->email_addr }}</td>
-                                <td>{{ $value->phone_number }}</td>
-                                <td>
-                                    <div class="booking_status">Available</div>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)" class="edit_driver_btn" data-target="#editDriverModal"
-                                        data-toggle="modal" data-edit_action="{{ url('/drivers/update/' . $value->id) }}">
-                                        <img height="100px" src="{{ url('/assets/images/edit-icon.png') }}">
-                                    </a>
-                                </td>
-                                <input type="hidden" data-firstname="{{ $value->firstname }}"
-                                    data-lastname="{{ $value->lastname }}" data-phone_number="{{ $value->phone_number }}"
-                                    data-iqama_number="{{ $value->iqama_number }}"
-                                    data-email_addr="{{ $value->email_addr }}"
-                                    data-img="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}">
-                            </tr>
-                        @endforeach
-                    @endif
-                </tbody>
-                
-            </table>
+            <div class="ecs-table-card">
+                <p class="ecs-table-heading-main">Completed Rides</p>
+                <div class="ecs-table-container">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="ecs-custom-header">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Driver</th>
+                                    <th>Email Address</th>
+                                    <th>Number</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ecs-custom-body">
+                                @if (!empty($data))
+                                    @foreach ($data as $key => $value)
+                                        <tr>
+                                            <td>{{ $value->phone_number }}</td>
+                                            <td>
+                                                <div class="nameentry">
+                                                    <img height="100px"
+                                                        src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
+                                                        class="customerpic">
+                                                    <p>{{ $value->firstname . ' ' . $value->lastname }}</p>
+                                                </div>
+                                            </td>
+                                            <td>{{ $value->email_addr }}</td>
+                                            <td>{{ $value->phone_number }}</td>
+                                            <td>
+                                                <div class="booking_status">Available</div>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="edit_driver_btn"
+                                                    data-target="#editDriverModal" data-toggle="modal"
+                                                    data-edit_action="{{ url('/drivers/update/' . $value->id) }}">
+                                                    <img height="100px" src="{{ url('/assets/images/edit-icon.png') }}">
+                                                </a>
+                                            </td>
+                                            <input type="hidden" data-firstname="{{ $value->firstname }}"
+                                                data-lastname="{{ $value->lastname }}"
+                                                data-phone_number="{{ $value->phone_number }}"
+                                                data-iqama_number="{{ $value->iqama_number }}"
+                                                data-email_addr="{{ $value->email_addr }}"
+                                                data-img="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}">
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ecs-table-pagination-main">
+                        <p class="rows-txt">Rows per page</p>
+                        <select class="custom-pages-ddl">
+                            <option>25</option>
+                            <option>55</option>
+                            <option>75</option>
+                        </select>
+                        <p class="rows-txt">1-75 of 89,33</p>
+                        <div class="rows-clicks-main">
+
+
+
+                            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
+                            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
+                            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
+                            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <!-- ./Vehicle -->
