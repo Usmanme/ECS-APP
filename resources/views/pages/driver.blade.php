@@ -10,7 +10,7 @@
         <!-- Navbar -->
     </header>
     <!-- Vehicle -->
-    <main class="ecs-main-body">
+    <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
 
             <!-- Save -->
