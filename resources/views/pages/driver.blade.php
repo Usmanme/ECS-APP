@@ -47,7 +47,7 @@
                     <span class="material-symbols-outlined p-2">
                         download
                     </span>
-                    <button class="bigbutton">Add Driver</button>
+                   <a  class="bigbutton" href="{{ url('newdriver') }}">Add Driver</a> 
                 </div>
             </div>
             <div class="miniheading">(Total Drivers)</div>
@@ -130,78 +130,7 @@
     </main>
     <!-- ./Vehicle -->
 
-    <!-- Add Modal -->
-    <div class="modal fade modal_form" id="addDriverModal" tabindex="-1" role="dialog"
-        aria-labelledby="addDriverModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addDriverModalLabel">Add New Driver</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ url('/drivers/store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" name="firstname" id="firstname"
-                                placeholder="Enter First Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname"
-                                placeholder="Enter Last Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone_number">Number</label>
-                            <input type="text" class="form-control" name="phone_number" id="phone_number"
-                                placeholder="Enter Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="iqama_number">Iqama Number</label>
-                            <input type="text" class="form-control" name="iqama_number" id="iqama_number"
-                                placeholder="Enter Iqama Number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email_addr">Email Address</label>
-                            <input type="text" class="form-control" name="email_addr" id="email_addr"
-                                placeholder="Enter Email Address" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="vehicles">Vehicle</label>
-                            <select class="form-control" name="vehicles" id="vehicles" required>
-                                @if (!empty($vehicle_data))
-                                    <option value="" selected disabled>Choose vehicle</option>
-                                    <!--@foreach ($vehicle_data as $key => $value)
-    -->
-                                    <!--    <option value="{{ $value->id }}">-->
-                                    <!--        {{ $value->code . ' ' . $value->type . '(' . $value->color . ')' }}</option>-->
-                                    <!--
-    @endforeach -->
-                                    @foreach ($vehicle_data as $key => $value)
-                                        <option value="{{ $value->id }}">
-                                            {{ $value->reg_no }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="driver_img">Image</label>
-                            <input type="file" class="form-control" name="driver_img" id="driver_img"
-                                accept="image/png, image/gif, image/jpeg" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-black">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./ Add Modal -->
+   
 
     <!-- Edit Modal -->
     <div class="modal fade modal_form" id="editDriverModal" tabindex="-1" role="dialog"

@@ -38,6 +38,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Drivers
         Route::get('/drivers', [DriversContoller::class, 'index'])->name('drivers');
+        Route::get('/newdriver', [DriversContoller::class, 'newdriver'])->name('drivers');
         Route::post('/drivers/store', [DriversContoller::class, 'store']);
         Route::post('/drivers/update/{id}', [DriversContoller::class, 'update']);
 

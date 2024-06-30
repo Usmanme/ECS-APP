@@ -17,6 +17,11 @@ class DriversContoller extends Controller
         $vehicle_data = DB::table('vehicles')->get();
         return view('pages.driver', compact('data', 'vehicle_data'));
     }
+    public function newdriver()
+    {
+        return view('pages.newdriver');
+    }
+
 
     /**
      * Show the form for creating a new resource.

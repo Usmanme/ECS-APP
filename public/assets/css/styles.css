@@ -361,9 +361,6 @@ body {
 .bigbutton {
     width: 180px;
     height: 47px;
-    top: 84px;
-    left: 1199px;
-    gap: 0px;
     border-radius: 10px;
     opacity: 0px;
     background: rgba(225, 46, 42, 1);
@@ -373,6 +370,8 @@ body {
     font-weight: 700;
     line-height: 24px;
     margin-left: 5px;
+    text-align: center;
+    padding-top: 12px;
 }
 .miniheading {
     font-family: Inter;
@@ -382,7 +381,6 @@ body {
     text-align: left;
     color: rgba(255, 255, 255, 1);
 }
-
 
 .searchbars {
     width: 248px;
@@ -399,8 +397,61 @@ body {
     padding: 10px;
     padding-left: 40px;
 }
-.searchicon{
-  position: relative;
-  left: 35px;
-  top: 9px;
+.searchicon {
+    position: relative;
+    left: 35px;
+    top: 9px;
+}
+
+.adddrivermain {
+    background: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    padding: 40px 60px;
+}
+.driverimage {
+    width: 112px;
+    height: 111px;
+}
+.driverbutton {
+    width: 170px;
+    height: 47px;
+    opacity: 0px;
+    background: rgba(225, 46, 42, 1);
+    border: #ff0000;
+    color: rgba(255, 255, 255, 1);
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-left: 5px;
+    margin-left: 30px;
+}
+.personaldetails {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(180, 180, 180, 1);
+}
+
+.driverinputnames {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 7px;
+}
+.driverinputs {
+    border-radius: 5px;
+    opacity: 0px;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+    text-align: left;
+    color: rgba(153, 153, 153, 1);
+    border: 1px solid rgba(206, 206, 206, 1);
+    padding: 7px;
 }
