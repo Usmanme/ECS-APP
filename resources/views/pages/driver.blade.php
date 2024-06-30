@@ -37,14 +37,17 @@
 
             <div class="d-flex flex-row justify-content-between text-light">
                 <div class="ecs-card-header-left">
-                    <span class="heading">Drivers</span>
-                    <span class="stats"><span class="num">500</span></span>
+                    <span class="heading pageheading">Drivers</span>
+                    <span class="stats totalnumber"><span class="num">500</span></span>
                 </div>
                 <div class="d-flex flex-row">
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined p-2">
+                        refresh
+                        </span>
+                    <span class="material-symbols-outlined p-2">
                         download
                         </span>
-                    <button>Add Driver</button>
+                    <button class="bigbutton">Add Driver</button>
                 </div>
             </div>
 
