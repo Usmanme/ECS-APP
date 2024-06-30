@@ -36,7 +36,7 @@
             @endif
 
             <div class="ecs-table-card">
-                <p class="ecs-table-heading-main">Completed Rides</p>
+                <p class="ecs-table-heading-main">Drivers</p>
                 <div class="ecs-table-container">
                     <div class="table-responsive">
                         <table class="table table-hover">
