@@ -53,7 +53,7 @@
                                 </li class="nav-item">
                                 <li>
                                     <form>
-                                        <div class="form-outline datepicker ecs-datepicker">
+                                        <div class="form-outline datepicker ecs-datepicker" >
                                             <input type="date" class="form-control" placeholder="Choose dates" />
                                         </div>
                                     </form>

@@ -1,96 +1,87 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <!-- Left Sidebar -->
-    <div id="sidebarleft" class="d-flex flex-column widthsideberopen">
+    <header>
+        <!-- Sidebar -->
         @include('layouts.partials.left-sidebar')
-    </div>
-    <!-- ./Left Sidebar -->
-
+        <!-- Sidebar -->
+        <!-- Navbar -->
+        @include('layouts.partials.nav')
+        <!-- Navbar -->
+    </header>
     <!-- Vehicle -->
-    <div class="widthmainopen" id="booking_right_part">
+    <main class="ecs-main-body">
+        <div class="container-fluid pt-4">
 
-        <div id="onmain" class="hidebars"> <button class="togle" onclick="toggleSidebar()">
-            <span class="material-symbols-outlined">
-                menu
-            </span>
-        </button></div>
-        
-        <!-- Save -->
-        @if (session('status_save') === 'true')
-            <div class="ecs_alert alert alert-success" role="alert">
-                Driver has been registered successfully.
-            </div>
-        @elseif (session('status_save') === 'false')
-            <div class="ecs_alert alert alert-danger" role="alert">
-                <b>Error:</b> Your driver could not be register.
-            </div>
-        @endif
+            <!-- Save -->
+            @if (session('status_save') === 'true')
+                <div class="ecs_alert alert alert-success" role="alert">
+                    Driver has been registered successfully.
+                </div>
+            @elseif (session('status_save') === 'false')
+                <div class="ecs_alert alert alert-danger" role="alert">
+                    <b>Error:</b> Your driver could not be register.
+                </div>
+            @endif
 
-        <!-- Edit -->
-        @if (session('status_edit') === 'true')
-            <div class="ecs_alert alert alert-success" role="alert">
-                Driver has been updated successfully.
-            </div>
-        @elseif (session('status_edit') === 'false')
-            <div class="ecs_alert alert alert-danger" role="alert">
-                <b>Error:</b> Your driver could not be update.
-            </div>
-        @endif
+            <!-- Edit -->
+            @if (session('status_edit') === 'true')
+                <div class="ecs_alert alert alert-success" role="alert">
+                    Driver has been updated successfully.
+                </div>
+            @elseif (session('status_edit') === 'false')
+                <div class="ecs_alert alert alert-danger" role="alert">
+                    <b>Error:</b> Your driver could not be update.
+                </div>
+            @endif
 
-        <table id="bookingtable_in_booking" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Driver</th>
-                    <th>Email Address</th>
-                    <th>Number</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (!empty($data))
-                    @foreach ($data as $key => $value)
-                        <tr>
-                            <td>{{ $value->phone_number }}</td>
-                            <td>
-                                <div class="nameentry">
-                                    <img src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
-                                        class="customerpic">
-                                    <p>{{ $value->firstname . ' ' . $value->lastname }}</p>
-                                </div>
-                            </td>
-                            <td>{{ $value->email_addr }}</td>
-                            <td>{{ $value->phone_number }}</td>
-                            <td>
-                                <div class="booking_status">Available</div>
-                            </td>
-                            <td>
-                                <a href="javascript:void(0)" class="edit_driver_btn" data-target="#editDriverModal"
-                                    data-toggle="modal" data-edit_action="{{ url('/drivers/update/' . $value->id) }}">
-                                    <img src="{{ url('/assets/images/edit-icon.png') }}">
-                                </a>
-                            </td>
-                            <input type="hidden" data-firstname="{{ $value->firstname }}"
-                                data-lastname="{{ $value->lastname }}" data-phone_number="{{ $value->phone_number }}"
-                                data-iqama_number="{{ $value->iqama_number }}" data-email_addr="{{ $value->email_addr }}"
-                                data-img="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}">
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Driver</th>
-                    <th>Email Address</th>
-                    <th>Number</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+            <table  class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Driver</th>
+                        <th>Email Address</th>
+                        <th>Number</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!empty($data))
+                        @foreach ($data as $key => $value)
+                            <tr>
+                                <td>{{ $value->phone_number }}</td>
+                                <td>
+                                    <div class="nameentry">
+                                        <img  height="100px" src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
+                                            class="customerpic">
+                                        <p>{{ $value->firstname . ' ' . $value->lastname }}</p>
+                                    </div>
+                                </td>
+                                <td>{{ $value->email_addr }}</td>
+                                <td>{{ $value->phone_number }}</td>
+                                <td>
+                                    <div class="booking_status">Available</div>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" class="edit_driver_btn" data-target="#editDriverModal"
+                                        data-toggle="modal" data-edit_action="{{ url('/drivers/update/' . $value->id) }}">
+                                        <img height="100px" src="{{ url('/assets/images/edit-icon.png') }}">
+                                    </a>
+                                </td>
+                                <input type="hidden" data-firstname="{{ $value->firstname }}"
+                                    data-lastname="{{ $value->lastname }}" data-phone_number="{{ $value->phone_number }}"
+                                    data-iqama_number="{{ $value->iqama_number }}"
+                                    data-email_addr="{{ $value->email_addr }}"
+                                    data-img="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}">
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+                
+            </table>
+        </div>
+    </main>
     <!-- ./Vehicle -->
 
     <!-- Add Modal -->
@@ -132,16 +123,18 @@
                             <input type="text" class="form-control" name="email_addr" id="email_addr"
                                 placeholder="Enter Email Address" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="vehicles">Vehicle</label>
                             <select class="form-control" name="vehicles" id="vehicles" required>
                                 @if (!empty($vehicle_data))
                                     <option value="" selected disabled>Choose vehicle</option>
-                                    <!--@foreach ($vehicle_data as $key => $value)-->
+                                    <!--@foreach ($vehicle_data as $key => $value)
+    -->
                                     <!--    <option value="{{ $value->id }}">-->
                                     <!--        {{ $value->code . ' ' . $value->type . '(' . $value->color . ')' }}</option>-->
-                                    <!--@endforeach -->
+                                    <!--
+    @endforeach -->
                                     @foreach ($vehicle_data as $key => $value)
                                         <option value="{{ $value->id }}">
                                             {{ $value->reg_no }}</option>
@@ -203,11 +196,11 @@
                             <input type="text" class="form-control" name="email_addr" id="email_addr"
                                 placeholder="Enter Email Address" required>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="driver_img">Vehicle</label>
                             <select name="vehicle_id" class="form-control" id="vehicle_id">
                                 @forelse ($vehicle_data as $vehicle)
-                                    <option value="{{$vehicle->id}}">{{$vehicle->reg_no}}</option>
+                                    <option value="{{ $vehicle->id }}">{{ $vehicle->reg_no }}</option>
                                 @empty
                                     <option value="">--No Vehicle Found--</option>
                                 @endforelse
@@ -229,27 +222,3 @@
     </div>
     <!-- ./ Edit Modal -->
 @endsection
-<script>
-    function toggleSidebar() {
-    const sidebar = document.getElementById("sidebarleft");
-    const mainContent = document.getElementById("booking_right_part");
-    const onnav = document.getElementById("onnav");
-    const onmain = document.getElementById("onmain");
-    if (sidebar.classList.contains("widthsideberopen")) {
-        sidebar.classList.remove("widthsideberopen");
-        mainContent.classList.remove("widthmainopen");
-        sidebar.classList.add("widthsideberclose");
-        mainContent.classList.add("widthmainclose");
-        onmain.classList.remove("hidebars");
-        onmain.classList.add("showbars");
-
-    } else {
-        sidebar.classList.remove("widthsideberclose");
-        mainContent.classList.remove("widthmainclose");
-        sidebar.classList.add("widthsideberopen");
-        mainContent.classList.add("widthmainopen");
-        onmain.classList.add("hidebars");
-        onmain.classList.remove("showbars");
-    }
-}
-</script>
