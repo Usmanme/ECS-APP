@@ -35,6 +35,21 @@
                 </div>
             @endif
 
+            <div class="d-flex flex-row justify-content-between text-light">
+                <div class="ecs-card-header-left">
+                    <span class="heading">Drivers</span>
+                    <span class="stats"><span class="num">500</span></span>
+                </div>
+                <div class="d-flex flex-row">
+                    <span class="material-symbols-outlined">
+                        download
+                        </span>
+                    <button>Add Driver</button>
+                </div>
+            </div>
+
+            <div>div2</div>
+                <div>div3</div>
             <div class="ecs-table-card">
                 <p class="ecs-table-heading-main">Drivers</p>
                 <div class="ecs-table-container">
