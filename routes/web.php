@@ -41,6 +41,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/newdriver', [DriversContoller::class, 'newdriver'])->name('drivers');
         Route::post('/drivers/store', [DriversContoller::class, 'store']);
         Route::post('/drivers/update/{id}', [DriversContoller::class, 'update']);
+        Route::get('/getvehicle', 'DriversContoller@getVehicleData');
 
         // Vehicle
         Route::get('/vehicles', [VehiclesContoller::class, 'index']);
