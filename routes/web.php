@@ -38,7 +38,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Drivers
         Route::get('/drivers', [DriversContoller::class, 'index'])->name('drivers');
-        Route::get('/newdriver', [DriversContoller::class, 'newdriver'])->name('drivers');
+        Route::get('/newdriver', [DriversContoller::class, 'newdriver'])->name('newdrivers');
         Route::post('/drivers/store', [DriversContoller::class, 'store']);
         Route::post('/drivers/update/{id}', [DriversContoller::class, 'update']);
 
@@ -49,7 +49,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Rides
         Route::get('/rides', [RidesContoller::class, 'index'])->name('rides');
-
+        Route::get('/newride', [RidesContoller::class, 'newride'])->name('newride');
         // Route::post('/rides/store', [RidesContoller::class, 'store']);
           Route::get('/rides/edit',[RidesContoller::class,'edit'])->name('rides.edit');
         Route::post('/rides/store', [RidesContoller::class, 'store'])->name('ride.store');
