@@ -64,6 +64,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/customers', [CustomersContoller::class, 'index']);
         Route::post('/customers/store', [CustomersContoller::class, 'store']);
         Route::post('/customers/update/{id}', [CustomersContoller::class, 'update']);
+        Route::get('/newcustomer', [CustomersContoller::class, 'newcustomer'])->name('newcustomer');
 
 
         // Finance
