@@ -11,8 +11,8 @@
     <!-- Customer -->
     <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
-     
-        
+
+
         <!-- Save -->
         @if (session('status_save') === 'true')
             <div class="ecs_alert alert alert-success" role="alert">
@@ -47,7 +47,10 @@
                 <span class="material-symbols-outlined p-2">
                     download
                 </span>
-                <button class="bigbutton">Add Driver</button>
+                {{-- <button class="bigbutton">Add Csutomer</button> --}}
+                <a class="bigbutton" href="{{ url('newcustomer') }}">Add Customer</a>
+
+
             </div>
         </div>
         <div class="miniheading">(Total Customers)</div>

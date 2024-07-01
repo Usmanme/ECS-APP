@@ -30,6 +30,7 @@ class CustomersContoller extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $destinationPath = 'uploads';
         $customer_img = $request->file('customer_img');
         $customer_img_name = '';
@@ -169,5 +170,9 @@ class CustomersContoller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function newcustomer()
+    {
+        return view('pages.newcustomer');
     }
 }

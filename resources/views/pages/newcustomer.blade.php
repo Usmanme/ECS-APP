@@ -16,26 +16,26 @@
             <!-- Save -->
             @if (session('status_save') === 'true')
                 <div class="ecs_alert alert alert-success" role="alert">
-                    Driver has been registered successfully.
+                    Customer has been registered successfully.
                 </div>
             @elseif (session('status_save') === 'false')
                 <div class="ecs_alert alert alert-danger" role="alert">
-                    <b>Error:</b> Your driver could not be register.
+                    <b>Error:</b> Your customer could not be register.
                 </div>
             @endif
 
             <!-- Edit -->
             @if (session('status_edit') === 'true')
                 <div class="ecs_alert alert alert-success" role="alert">
-                    Driver has been updated successfully.
+                    Customer has been updated successfully.
                 </div>
             @elseif (session('status_edit') === 'false')
                 <div class="ecs_alert alert alert-danger" role="alert">
-                    <b>Error:</b> Your driver could not be update.
+                    <b>Error:</b> Your customer could not be update.
                 </div>
             @endif
 
-            <form action="{{ url('/drivers/store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/customers/store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="adddrivermain">
                     <div>
@@ -48,16 +48,12 @@
 
                     <div class="d-flex flex-row justify-content-between mt-4 flex-wrap" style="width: 90%">
                         <div class="mb-2">
-                            <p class="driverinputnames">First name</p>
-                            <input class="driverinputs" placeholder="Enter First Name" type="text" name="firstname">
-                        </div>
-                        <div>
-                            <p class="driverinputnames">Last name</p>
-                            <input class="driverinputs" placeholder="Enter Last Name" type="text" name="lastname">
+                            <p class="driverinputnames">Name</p>
+                            <input class="driverinputs" placeholder="Enter Name" type="text" name="name">
                         </div>
                         <div>
                             <p class="driverinputnames">Enter Number</p>
-                            <input class="driverinputs" placeholder="Enter Number" type="text" name="phone_number">
+                            <input class="driverinputs" placeholder="Enter Number" type="number" name="mobile_number">
                         </div>
                         <div>
                             <p class="driverinputnames">Enter Iqama Number</p>
@@ -65,67 +61,45 @@
                         </div>
                         <div>
                             <p class="driverinputnames">Enter Email </p>
-                            <input type="email" class="driverinputs" placeholder="Enter Email" type="text"
-                                name="email_addr">
-                        </div>
-                    </div>
-
-                    <div class="personaldetails mt-4">Legal Details</div>
-
-                    <div class="d-flex flex-row gap-5 mt-4 flex-wrap" style="width: 90%">
-                        <div class="mb-2">
-                            <p class="driverinputnames">Choose vehicle</p>
-                            <select class="form-control" name="vehicles" id="vehicleSelect" required>
-                                @php
-                                    $vehicle_data = DB::table('vehicles')->get();
-                                @endphp
-                                @if (!empty($vehicle_data))
-                                    <option value="" selected disabled>Choose vehicle</option>
-                                    @foreach ($vehicle_data as $key => $value)
-                                        <option value="{{ $value->id }}">
-                                            {{ $value->reg_no }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="driver_img">Image</label>
-                            <input type="file" class="form-control" name="driver_img" id="driver_img"
-                                accept="image/png, image/gif, image/jpeg" required>
+                            <input type="email" class="driverinputs" placeholder="Enter Email" type="email"
+                                name="email">
                         </div>
 
                     </div>
-                    <div class="personaldetails mt-4">Vehicle Details</div>
 
                     <div class="d-flex flex-row justify-content-between mt-4 flex-wrap" style="width: 90%">
+
                         <div>
-                            <div class="personaldetails">Vehicle Category</div>
-                            <p id="vehicleCategory" class="driverinputnames"></p>
+                            <p class="driverinputnames">Nationalality</p>
+                            <input class="driverinputs" placeholder="Enter Nationalality" type="text" name="nationality">
                         </div>
                         <div>
-                            <div class="personaldetails">Vehicle Name</div>
-                            <p id="vehicleName" class="driverinputnames"></p>
+                            <p class="driverinputnames">Company</p>
+                            <input class="driverinputs" placeholder="Enter Company" type="text" name="company">
                         </div>
                         <div>
-                            <div class="personaldetails">Plate No</div>
-                            <p id="plateNo" class="driverinputnames"></p>
+                            <p class="driverinputnames">Department</p>
+                            <input class="driverinputs" placeholder="Enter Department" type="text" name="department">
                         </div>
                         <div>
-                            <div class="personaldetails">Vehicle Model Year</div>
-                            <p id="vehicleModelYear" class="driverinputnames"></p>
-                        </div>
-                        <div>
-                            <div class="personaldetails">Vehicle Color</div>
-                            <p id="vehicleColor" class="driverinputnames"></p>
+                            <p class="driverinputnames">Designation</p>
+                            <input class="driverinputs" placeholder="Enter Designantion" type="text" name="designation">
                         </div>
                     </div>
 
-                    <div class="d-flex flex-row mt-5  justify-content-end">
-                        <a class="bigbutton bg-light text-dark " style="border:1px solid black;"
-                            href="{{ url('drivers') }}">Back</a>
-                        <button type="submit " class="bigbutton pt-0">Submit </button>
+                    <div class="d-flex flex-row gap-5 mt-4 flex-wrap" style="width: 90%">
+
+                        <div class="justify-content-start">
+                            <label for="customer_img">Image</label>
+                            <input type="file" class="form-control" name="customer_img" id="customer_img"
+                                accept="image/png, image/gif, image/jpeg" required>
+                        </div>
+                        <div class="d-flex flex-row mt-5  justify-content-end">
+                            <a class="bigbutton bg-light text-dark " style="border:1px solid black;"
+                                href="{{ url('customers') }}">Back</a>
+                            <button type="submit " class="bigbutton pt-0">Submit </button>
+                        </div>
                     </div>
-                </div>
             </form>
         </div>
     </main>

@@ -41,6 +41,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/newdriver', [DriversContoller::class, 'newdriver'])->name('newdrivers');
         Route::post('/drivers/store', [DriversContoller::class, 'store']);
         Route::post('/drivers/update/{id}', [DriversContoller::class, 'update']);
+        Route::get('/getvehicle', 'DriversContoller@getVehicleData');
 
         // Vehicle
         Route::get('/vehicles', [VehiclesContoller::class, 'index']);
@@ -63,6 +64,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/customers', [CustomersContoller::class, 'index']);
         Route::post('/customers/store', [CustomersContoller::class, 'store']);
         Route::post('/customers/update/{id}', [CustomersContoller::class, 'update']);
+        Route::get('/newcustomer', [CustomersContoller::class, 'newcustomer'])->name('newcustomer');
 
 
         // Finance
