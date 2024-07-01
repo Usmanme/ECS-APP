@@ -382,6 +382,15 @@ body {
     color: rgba(255, 255, 255, 1);
 }
 
+.modelheadings{
+    font-family: Poppins;
+font-size: 20px;
+font-weight: 700;
+line-height: 30px;
+text-align: left;
+margin: 15px 10px 14px 0px;
+}
+
 .searchbars {
     width: 248px;
     height: 46px;
@@ -455,3 +464,37 @@ body {
     border: 1px solid rgba(206, 206, 206, 1);
     padding: 7px;
 }
+
+.rideseditsubmit{
+    width: 288px;
+    height: 55px;
+    top: 174px;
+    left: 134px;
+    gap: 0px;
+    border-radius: 10px ;
+    opacity: 0px;
+    background: rgba(225, 46, 42, 1);
+    color: white;
+    font-family: Poppins;
+font-size: 20px;
+font-weight: 600;
+line-height: 30px;
+
+
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+  }
+  
+  .selectmodal{
+    width: 390px;
+height: 55px;
+gap: 0px;
+border-radius: 10px;
+border: 1px 0px 0px 0px;
+opacity: 0px;
+border: 1px solid rgba(131, 128, 128, 1)
+  }

@@ -1,8 +1,6 @@
 @extends('layouts.app-master')
 <style>
-    .formstylling {
-        padding: 37px 0px 0px 10px;
-    }
+  
 </style>
 @section('content')
     <!-- Sidebar -->
@@ -15,6 +13,31 @@
     <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
 
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background: black;">
+                      <h5 class="modal-title m-auto text-light" id="exampleModalLabel">Edit Rides</h5>
+                    </div>
+                    <div class="modal-body m-auto">
+                     <select class="selectmodal" name="" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                     </select>
+                    </div>
+                    <div class="modal-footer m-auto">
+                      <button type="submit" class=" rideseditsubmit">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
 
 
             <!-- Save -->
@@ -202,6 +225,9 @@
         </div>
 
     </main>
+
+
+    <!-- Small modal -->
 
 @endsection
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
