@@ -17,6 +17,11 @@ class DriversContoller extends Controller
         $vehicle_data = DB::table('vehicles')->get();
         return view('pages.driver', compact('data', 'vehicle_data'));
     }
+    public function newdriver()
+    {
+        return view('pages.newdriver');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,6 +36,7 @@ class DriversContoller extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $destinationPath = 'uploads';
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';
@@ -141,12 +147,11 @@ class DriversContoller extends Controller
 
         $res = DB::table('drivers')->where('id', $id)->update($data);
         $vehicle = DB::table('vehicles')->find($id);
-        if( !is_null( $vehicle ) )
-        {
+        if (!is_null($vehicle)) {
             DB::table('rides')->whereVehicleId($request->input('vehicle_id'))->whereDriverId(0)->update([
-                'driver_id'=>$id
+                'driver_id' => $id
             ]);
-            DB::table('vehicles')->where('driver_id',$id)->update(['driver_id'=>0]);
+            DB::table('vehicles')->where('driver_id', $id)->update(['driver_id' => 0]);
             $vehicles = DB::table('vehicles')->where('id', $request->input('vehicle_id'));
             $vehicles->update(['driver_id' => $id]);
         }
@@ -166,5 +171,17 @@ class DriversContoller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function getVehicleData(Request $request)
+    {
+        $vehicleId = $request->input('vehicle_id');
+        $vehicleData = DB::table('vehicles')->where('id', $vehicleId)->first();
+        return response()->json([
+            'category' => $vehicleData->category,
+            'name' => $vehicleData->brand,
+            'plate_no' => $vehicleData->reg_no,
+            'model_year' => $vehicleData->year,
+            'color' => $vehicleData->color,
+        ]);
     }
 }

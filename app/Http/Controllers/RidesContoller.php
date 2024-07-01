@@ -24,6 +24,12 @@ class RidesContoller extends Controller
         return view('pages.ride', compact('data', 'customers'));
     }
 
+    public function newride()
+    {
+        $customers = DB::table('customers')->get();
+        return view('pages.newride', compact('customers'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -268,7 +274,7 @@ class RidesContoller extends Controller
         ];
         if ($request->catgory == 'airport') {
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
-            $customer_email =  $customer->email;
+            $customer_email = $customer->email;
             $customer_name = $customer->name;
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
@@ -296,7 +302,7 @@ class RidesContoller extends Controller
             }
         } elseif ($request->catgory == 'hourly') {
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
-            $customer_email =  $customer->email;
+            $customer_email = $customer->email;
             $customer_name = $customer->name;
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
@@ -325,7 +331,7 @@ class RidesContoller extends Controller
             }
         } else {
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
-            $customer_email =  $customer->email;
+            $customer_email = $customer->email;
             $customer_name = $customer->name;
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
@@ -371,17 +377,17 @@ class RidesContoller extends Controller
     // }
     public function edit(Request $request)
     {
-        $id = (int)$request->input('id');
+        $id = (int) $request->input('id');
         return response()->json([
             'status' => true,
             'ride' => DB::table('rides')->whereId($id)->first()
         ]);
     }
-   public function ride_edit($id)
+    public function ride_edit($id)
     {
 
         // Cast the ID to an integer, though it should already be an integer
-        $id = (int)$id;
+        $id = (int) $id;
         // Retrieve the ride details from the database
         $ride = DB::table('rides')->where('id', $id)->first();
 
@@ -421,7 +427,7 @@ class RidesContoller extends Controller
     //     $status_save = session('status_update');
     //     return redirect('/rides')->with('status_update', 'true');
     // }
-        public function update(Request $request)
+    public function update(Request $request)
     {
 
         if ($request->status == 'Driver Assigned') {
@@ -454,11 +460,11 @@ class RidesContoller extends Controller
             $fare = $ride->fare;
             // Mail::to($customer_mail)->send(new RideAssignMail($name, $number, $image, $vehicle_name, $category, $reg, $pickup, $drop, $date, $time));
             Mail::to($customer_mail)->cc('reservation@ecsprovider.com')
-                ->send(new RideAssignMail($name, $number, $vehicle_name, $reg,  $customer_name, $pickup, $drop, $date, $time, $fare));
+                ->send(new RideAssignMail($name, $number, $vehicle_name, $reg, $customer_name, $pickup, $drop, $date, $time, $fare));
             $status_save = session('status_update');
             return redirect('/rides')->with('status_update', 'true');
         }
-          if ($request->status == 'Completed') {
+        if ($request->status == 'Completed') {
 
 
             // Update the ride
@@ -472,7 +478,7 @@ class RidesContoller extends Controller
             $customer_mail = $ride->customer_email;
             $customer_number = $ride->cutomer_number;
             $passenger = $ride->passengers;
-            $car_name= $ride->car_name;
+            $car_name = $ride->car_name;
             $pickup = $ride->hotel_pickup;
             $drop = $ride->hotel_drop;
             $date = $ride->booking_pickup;
@@ -480,8 +486,20 @@ class RidesContoller extends Controller
             $fare = $ride->fare;
             $payment_type = $ride->payment_type ?? 'Card';
             Mail::to($customer_mail)->cc('reservation@ecsprovider.com')
-                ->send(new CompletedMail(
-                    $date, $time, $customer_name, $customer_number,  $passenger, $car_name, $payment_type, $pickup, $drop, $fare));
+                ->send(
+                    new CompletedMail(
+                        $date,
+                        $time,
+                        $customer_name,
+                        $customer_number,
+                        $passenger,
+                        $car_name,
+                        $payment_type,
+                        $pickup,
+                        $drop,
+                        $fare
+                    )
+                );
             $status_save = session('status_update');
             return redirect('/rides')->with('status_update', 'true');
         }
@@ -507,10 +525,10 @@ class RidesContoller extends Controller
             'vehicles' => $vehicles
         ]);
     }
-        public function getDriver(Request $request)
+    public function getDriver(Request $request)
     {
         // $driver = DB::table('drivers')->get();
-         $driver = DB::table('drivers')
+        $driver = DB::table('drivers')
             ->where('vehicle_id', '>', 0)
             ->get();
         return response()->json([
@@ -518,5 +536,5 @@ class RidesContoller extends Controller
             'driver' => $driver
         ]);
     }
-    
+
 }

@@ -21,8 +21,53 @@ class HomeController extends Controller
         // ->join('drivers', 'rides.driver_id', '=', 'drivers.id')
         // ->join('vehicles', 'rides.vehicle_id', '=', 'vehicles.id')
         // ->get();
-                $completed_rides = DB::table('rides')->where('status', 'Completed')->get();
-        return view('home.index', compact('rides', 'customers', 'vehicles', 'drivers', 'completed_rides'));
+
+        // Today Record Query
+        $completed_rides_today = DB::table('rides')
+            ->where('status', 'Completed')
+            ->whereDate('created_at', now())
+            ->get();
+
+        $rides_created_today = DB::table('rides')
+            ->where('status', 'Ride Created')
+            ->whereDate('created_at', now())
+            ->get();
+        $driver_assigned_today = DB::table('rides')
+            ->where('status', 'Driver Assigned')
+            ->whereDate('created_at', now())
+            ->get();
+
+        // This Month Query
+        $driver_assigned_this_month = DB::table('rides')
+            ->where('status', 'Driver Assigned')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->get();
+
+        $completed_rides_this_month = DB::table('rides')
+            ->where('status', 'Completed')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->get();
+
+        $rides_created_this_month = DB::table('rides')
+            ->where('status', 'Ride Created')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->get();
+
+        // This minth earning
+        $completed_earning_rides_this_month = DB::table('rides')
+            ->where('status', 'Completed')
+            ->whereMonth('created_at', now()->month)
+            ->whereYear('created_at', now()->year)
+            ->sum('fare');
+
+        $completed_rides = DB::table('rides')->where('status', 'Completed')->get();
+        $fare = DB::table('rides')->whereStatus('Completed')->sum('fare');
+        $ride_created = DB::table('rides')->where('status', 'Ride Created')->get();
+        $driver_assigned = DB::table('rides')->where('status', 'Driver Assigned')->get();
+        return view('home.index', compact('rides', 'customers', 'vehicles', 'drivers', 'completed_rides', 'fare', 'ride_created', 'driver_assigned', 'completed_rides_today', 'rides_created_today', 'driver_assigned_today', 'driver_assigned_this_month', 'completed_rides_this_month', 'rides_created_this_month', 'completed_earning_rides_this_month'));
     }
     public function getBookRidesFare(Request $request)
     {

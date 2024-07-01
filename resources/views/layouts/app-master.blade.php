@@ -3,16 +3,18 @@
 
 <head>
     <title>Dashboard</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css"
-        integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+   
 
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -27,14 +29,26 @@
                 font-size: 3.5rem;
             }
         }
+
+        .topbarheader {
+            background-color: black;
+            margin: 2px 11px 10px 2px;
+            border-radius: 0px 0px 6px 7px;
+            height: 56px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 17px 36px 0px 30px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid main-container">
-        <div class="row">
+
+    <div>
+        
             @yield('content')
-        </div>
+       
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"

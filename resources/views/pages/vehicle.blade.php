@@ -1,124 +1,150 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <!-- Left Sidebar -->
+    <!-- Sidebar -->
     @include('layouts.partials.left-sidebar')
-    <!-- ./Left Sidebar -->
+    <!-- Sidebar -->
+    <!-- Navbar -->
+    @include('layouts.partials.nav')
+    <!-- Navbar -->
 
     <!-- Vehicle -->
-    <div class="col-lg-9 p-0" id="booking_right_part">
-        <div class="booking_header_part">
-            <div class="booking_header_title" id="Title">
-                <h2>Vehicles</h2>
-                <div class="center-heading">
-                    <h6 class="color01">Home >></h6>
-                    <h6 class="color02">Dashboard</h6>
+    <main class="ecs-main-body" style="height: 100vh;">
+        <div class="container-fluid pt-4">
+
+            <!-- Save -->
+            @if (session('status_save') === 'true')
+                <div class="ecs_alert alert alert-success" role="alert">
+                    Vehicle has been registered successfully.
+                </div>
+            @elseif (session('status_save') === 'false')
+                <div class="ecs_alert alert alert-danger" role="alert">
+                    <b>Error:</b> Your vehicle could not be register.
+                </div>
+            @endif
+
+            <!-- Edit -->
+            @if (session('status_edit') === 'true')
+                <div class="ecs_alert alert alert-success" role="alert">
+                    Vehicle has been updated successfully.
+                </div>
+            @elseif (session('status_edit') === 'false')
+                <div class="ecs_alert alert alert-danger" role="alert">
+                    <b>Error:</b> Your vehicle could not be update.
+                </div>
+            @endif
+
+            <div class="d-flex flex-row justify-content-between text-light">
+                <div class="ecs-card-header-left">
+                    <span class="heading pageheading">Vehicles</span>
+                    <span class="stats totalnumber"><span class="num">500</span></span>
+                </div>
+                <div class="d-flex flex-row">
+                    <span class="material-symbols-outlined p-2">
+                        refresh
+                    </span>
+                    <span class="material-symbols-outlined p-2">
+                        download
+                    </span>
+                    <button class="bigbutton">Book A Ride</button>
                 </div>
             </div>
-            <div class="profile">
-                <img src="./assets/images/notification.png" class="notification-icon">
-                <img src="./assets/images/admin.png" class="admin-pic">
-                <p class="admin-name">king Albert</p>
+            <div class="miniheading">(Registered)</div>
+            <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
+            </span><input class="searchbars" placeholder="Search" type="text"></div>
+
+            <div class="ecs-table-card">
+                <p class="ecs-table-heading-main">Vehicles</p>
+                <div class="ecs-table-container">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="ecs-custom-header">
+                                <tr>
+                                    <td>ID</td>
+                                    <th>Image</th>
+                                    <th>Brand</th>
+                                    <th>Model</th>
+                                    <th>Year</th>
+                                    <th>Registration Number</th>
+                                    <th>Passenger Capacity</th>
+                                    <th>Category</th>
+                                    <th>Insurance</th>
+                                    <th>Color</th>
+                                    <th>Attachment</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ecs-custom-body">
+                                @if (!empty($data))
+                                    @foreach ($data as $key => $value)
+                                        <tr>
+                                            <td>{{ $value->reg_no }}</td>
+
+                                            <td>
+                                                <div class="nameentry">
+                                                    <img width="100px" src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
+                                                        class="customerpic">
+                                                </div>
+                                            </td>
+                                            <td>{{ $value->brand }}</td>
+                                            <td>{{ $value->model }}</td>
+                                            <td>{{ $value->year }}</td>
+                                            <td>{{ $value->reg_no }}</td>
+                                            <td>{{ $value->pass_cap }}</td>
+                                            <td>{{ $value->category }}</th>
+                                            <td>{{ $value->insurance }}</td>
+                                            <td>{{ $value->color }}</td>
+                                            <th>
+                                                <a href="{{ $value->attachment != '' ? asset('/uploads/' . $value->attachment) : '#' }}"
+                                                    target="_blank">View</a>
+                                            </th>
+                                            <td>
+                                                <a href="javascript:void(0)" class="edit_vehicle_btn"
+                                                    data-target="#editVehicleModal" data-toggle="modal"
+                                                    data-edit_action="{{ url('/vehicles/update/' . $value->id) }}">
+                                                    <img src="{{ url('/assets/images/edit-icon.png') }}">
+                                                </a>
+                                            </td>
+                                            <input type="hidden" data-brand="{{ $value->brand }}"
+                                                data-model="{{ $value->model }}" data-year="{{ $value->year }}"
+                                                data-type="{{ $value->type }}" data-code="{{ $value->code }}"
+                                                data-reg_no="{{ $value->reg_no }}" data-pass_cap="{{ $value->pass_cap }}"
+                                                data-category="{{ $value->category }}"
+                                                data-insurance="{{ $value->insurance }}" data-color="{{ $value->color }}"
+                                                data-fare="{{ $value->fare }}"
+                                                data-destination-type="{{ $value->destination_type }}"
+                                                data-img="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
+                                                data-attachment="{{ $value->attachment != '' ? asset('/uploads/' . $value->attachment) : '#' }}">
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ecs-table-pagination-main">
+                        <p class="rows-txt">Rows per page</p>
+                        <select class="custom-pages-ddl">
+                            <option>25</option>
+                            <option>55</option>
+                            <option>75</option>
+                        </select>
+                        <p class="rows-txt">1-75 of 89,33</p>
+                        <div class="rows-clicks-main">
+
+
+
+                            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
+                            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
+                            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
+                            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
+    </main>
 
-        <!-- Save -->
-        @if (session('status_save') === 'true')
-            <div class="ecs_alert alert alert-success" role="alert">
-                Vehicle has been registered successfully.
-            </div>
-        @elseif (session('status_save') === 'false')
-            <div class="ecs_alert alert alert-danger" role="alert">
-                <b>Error:</b> Your vehicle could not be register.
-            </div>
-        @endif
-
-        <!-- Edit -->
-        @if (session('status_edit') === 'true')
-            <div class="ecs_alert alert alert-success" role="alert">
-                Vehicle has been updated successfully.
-            </div>
-        @elseif (session('status_edit') === 'false')
-            <div class="ecs_alert alert alert-danger" role="alert">
-                <b>Error:</b> Your vehicle could not be update.
-            </div>
-        @endif
-
-        <table id="bookingtable_in_booking" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <th>Image</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Year</th>
-                    <th>Registration Number</th>
-                    <th>Passenger Capacity</th>
-                    <th>Category</th>
-                    <th>Insurance</th>
-                    <th>Color</th>
-                    <th>Attachment</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (!empty($data))
-                    @foreach ($data as $key => $value)
-                        <tr>
-                            <td>{{ $value->reg_no }}</td>
-
-                            <td>
-                                <div class="nameentry">
-                                    <img src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
-                                        class="customerpic">
-                                </div>
-                            </td>
-                            <td>{{ $value->brand }}</td>
-                            <td>{{ $value->model }}</td>
-                            <td>{{ $value->year }}</td>
-                            <td>{{ $value->reg_no }}</td>
-                            <td>{{ $value->pass_cap }}</td>
-                            <td>{{ $value->category }}</th>
-                            <td>{{ $value->insurance }}</td>
-                            <td>{{ $value->color }}</td>
-                            <th>
-                                <a href="{{ $value->attachment != '' ? asset('/uploads/' . $value->attachment) : '#' }}"
-                                    target="_blank">View</a>
-                            </th>
-                            <td>
-                                <a href="javascript:void(0)" class="edit_vehicle_btn" data-target="#editVehicleModal"
-                                    data-toggle="modal" data-edit_action="{{ url('/vehicles/update/' . $value->id) }}">
-                                    <img src="{{ url('/assets/images/edit-icon.png') }}">
-                                </a>
-                            </td>
-                            <input type="hidden" data-brand="{{ $value->brand }}" data-model="{{ $value->model }}"
-                                data-year="{{ $value->year }}" data-type="{{ $value->type }}"
-                                data-code="{{ $value->code }}" data-reg_no="{{ $value->reg_no }}"
-                                data-pass_cap="{{ $value->pass_cap }}" data-category="{{ $value->category }}"
-                                data-insurance="{{ $value->insurance }}" data-color="{{ $value->color }}"
-                                data-fare="{{ $value->fare }}" data-destination-type="{{ $value->destination_type }}"
-                                data-img="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
-                                data-attachment="{{ $value->attachment != '' ? asset('/uploads/' . $value->attachment) : '#' }}">
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Image</th>
-                    <th>Brand</th>
-                    <th>Year Model</th>
-                    <th>Registration Number</th>
-                    <th>Passenger Capacity</th>
-                    <th>Category</th>
-                    <th>Insurance</th>
-                    <th>Color</th>
-                    <th>Attachment</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
     <!-- ./Vehicle -->
 
     <!-- Add Modal -->
@@ -325,3 +351,28 @@
     </div>
     <!-- ./ Edit Modal -->
 @endsection
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebarleft");
+        const mainContent = document.getElementById("booking_right_part");
+        const onnav = document.getElementById("onnav");
+        const onmain = document.getElementById("onmain");
+        if (sidebar.classList.contains("widthsideberopen")) {
+            sidebar.classList.remove("widthsideberopen");
+            mainContent.classList.remove("widthmainopen");
+            sidebar.classList.add("widthsideberclose");
+            mainContent.classList.add("widthmainclose");
+            onmain.classList.remove("hidebars");
+            onmain.classList.add("showbars");
+
+        } else {
+            sidebar.classList.remove("widthsideberclose");
+            mainContent.classList.remove("widthmainclose");
+            sidebar.classList.add("widthsideberopen");
+            mainContent.classList.add("widthmainopen");
+            onmain.classList.add("hidebars");
+            onmain.classList.remove("showbars");
+        }
+    }
+</script>

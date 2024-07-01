@@ -37,9 +37,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/booking', [BookingContoller::class, 'index']);
 
         // Drivers
-        Route::get('/drivers', [DriversContoller::class, 'index']);
+        Route::get('/drivers', [DriversContoller::class, 'index'])->name('drivers');
+        Route::get('/newdriver', [DriversContoller::class, 'newdriver'])->name('newdrivers');
         Route::post('/drivers/store', [DriversContoller::class, 'store']);
         Route::post('/drivers/update/{id}', [DriversContoller::class, 'update']);
+        Route::get('/getvehicle', 'DriversContoller@getVehicleData');
 
         // Vehicle
         Route::get('/vehicles', [VehiclesContoller::class, 'index']);
@@ -47,7 +49,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/vehicles/update/{id}', [VehiclesContoller::class, 'update']);
 
         // Rides
-        Route::get('/rides', [RidesContoller::class, 'index']);
+        Route::get('/rides', [RidesContoller::class, 'index'])->name('rides');
+        Route::get('/newride', [RidesContoller::class, 'newride'])->name('newride');
         // Route::post('/rides/store', [RidesContoller::class, 'store']);
           Route::get('/rides/edit',[RidesContoller::class,'edit'])->name('rides.edit');
         Route::post('/rides/store', [RidesContoller::class, 'store'])->name('ride.store');
@@ -61,11 +64,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/customers', [CustomersContoller::class, 'index']);
         Route::post('/customers/store', [CustomersContoller::class, 'store']);
         Route::post('/customers/update/{id}', [CustomersContoller::class, 'update']);
+        Route::get('/newcustomer', [CustomersContoller::class, 'newcustomer'])->name('newcustomer');
 
 
         // Finance
         Route::get('/finance', [FinanceController::class, 'index']);
-        
+
         // Logout Routes
         Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');
     });

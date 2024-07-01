@@ -91,7 +91,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <div class="heading">Total Customers</div>
+                                <div class="heading"></div>
                                 <img src="{{asset('assets/images/bookings_img.png')}}" alt="">
                             </div>
                             <div class="card-body">

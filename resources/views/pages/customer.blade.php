@@ -1,26 +1,17 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <!-- Left Sidebar -->
-    @include('layouts.partials.left-sidebar')
-    <!-- ./Left Sidebar -->
+     <!-- Sidebar -->
+     @include('layouts.partials.left-sidebar')
+     <!-- Sidebar -->
+     <!-- Navbar -->
+     @include('layouts.partials.nav')
+     <!-- Navbar -->
 
     <!-- Customer -->
-    <div class="col-lg-9 p-0" id="booking_right_part">
-        <div class="booking_header_part">
-            <div class="booking_header_title" id="Title">
-                <h2>Customer</h2>
-                <div class="center-heading">
-                    <h6 class="color01">Home >></h6>
-                    <h6 class="color02">Dashboard</h6>
-                </div>
-            </div>
-            <div class="profile">
-                <img src="./assets/images/notification.png" class="notification-icon">
-                <img src="./assets/images/admin.png" class="admin-pic">
-                <p class="admin-name">king Albert</p>
-            </div>
-        </div>
+    <main class="ecs-main-body" style="height: 100vh;">
+        <div class="container-fluid pt-4">
+
 
         <!-- Save -->
         @if (session('status_save') === 'true')
@@ -44,7 +35,34 @@
             </div>
         @endif
 
-        <table id="bookingtable_in_booking" class="display" style="width:100%">
+        <div class="d-flex flex-row justify-content-between text-light">
+            <div class="ecs-card-header-left">
+                <span class="heading pageheading">Customers</span>
+                <span class="stats totalnumber"><span class="num">500</span></span>
+            </div>
+            <div class="d-flex flex-row">
+                <span class="material-symbols-outlined p-2">
+                    refresh
+                </span>
+                <span class="material-symbols-outlined p-2">
+                    download
+                </span>
+                {{-- <button class="bigbutton">Add Csutomer</button> --}}
+                <a class="bigbutton" href="{{ url('newcustomer') }}">Add Customer</a>
+
+
+            </div>
+        </div>
+        <div class="miniheading">(Total Customers)</div>
+        <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
+        </span><input class="searchbars" placeholder="Search" type="text"></div>
+
+        <div class="ecs-table-card">
+            <p class="ecs-table-heading-main">Customers</p>
+            <div class="ecs-table-container">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="ecs-custom-header">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -59,14 +77,14 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="ecs-custom-body">
                 @if (!empty($data))
                     @foreach ($data as $key => $value)
                         <tr>
                             <td>{{$value->id}}</td>
                             <td>
                                 <div class="nameentry">
-                                    <img src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
+                                    <img width="100px" src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
                                         class="customerpic">
                                 </div>
                             </td>
@@ -88,21 +106,34 @@
                     @endforeach
                 @endif
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                    <th>Email</th>
-                    <th>Nationality</th>
-                    <th>Company</th>
-                    <th>Department if B2B</th>
-                    <th>Designation If B2B</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
         </table>
     </div>
+    <div class="ecs-table-pagination-main">
+        <p class="rows-txt">Rows per page</p>
+        <select class="custom-pages-ddl">
+            <option>25</option>
+            <option>55</option>
+            <option>75</option>
+        </select>
+        <p class="rows-txt">1-75 of 89,33</p>
+        <div class="rows-clicks-main">
+
+
+
+            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
+            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
+            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
+            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+        </div>
+    </div>
+</div>
+</div>
+
+    </div>
+    </main>
+
+
+
     <!-- ./Customer -->
 
     <!-- Add Modal -->
@@ -234,3 +265,27 @@
     </div>
     <!-- ./ Edit Modal -->
 @endsection
+<script>
+    function toggleSidebar() {
+    const sidebar = document.getElementById("sidebarleft");
+    const mainContent = document.getElementById("booking_right_part");
+    const onnav = document.getElementById("onnav");
+    const onmain = document.getElementById("onmain");
+    if (sidebar.classList.contains("widthsideberopen")) {
+        sidebar.classList.remove("widthsideberopen");
+        mainContent.classList.remove("widthmainopen");
+        sidebar.classList.add("widthsideberclose");
+        mainContent.classList.add("widthmainclose");
+        onmain.classList.remove("hidebars");
+        onmain.classList.add("showbars");
+
+    } else {
+        sidebar.classList.remove("widthsideberclose");
+        mainContent.classList.remove("widthmainclose");
+        sidebar.classList.add("widthsideberopen");
+        mainContent.classList.add("widthmainopen");
+        onmain.classList.add("hidebars");
+        onmain.classList.remove("showbars");
+    }
+}
+</script>
