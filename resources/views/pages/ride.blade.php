@@ -176,21 +176,20 @@
                         </table>
                     </div>
                     <div class="ecs-table-pagination-main">
-                        <p class="rows-txt">Rows per page</p>
-                        <select class="custom-pages-ddl">
-                            <option>25</option>
-                            <option>55</option>
-                            <option>75</option>
-                        </select>
-                        <p class="rows-txt">1-75 of 89,33</p>
+                        <form method="GET" action="{{ route('rides') }}" style="display: flex">
+                            <p class="rows-txt">Rows per page</p>
+                            <select name="per_page" class="custom-pages-ddl" style="height:23px;" onchange="this.form.submit()">
+                                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                                <option value="55" {{ request('per_page') == 55 ? 'selected' : '' }}>55</option>
+                                <option value="75" {{ request('per_page') == 75 ? 'selected' : '' }}>75</option>
+                            </select>
+                            <p class="rows-txt">{{ $data->firstItem() }}-{{ $data->lastItem() }} of {{ $data->total() }}</p>
+                        </form>
                         <div class="rows-clicks-main">
-
-
-
-                            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
-                            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
-                            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
-                            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+                            <a href="{{ $data->url(1) }}"><img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" /></a>
+                            <a href="{{ $data->previousPageUrl() }}"><img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" /></a>
+                            <a href="{{ $data->nextPageUrl() }}"><img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" /></a>
+                            <a href="{{ $data->url($data->lastPage()) }}"><img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" /></a>
                         </div>
                     </div>
                 </div>

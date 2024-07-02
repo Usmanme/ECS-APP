@@ -14,13 +14,15 @@ class RidesContoller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $data = DB::table('rides')->get();
+        $perPage = $request->input('per_page', 25); // Default to 25 items per page
         $data = DB::table('rides')
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate($perPage);
+            
         $customers = DB::table('customers')->get();
+
         return view('pages.ride', compact('data', 'customers'));
     }
 
