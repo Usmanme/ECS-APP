@@ -11,10 +11,14 @@ class DriversContoller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('drivers')->get();
-        $vehicle_data = DB::table('vehicles')->get();
+        $perPage = $request->input('per_page', 25); // Default to 25 items per page
+        
+        // Paginate drivers and vehicles
+        $data = DB::table('drivers')->paginate($perPage);
+        $vehicle_data = DB::table('vehicles')->paginate($perPage);
+
         return view('pages.driver', compact('data', 'vehicle_data'));
     }
     public function newdriver()
