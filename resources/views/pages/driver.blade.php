@@ -53,7 +53,7 @@
             <div class="miniheading">(Total Drivers)</div>
 
             <div class="text-end "> 
-               <span class="material-symbols-outlined searchicon"> search </span>
+              <span class="material-symbols-outlined searchicon"> search </span>
               <input class="searchbars" placeholder="Search" type="text">
             </div>
 
