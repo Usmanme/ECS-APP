@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class FinanceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-    
-        $completed_rides = DB::table('rides')->where('status', 'Completed')->get();
-        return view('pages.finance', compact('completed_rides'));
+        $perPage = $request->input('per_page', 25); 
+       
+        $data = DB::table('rides')->where('status', 'Completed') ->paginate($perPage);
+        return view('pages.finance', compact('data'));
     }
 }
