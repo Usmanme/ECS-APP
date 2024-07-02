@@ -69,7 +69,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
 
         // Finance
-        Route::get('/finance', [FinanceController::class, 'index']);
+        Route::get('/finance', [FinanceController::class, 'index'])->name('finance');
 
         // Logout Routes
         Route::get('/logout', [LogoutController::class, 'perform'])->name('logout.perform');

@@ -11,9 +11,10 @@ class CustomersContoller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('customers')->paginate();
+        $perPage = $request->input('per_page', 25); 
+        $data = DB::table('customers')->paginate($perPage);
         return view('pages.customer', compact('data'));
     }
 

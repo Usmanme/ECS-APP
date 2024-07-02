@@ -11,9 +11,11 @@ class VehiclesContoller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('vehicles')->paginate();
+        $perPage = $request->input('per_page', 25); 
+        $data = DB::table('vehicles')->paginate($perPage);
+
         return view('pages.vehicle', compact('data'));
     }
     public function newvehicle()
