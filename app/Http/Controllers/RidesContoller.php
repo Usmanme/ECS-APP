@@ -20,7 +20,7 @@ class RidesContoller extends Controller
         $data = DB::table('rides')
             ->orderByDesc('created_at')
             ->paginate($perPage);
-            
+
         $customers = DB::table('customers')->get();
 
         return view('pages.ride', compact('data', 'customers'));
@@ -360,7 +360,6 @@ class RidesContoller extends Controller
                 return redirect('/rides')->with('status_save', 'false');
             }
         }
-
     }
     /**
      * Display the specified resource.
@@ -440,9 +439,9 @@ class RidesContoller extends Controller
 
             // Update the ride
             $res_up = DB::table('rides')
-                ->where('id', $request->input('id'))
+                ->where('id', $request->input('ride_id'))
                 ->update($updateData);
-            $ride = DB::table('rides')->where('id', $request->input('id'))->first();
+            $ride = DB::table('rides')->where('id', $request->input('ride_id'))->first();
 
             $driver = DB::table('drivers')->where('id', $request->input('driver_id'))->first();
 
@@ -470,9 +469,9 @@ class RidesContoller extends Controller
 
 
             // Update the ride
-            $res_up = DB::table('rides')->where('id', $request->input('id'))->update(['status' => $request->status]);
+            $res_up = DB::table('rides')->where('id', $request->input('ride_id'))->update(['status' => $request->status]);
 
-            $ride = DB::table('rides')->where('id', $request->input('id'))->first();
+            $ride = DB::table('rides')->where('id', $request->input('ride_id'))->first();
 
             $driver = DB::table('drivers')->where('id', $request->input('driver_id'))->first();
 
@@ -505,7 +504,7 @@ class RidesContoller extends Controller
             $status_save = session('status_update');
             return redirect('/rides')->with('status_update', 'true');
         }
-        $res_up = DB::table('rides')->where('id', $request->input('id'))->update(['status' => $request->status]);
+        $res_up = DB::table('rides')->where('id', $request->input('ride_id'))->update(['status' => $request->status]);
         $status_save = session('status_update');
         return redirect('/rides')->with('status_update', 'true');
     }
@@ -538,5 +537,4 @@ class RidesContoller extends Controller
             'driver' => $driver
         ]);
     }
-
 }

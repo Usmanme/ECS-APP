@@ -31,10 +31,21 @@
                                     style="text-align-center; margin-left:40px">
                                     <option value="">Select Status</option>
                                     <option value="Created">Ride Created</option>
-                                    <option value="Waiting For Payment">Waiting For Payment</option>
                                     <option value="Driver Assigned">Driver Assigned</option>
                                     <option value="Completed">Completed</option>
                                 </select>
+                                @php
+                                    $drivers = DB::table('drivers')->get();
+                                @endphp
+                                <select name="driver_assigned_option" class="selectmodal" id="driver_assigned_option"
+                                    style="display: none; text-align-center; margin-left:40px">
+                                    <option value="">Select Option</option>
+                                    @foreach ($drivers as $driver)
+                                        <option value="{{ $driver->id }}">{{ $driver->firstname . $driver->lastname }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
                             </div>
                             <div class="modal-footer m-auto">
                                 <button type="submit" class="rideseditsubmit m-auto">Submit</button>
@@ -71,7 +82,10 @@
             <div class="d-flex flex-row justify-content-between text-light">
                 <div class="ecs-card-header-left">
                     <span class="heading pageheading">Rides</span>
-                    <span class="stats totalnumber"><span class="num">500</span></span>
+                    @php
+                        $rides = DB::table('rides')->get();
+                    @endphp
+                    <span class="stats totalnumber"><span class="num">{{ count($rides) }}</span></span>
                 </div>
                 <div class="d-flex flex-row">
                     <span class="material-symbols-outlined p-2">
@@ -90,7 +104,7 @@
 
 
             <div class="ecs-table-card">
-                <p class="ecs-table-heading-main">Drivers</p>
+                {{-- <p class="ecs-table-heading-main">Drivers</p> --}}
                 <div class="ecs-table-container">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-hover">
@@ -178,18 +192,24 @@
                     <div class="ecs-table-pagination-main">
                         <form method="GET" action="{{ route('rides') }}" style="display: flex">
                             <p class="rows-txt">Rows per page</p>
-                            <select name="per_page" class="custom-pages-ddl" style="height:23px;" onchange="this.form.submit()">
+                            <select name="per_page" class="custom-pages-ddl" style="height:23px;"
+                                onchange="this.form.submit()">
                                 <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
                                 <option value="55" {{ request('per_page') == 55 ? 'selected' : '' }}>55</option>
                                 <option value="75" {{ request('per_page') == 75 ? 'selected' : '' }}>75</option>
                             </select>
-                            <p class="rows-txt">{{ $data->firstItem() }}-{{ $data->lastItem() }} of {{ $data->total() }}</p>
+                            <p class="rows-txt">{{ $data->firstItem() }}-{{ $data->lastItem() }} of {{ $data->total() }}
+                            </p>
                         </form>
                         <div class="rows-clicks-main">
-                            <a href="{{ $data->url(1) }}"><img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" /></a>
-                            <a href="{{ $data->previousPageUrl() }}"><img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" /></a>
-                            <a href="{{ $data->nextPageUrl() }}"><img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" /></a>
-                            <a href="{{ $data->url($data->lastPage()) }}"><img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" /></a>
+                            <a href="{{ $data->url(1) }}"><img src="{{ asset('assets/icons/fast-left.png') }}"
+                                    alt="arrow-fast-left" /></a>
+                            <a href="{{ $data->previousPageUrl() }}"><img src="{{ asset('assets/icons/left.png') }}"
+                                    alt="arrow-left" /></a>
+                            <a href="{{ $data->nextPageUrl() }}"><img src="{{ asset('assets/icons/right.png') }}"
+                                    alt="arrow-right" /></a>
+                            <a href="{{ $data->url($data->lastPage()) }}"><img
+                                    src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" /></a>
                         </div>
                     </div>
                 </div>
@@ -411,4 +431,14 @@
             }
         });
     }
+</script>
+<script>
+    document.getElementById('edit_status').addEventListener('change', function() {
+        var driverAssignedOption = document.getElementById('driver_assigned_option');
+        if (this.value === 'Driver Assigned') {
+            driverAssignedOption.style.display = 'block';
+        } else {
+            driverAssignedOption.style.display = 'none';
+        }
+    });
 </script>

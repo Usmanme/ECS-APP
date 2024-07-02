@@ -102,11 +102,14 @@
                                                     target="_blank">View</a>
                                             </th>
                                             <td>
-                                                <a href="javascript:void(0)" class="edit_vehicle_btn"
+                                                <a href="{{ url('editvehicle/' . $value->id) }}">
+                                                    <img src="{{ url('/assets/images/edit-icon.png') }}">
+                                                </a>
+                                                {{-- <a href="javascript:void(0)" class="edit_vehicle_btn"
                                                     data-target="#editVehicleModal" data-toggle="modal"
                                                     data-edit_action="{{ url('/vehicles/update/' . $value->id) }}">
                                                     <img src="{{ url('/assets/images/edit-icon.png') }}">
-                                                </a>
+                                                </a> --}}
                                             </td>
                                             <input type="hidden" data-brand="{{ $value->brand }}"
                                                 data-model="{{ $value->model }}" data-year="{{ $value->year }}"
@@ -366,10 +369,10 @@
   for (i = 0; i < tr.length; i++) {
     // Skip the header row (assuming it's the first row)
     if (i === 0) continue;
-    
+
     // Initialize a variable to indicate if any column matches the filter
     var matchFound = false;
-    
+
     // Loop through all table columns in the current row
     for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
       td = tr[i].getElementsByTagName("td")[j];
@@ -382,7 +385,7 @@
         }
       }
     }
-    
+
     // Display or hide the row based on whether any column matched the filter
     if (matchFound) {
       tr[i].style.display = "";
@@ -391,5 +394,5 @@
     }
   }
 }
-   
+
 </script>

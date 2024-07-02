@@ -13,7 +13,7 @@ class CustomersContoller extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->input('per_page', 25); 
+        $perPage = $request->input('per_page', 25);
         $data = DB::table('customers')->paginate($perPage);
         return view('pages.customer', compact('data'));
     }
@@ -175,5 +175,12 @@ class CustomersContoller extends Controller
     public function newcustomer()
     {
         return view('pages.newcustomer');
+    }
+
+    public function editcustomer($id)
+    {
+
+        $customer = DB::table('customers')->where('id', $id)->first();
+        return view('pages.editcustomer', compact('customer'));
     }
 }

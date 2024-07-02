@@ -14,7 +14,10 @@
             <div class="d-flex flex-row justify-content-between text-light">
                 <div class="ecs-card-header-left">
                     <span class="heading pageheading">Finance</span>
-                    <span class="stats totalnumber"><span class="num">500</span></span>
+                    @php
+                        $finance = DB::table('rides')->where('status', 'Completed')->sum('fare');
+                    @endphp
+                    <span class="stats totalnumber"><span class="num">{{ $finance }}</span></span>
                 </div>
                 <div class="d-flex flex-row">
                     <span class="material-symbols-outlined p-2">
@@ -32,7 +35,7 @@
 
 
             <div class="ecs-table-card">
-                <p class="ecs-table-heading-main">Finance</p>
+                {{-- <p class="ecs-table-heading-main">Finance</p> --}}
                 <div class="ecs-table-container">
                     <div class="table-responsive">
                         <table  id="myTable" class="table table-hover">
@@ -102,7 +105,7 @@
     <!-- ./Ride -->
 @endsection
 <script>
-     
+
    function myFunction() {
   // Declare variables
   var input, filter, table, tr, td, i, j, txtValue;
@@ -114,10 +117,10 @@
   for (i = 0; i < tr.length; i++) {
     // Skip the header row (assuming it's the first row)
     if (i === 0) continue;
-    
+
     // Initialize a variable to indicate if any column matches the filter
     var matchFound = false;
-    
+
     // Loop through all table columns in the current row
     for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
       td = tr[i].getElementsByTagName("td")[j];
@@ -130,7 +133,7 @@
         }
       }
     }
-    
+
     // Display or hide the row based on whether any column matched the filter
     if (matchFound) {
       tr[i].style.display = "";

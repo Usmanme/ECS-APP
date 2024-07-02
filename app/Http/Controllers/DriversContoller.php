@@ -14,7 +14,7 @@ class DriversContoller extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('per_page', 25); // Default to 25 items per page
-        
+
         // Paginate drivers and vehicles
         $data = DB::table('drivers')->paginate($perPage);
         $vehicle_data = DB::table('vehicles')->paginate($perPage);
@@ -187,5 +187,12 @@ class DriversContoller extends Controller
             'model_year' => $vehicleData->year,
             'color' => $vehicleData->color,
         ]);
+    }
+
+    public function editdriver($id)
+    {
+
+        $driver = DB::table('drivers')->where('id', $id)->first();
+        return view('pages.editdriver', compact('driver'));
     }
 }

@@ -13,7 +13,7 @@ class VehiclesContoller extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->input('per_page', 25); 
+        $perPage = $request->input('per_page', 25);
         $data = DB::table('vehicles')->paginate($perPage);
 
         return view('pages.vehicle', compact('data'));
@@ -223,5 +223,12 @@ class VehiclesContoller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function editvehicle($id)
+    {
+
+        $vehicle = DB::table('vehicles')->where('id', $id)->first();
+        return view('pages.editvehicle', compact('vehicle'));
     }
 }
