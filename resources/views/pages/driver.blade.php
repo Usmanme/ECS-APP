@@ -51,8 +51,11 @@
                 </div>
             </div>
             <div class="miniheading">(Total Drivers)</div>
-            <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
-            </span><input class="searchbars" placeholder="Search" type="text"></div>
+
+            <div class="text-end "> 
+               <span class="material-symbols-outlined searchicon"> search </span>
+              <input class="searchbars" placeholder="Search" type="text">
+            </div>
 
             <div class="ecs-table-card">
                 <p class="ecs-table-heading-main">Drivers</p>
