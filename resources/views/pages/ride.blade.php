@@ -1,6 +1,6 @@
 @extends('layouts.app-master')
 <style>
-  
+
 </style>
 @section('content')
     <!-- Sidebar -->
@@ -14,30 +14,36 @@
         <div class="container-fluid pt-4">
 
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
-              </button>
-              
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header" style="background: black;">
-                      <h5 class="modal-title m-auto text-light" id="exampleModalLabel">Edit Rides</h5>
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: black;">
+                            <h5 class="modal-title m-auto text-light" id="exampleModalLabel">Edit Rides</h5>
+                        </div>
+                        <form action="{{ route('ride.update') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="modal-body m-auto">
+                                <input type="hidden" name="ride_id" id="ride_id">
+                                <select name="status" class="selectmodal" id="edit_status"
+                                    style="text-align-center; margin-left:121px">
+                                    <option value="">Select Status</option>
+                                    <option value="Created">Ride Created</option>
+                                    <option value="Waiting For Payment">Waiting For Payment</option>
+                                    <option value="Driver Assigned">Driver Assigned</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer m-auto">
+                                <button type="submit" class="rideseditsubmit">Submit</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-body m-auto">
-                     <select class="selectmodal" name="" id="">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                     </select>
-                    </div>
-                    <div class="modal-footer m-auto">
-                      <button type="submit" class=" rideseditsubmit">Submit</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              
+            </div>
+
 
 
             <!-- Save -->
@@ -129,65 +135,31 @@
                                             <td>{{ $value->car_name }}</td>
                                             <td>{{ $value->category }}</td>
                                             <td>{{ $value->passengers }}</td>
-                                            <!--<td>-->
-                                            <!--    <div class="booking_status">{{ Str::ucfirst($value->status) }}</div>-->
-                                            <!--</td>-->
-                                            <!--<td>-->
-                                            <!--    @if ($value->status == 'Completed')
-    -->
-                                            <!--        <div class="booking_status_completed">{{ Str::ucfirst($value->status) }}</div>-->
-                                            <!--
-@elseif ($value->status == 'Ride Created')
-    -->
-                                            <!--        <div class="booking_status_created">{{ Str::ucfirst($value->status) }}</div>-->
-                                            <!--
-@elseif($value->status == 'Driver Assigned')
-    -->
-                                            <!--        <div class="booking_status_driver">{{ Str::ucfirst($value->status) }}</div>-->
-                                            <!--
-@elseif($value->status == 'Waiting For Payment')
-    -->
-                                            <!--        <div class="booking_status_waiting">{{ Str::ucfirst($value->status) }}</div>-->
-                                            <!--
-    @endif-->
-                                            <!--</td>-->
                                             <td>
                                                 @if ($value->status == 'Completed')
                                                     <a href="javascript:void(0)" class="edit_ride_btn"
                                                         data-id="{{ $value->id }}"
-                                                        style="    background-color: #00da3d;
-    color: #f4f4f4;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 5px;
-    border-radius: 10;">{{ Str::ucfirst($value->status) }}</a>
+                                                        style="background-color: #00da3d; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        {{ Str::ucfirst($value->status) }}
+                                                    </a>
                                                 @elseif ($value->status == 'Ride Created')
                                                     <a href="javascript:void(0)" class="edit_ride_btn"
                                                         data-id="{{ $value->id }}"
-                                                        style="    background-color: #b6da00;
-    color: #f4f4f4;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 5px;
-    border-radius: 10;">{{ Str::ucfirst($value->status) }}</a>
+                                                        style="background-color: #b6da00;; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        {{ Str::ucfirst($value->status) }}
+                                                    </a>
                                                 @elseif($value->status == 'Driver Assigned')
                                                     <a href="javascript:void(0)" class="edit_ride_btn"
                                                         data-id="{{ $value->id }}"
-                                                        style="    background-color: #da9c00;
-    color: #f4f4f4;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 5px;
-    border-radius: 10;">{{ Str::ucfirst($value->status) }}</a>
+                                                        style="background-color: #da9c00;; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        {{ Str::ucfirst($value->status) }}
+                                                    </a>
                                                 @elseif($value->status == 'Waiting For Payment')
                                                     <a href="javascript:void(0)" class="edit_ride_btn"
                                                         data-id="{{ $value->id }}"
-                                                        style="    background-color: #0b00da;
-    color: #f4f4f4;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 5px;
-    border-radius: 10;">{{ Str::ucfirst($value->status) }}</a>
+                                                        style="background-color: #0b00da; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        {{ Str::ucfirst($value->status) }}
+                                                    </a>
                                                 @endif
                                             </td>
                                             <td>{{ $value->fare }} SAR</td>
@@ -233,6 +205,25 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
+    // $(document).on('click', '.edit_ride_btn', function() {
+    //     let ride_id = $(this).attr('data-id');
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "{{ route('rides.edit') }}",
+    //         data: {
+    //             id: ride_id
+    //         },
+    //         success: function(response) {
+    //             if (response.status) {
+    //                 let data = response.ride;
+    //                 $('#editRideModal').modal('show');
+    //                 $('#ride_id').val(data.id);
+    //                 $('#edit_status').val(data.status);
+    //             }
+    //         }
+    //     });
+    // })
+
     $(document).on('click', '.edit_ride_btn', function() {
         let ride_id = $(this).attr('data-id');
         $.ajax({
@@ -244,14 +235,13 @@
             success: function(response) {
                 if (response.status) {
                     let data = response.ride;
-                    $('#editRideModal').modal('show');
+                    $('#editModal').modal('show');
                     $('#ride_id').val(data.id);
                     $('#edit_status').val(data.status);
                 }
             }
         });
-    })
-
+    });
 
 
     function getVehicleByCategory(obj) {
@@ -297,6 +287,7 @@
 <script>
     $(document).on('click', '.edit_ride_button', function() {
         let ride_id = $(this).attr('data-id');
+        console.log(ride_id);
         $.ajax({
             type: "GET",
             url: "{{ route('rides.edit') }}",
