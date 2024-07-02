@@ -85,14 +85,15 @@
             </div>
             <div class="miniheading">(Total Rides)</div>
             <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
-                </span><input class="searchbars" placeholder="Search" type="text"></div>
+                </span><input class="searchbars" id="myInput" onkeyup="myFunction()" placeholder="Search" type="text">
+            </div>
 
 
             <div class="ecs-table-card">
                 <p class="ecs-table-heading-main">Drivers</p>
                 <div class="ecs-table-container">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table id="myTable" class="table table-hover">
                             <thead class="ecs-custom-header">
                                 <tr>
                                     <th>ID</th>
@@ -205,24 +206,42 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
-    // $(document).on('click', '.edit_ride_btn', function() {
-    //     let ride_id = $(this).attr('data-id');
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "{{ route('rides.edit') }}",
-    //         data: {
-    //             id: ride_id
-    //         },
-    //         success: function(response) {
-    //             if (response.status) {
-    //                 let data = response.ride;
-    //                 $('#editRideModal').modal('show');
-    //                 $('#ride_id').val(data.id);
-    //                 $('#edit_status').val(data.status);
-    //             }
-    //         }
-    //     });
-    // })
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows
+        for (i = 0; i < tr.length; i++) {
+            // Skip the header row (assuming it's the first row)
+            if (i === 0) continue;
+
+            // Initialize a variable to indicate if any column matches the filter
+            var matchFound = false;
+
+            // Loop through all table columns in the current row
+            for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
+                td = tr[i].getElementsByTagName("td")[j];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    // Check if the current column's text matches the filter
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        matchFound = true;
+                        break; // No need to check further columns in this row
+                    }
+                }
+            }
+
+            // Display or hide the row based on whether any column matched the filter
+            if (matchFound) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 
     $(document).on('click', '.edit_ride_btn', function() {
         let ride_id = $(this).attr('data-id');
