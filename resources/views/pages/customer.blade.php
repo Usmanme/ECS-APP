@@ -55,13 +55,13 @@
         </div>
         <div class="miniheading">(Total Customers)</div>
         <div class="text-end "> <span class="material-symbols-outlined searchicon"> search
-        </span><input class="searchbars" placeholder="Search" type="text"></div>
+        </span><input class="searchbars"   id="myInput" onkeyup="myFunction()" placeholder="Search" type="text"></div>
 
         <div class="ecs-table-card">
             <p class="ecs-table-heading-main">Customers</p>
             <div class="ecs-table-container">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table id="myTable" class="table table-hover">
                         <thead class="ecs-custom-header">
             <thead>
                 <tr>
@@ -266,26 +266,41 @@
     <!-- ./ Edit Modal -->
 @endsection
 <script>
-    function toggleSidebar() {
-    const sidebar = document.getElementById("sidebarleft");
-    const mainContent = document.getElementById("booking_right_part");
-    const onnav = document.getElementById("onnav");
-    const onmain = document.getElementById("onmain");
-    if (sidebar.classList.contains("widthsideberopen")) {
-        sidebar.classList.remove("widthsideberopen");
-        mainContent.classList.remove("widthmainopen");
-        sidebar.classList.add("widthsideberclose");
-        mainContent.classList.add("widthmainclose");
-        onmain.classList.remove("hidebars");
-        onmain.classList.add("showbars");
-
-    } else {
-        sidebar.classList.remove("widthsideberclose");
-        mainContent.classList.remove("widthmainclose");
-        sidebar.classList.add("widthsideberopen");
-        mainContent.classList.add("widthmainopen");
-        onmain.classList.add("hidebars");
-        onmain.classList.remove("showbars");
+     function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, j, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows
+  for (i = 0; i < tr.length; i++) {
+    // Skip the header row (assuming it's the first row)
+    if (i === 0) continue;
+    
+    // Initialize a variable to indicate if any column matches the filter
+    var matchFound = false;
+    
+    // Loop through all table columns in the current row
+    for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
+      td = tr[i].getElementsByTagName("td")[j];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        // Check if the current column's text matches the filter
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          matchFound = true;
+          break; // No need to check further columns in this row
+        }
+      }
     }
+    
+    // Display or hide the row based on whether any column matched the filter
+    if (matchFound) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
 }
+
 </script>

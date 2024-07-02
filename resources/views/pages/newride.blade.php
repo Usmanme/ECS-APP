@@ -45,9 +45,9 @@
                 @csrf
 
                 <div >
-                    <h2 style="padding:3px" class="modelheadings">B2B Booking:</h2>
-                    <div class="row formstylling">
-                        <div class="col-md-3" style="margin-top: -15px;">
+                    <h2 style="padding:3px; margin-left:10px;" class="modelheadings ">B2B Booking:</h2>
+                    <div class="row mt-4 mb-3 " style=" margin-left:0px;">
+                        <div class="col-md-2" style="margin-top: -15px;">
                             <label for="customer_id">ID Number</label>
                             <select class="form-control" style="width:110%;" name="customer_id" id="customer_id"
                                 required>
@@ -57,7 +57,9 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
                             <div class="button">
                                 <input onclick="showTab(this)" type="radio" id="airport" value="airport"
                                     name="catgory" checked />
@@ -320,10 +322,10 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" style="padding:0px 6px 5px 13px ;">
-                        <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-white"
+                        <a href="{{ url('rides') }}"><button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-white"
                             style=" box-shadow: 0px 4px 4px 0px #00000040;    margin-top: -5px; margin-right: 10px;">&#8592;
-                            Back</button>
-                        <button type="submit" class="btn btn-black">Submit</button>
+                            Back</button></a>
+                        <button type="submit" class="btn btn-dark ">Submit</button>
                     </div>
                 </div>
 
