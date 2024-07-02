@@ -13,7 +13,7 @@ class CustomersContoller extends Controller
      */
     public function index()
     {
-        $data = DB::table('customers')->get();
+        $data = DB::table('customers')->paginate();
         return view('pages.customer', compact('data'));
     }
 
