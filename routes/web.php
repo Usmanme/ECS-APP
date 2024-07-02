@@ -47,6 +47,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/vehicles', [VehiclesContoller::class, 'index']);
         Route::post('/vehicles/store', [VehiclesContoller::class, 'store']);
         Route::post('/vehicles/update/{id}', [VehiclesContoller::class, 'update']);
+        Route::get('/newvehicle', [VehiclesContoller::class, 'newvehicle'])->name('newvehicles');
 
         // Rides
         Route::get('/rides', [RidesContoller::class, 'index'])->name('rides');

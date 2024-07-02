@@ -16,7 +16,10 @@ class VehiclesContoller extends Controller
         $data = DB::table('vehicles')->get();
         return view('pages.vehicle', compact('data'));
     }
-
+    public function newvehicle()
+    {
+        return view('pages.newvehicle');
+    }
     /**
      * Show the form for creating a new resource.
      */
