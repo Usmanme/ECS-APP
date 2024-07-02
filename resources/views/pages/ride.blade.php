@@ -28,7 +28,7 @@
                             <div class="modal-body m-auto">
                                 <input type="hidden" name="ride_id" id="ride_id">
                                 <select name="status" class="selectmodal" id="edit_status"
-                                    style="text-align-center; margin-left:121px">
+                                    style="text-align-center; margin-left:40px">
                                     <option value="">Select Status</option>
                                     <option value="Created">Ride Created</option>
                                     <option value="Waiting For Payment">Waiting For Payment</option>
@@ -37,7 +37,7 @@
                                 </select>
                             </div>
                             <div class="modal-footer m-auto">
-                                <button type="submit" class="rideseditsubmit">Submit</button>
+                                <button type="submit" class="rideseditsubmit m-auto">Submit</button>
                             </div>
                         </form>
                     </div>
