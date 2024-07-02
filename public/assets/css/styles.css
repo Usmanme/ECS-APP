@@ -190,7 +190,7 @@ body {
 }
 
 .ecs-datepicker {
-    border: 0.5px solid var(--lightgrey);
+    /* border: 0.5px solid var(--lightgrey); */
     margin-left: 70%;
 }
 

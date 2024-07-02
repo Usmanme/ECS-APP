@@ -50,8 +50,8 @@
                                 </li>
                                 <li class="nav-item">
                                     <form>
-                                        <div class="form-outline datepicker ecs-datepicker">
-                                            <input type="date" class="form-control" placeholder="Choose dates" />
+                                        <div class=" datepicker ecs-datepicker">
+                                            <input type="date" class="form-control"  style="width: 150px;" placeholder="Choose dates" />
                                         </div>
                                     </form>
                                 </li>
@@ -97,8 +97,8 @@
                                 </li>
                                 <li class="nav-item">
                                     <form>
-                                        <div class="form-outline datepicker ecs-datepicker">
-                                            <input type="date" class="form-control" placeholder="Choose dates" />
+                                        <div class=" datepicker ecs-datepicker">
+                                            <input type="date" class="form-control"  style="width: 150px;" placeholder="Choose dates" />
                                         </div>
                                     </form>
                                 </li>
