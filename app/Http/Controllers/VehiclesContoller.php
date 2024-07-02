@@ -13,7 +13,7 @@ class VehiclesContoller extends Controller
      */
     public function index()
     {
-        $data = DB::table('vehicles')->get();
+        $data = DB::table('vehicles')->paginate();
         return view('pages.vehicle', compact('data'));
     }
     public function newvehicle()
