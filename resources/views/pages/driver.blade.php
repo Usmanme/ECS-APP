@@ -84,9 +84,9 @@
                                             <td>{{ $value->phone_number }}</td>
                                             <td>
                                                 <div class="nameentry">
-                                                    <img height="100px"
+                                                    <img height="70px ;"
                                                         src="{{ $value->img != '' ? asset('/uploads/' . $value->img) : asset('/assets/images/avarat.png') }}"
-                                                        class="customerpic">
+                                                        class="customerpic mb-3">
                                                     <p>{{ $value->firstname . ' ' . $value->lastname }}</p>
                                                 </div>
                                             </td>
