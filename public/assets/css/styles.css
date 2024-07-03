@@ -358,6 +358,14 @@ body {
     opacity: 0px;
     font-size: medium;
 }
+.statusfont{
+    font-family: Poppins;
+font-size: 12px;
+font-weight: 600;
+line-height: 18px;
+text-align: left;
+
+}
 .bigbutton {
     width: 180px;
     height: 47px;
