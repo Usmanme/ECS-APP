@@ -27,26 +27,31 @@
 
                             <div class="modal-body m-auto">
                                 <input type="hidden" name="ride_id" id="ride_id">
-                                <select name="status" class="selectmodal" id="edit_status"
+                                {{-- <select name="status" class="selectmodal" id="edit_status"
                                     style="text-align-center; margin-left:40px">
                                     <option value="">Select Status</option>
                                     <option value="Created">Ride Created</option>
                                     <option value="Driver Assigned">Driver Assigned</option>
                                     <option value="Completed">Completed</option>
+                                </select> --}}
+                                <select name="status" class="selectmodal" id="edit_status"
+                                    style="text-align-center; margin-left:40px" onchange="toggleDriverSelect(this)">
+                                    <option value="">Select Status</option>
+                                    <option value="Created">Ride Created</option>
+                                    <option value="Driver Assigned">Driver Assigned</option>
+                                    <option value="Completed">Completed</option>
                                 </select>
-                                @php
-                                    $drivers = DB::table('drivers')->get();
-                                @endphp
-                                <select name="driver_assigned_option" class="selectmodal" id="driver_assigned_option"
-                                    style="display: none; text-align-center; margin-left:40px">
-                                    <option value="">Select Option</option>
-                                    @foreach ($drivers as $driver)
-                                        <option value="{{ $driver->id }}">{{ $driver->firstname . $driver->lastname }}
-                                        </option>
-                                    @endforeach
-                                </select>
-
                             </div>
+                            <div class="modal-body m-auto" id="driver_select_row">
+                                <div class="col-lg-6">
+                                    <label style="margin-left:200px" for="driver_id">Driver</label>
+                                    <select name="driver_id" class="selectmodal" id="driver_id"
+                                        style="text-align-center; margin-left:40px">
+                                        <option value="">Select Driver</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="modal-footer m-auto">
                                 <button type="submit" class="rideseditsubmit m-auto">Submit</button>
                             </div>
@@ -386,8 +391,10 @@
         });
     }
 </script>
+
 <script>
     function toggleDriverSelect(obj) {
+
         var status = $(obj).val();
         var driverSelectRow = $('#driver_select_row');
         if (status === 'Driver Assigned') {
@@ -431,14 +438,4 @@
             }
         });
     }
-</script>
-<script>
-    document.getElementById('edit_status').addEventListener('change', function() {
-        var driverAssignedOption = document.getElementById('driver_assigned_option');
-        if (this.value === 'Driver Assigned') {
-            driverAssignedOption.style.display = 'block';
-        } else {
-            driverAssignedOption.style.display = 'none';
-        }
-    });
 </script>
