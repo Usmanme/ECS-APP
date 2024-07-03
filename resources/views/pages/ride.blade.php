@@ -138,8 +138,8 @@
                                             </td>
                                             <td>
                                                 <div class="nameentry">
-                                                    <img width="100px" src="{{ asset('/assets/images/avarat.png') }}"
-                                                        class="customerpic">
+                                                    {{-- <img width="100px" src="{{ asset('/assets/images/avarat.png') }}"
+                                                        class="customerpic"> --}}
                                                     <p>{{ $value->customer_name }}</p>
                                                 </div>
                                             </td>
@@ -157,27 +157,27 @@
                                             <td>{{ $value->passengers }}</td>
                                             <td>
                                                 @if ($value->status == 'Completed')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #00da3d; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #00CC39;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @elseif ($value->status == 'Ride Created')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #b6da00;; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #FF0000;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @elseif($value->status == 'Driver Assigned')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #da9c00;; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #FF0000;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @elseif($value->status == 'Waiting For Payment')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #0b00da; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #0b00da;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @endif

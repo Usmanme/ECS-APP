@@ -358,6 +358,14 @@ body {
     opacity: 0px;
     font-size: medium;
 }
+.statusfont{
+    font-family: Poppins;
+font-size: 12px;
+font-weight: 600;
+line-height: 18px;
+text-align: left;
+
+}
 .bigbutton {
     width: 180px;
     height: 47px;
@@ -479,10 +487,16 @@ margin: 15px 10px 14px 0px;
 font-size: 20px;
 font-weight: 600;
 line-height: 30px;
-
-
 }
 
+.logoutsure {
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: left;
+
+}
 .modal-dialog-centered {
     display: flex;
     align-items: center;

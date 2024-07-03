@@ -13,6 +13,28 @@
     <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
 
+                <!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header" style="background: white;">
+          </div>
+        <div class="modal-body m-auto mb-4">
+            <p class="logoutsure">Upload Picture</p>
+            <div class="form-group">
+                <label for="driver_img">Image</label>
+                <input type="file" class="form-control" name="driver_img" id="driver_img"
+                    accept="image/png, image/gif, image/jpeg" required>
+            </div>
+        </div>
+        <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
+            <button type="button" class="rideseditsubmit" style="width: 160px;background-color:white;border:2px solid red;color:red" data-dismiss="modal">Close</button>
+            <button class=" rideseditsubmit" style="width: 160px; " >Submit</button>
+        </div>
+    </div>
+</div>
+</div>
             <!-- Save -->
             @if (session('status_save') === 'true')
                 <div class="ecs_alert alert alert-success" role="alert">
@@ -40,7 +62,8 @@
                 <div class="adddrivermain">
                     <div>
                         <img class="driverimage" src="./assets/images/no driver.jpeg" alt="No driver">
-                        <button class="driverbutton ">Upload Photo</button>
+                        <button  class="driverbutton " data-toggle="modal" data-target="#imageModal">Upload Photo</button>
+
                     </div>
 
                     <hr class="ecs-custom-divder mt-3" />
@@ -88,11 +111,7 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="driver_img">Image</label>
-                            <input type="file" class="form-control" name="driver_img" id="driver_img"
-                                accept="image/png, image/gif, image/jpeg" required>
-                        </div>
+                       
 
                     </div>
                     <div class="personaldetails mt-4">Vehicle Details</div>
@@ -129,6 +148,10 @@
             </form>
         </div>
     </main>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
