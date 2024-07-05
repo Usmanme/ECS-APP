@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 class DriversContoller extends Controller
 {
     /**
@@ -40,7 +40,22 @@ class DriversContoller extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'firstname' =>'required|max:50',
+            'lastname' =>'required|max:50',
+            'phone_number' =>'required|max:20|unique:drivers',
+            'iqama_number' =>'required|max:20',
+            'email_addr' =>'required|email|max:100',
+            'driver_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
         $destinationPath = 'uploads';
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';

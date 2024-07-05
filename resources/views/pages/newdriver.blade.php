@@ -13,28 +13,8 @@
     <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
 
-                <!-- Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header" style="background: white;">
-          </div>
-        <div class="modal-body m-auto mb-4">
-            <p class="logoutsure">Upload Picture</p>
-            <div class="form-group">
-                <label for="driver_img">Image</label>
-                <input type="file" class="form-control" name="driver_img" id="driver_img"
-                    accept="image/png, image/gif, image/jpeg" required>
-            </div>
-        </div>
-        <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
-            <button type="button" class="rideseditsubmit" style="width: 160px;background-color:white;border:2px solid red;color:red" data-dismiss="modal">Close</button>
-            <button class=" rideseditsubmit" style="width: 160px; " >Submit</button>
-        </div>
-    </div>
-</div>
-</div>
+            <!-- Modal -->
+
             <!-- Save -->
             @if (session('status_save') === 'true')
                 <div class="ecs_alert alert alert-success" role="alert">
@@ -60,9 +40,44 @@ aria-hidden="true">
             <form action="{{ url('/drivers/store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="adddrivermain">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background: white;">
+                                </div>
+                                <div class="modal-body m-auto mb-4">
+                                    <p class="logoutsure">Upload Picture</p>
+                                    <div class="form-group">
+                                        <label for="driver_img">Image</label>
+                                        <input type="file" class="form-control" name="driver_img" id="driver_img"
+                                            accept="image/png, image/gif, image/jpeg" required>
+                                    </div>
+                                </div>
+                                <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
+                                    <button type="button" class="rideseditsubmit"
+                                        style="width: 160px;background-color:white;border:2px solid red;color:red"
+                                        data-dismiss="modal">Close</button>
+                                    <button class=" rideseditsubmit" style="width: 160px; ">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div>
                         <img class="driverimage" src="./assets/images/no driver.jpeg" alt="No driver">
-                        <button  class="driverbutton " data-toggle="modal" data-target="#imageModal">Upload Photo</button>
+                        <button class="driverbutton " data-toggle="modal" data-target="#imageModal">Upload Photo</button>
 
                     </div>
 
@@ -111,7 +126,7 @@ aria-hidden="true">
                                 @endif
                             </select>
                         </div>
-                       
+
 
                     </div>
                     <div class="personaldetails mt-4">Vehicle Details</div>
