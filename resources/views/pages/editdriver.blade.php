@@ -75,11 +75,35 @@
                     </div>
 
                     <div class="d-flex flex-row gap-5 mt-4 flex-wrap" style="width: 90%;">
+                        <div class="mt-3">
+                            <p class="driverinputnames">Choose vehicle</p>
+                            <select class="form-control" name="vehicles" id="vehicleSelect" required>
+                                @php
+                                    $vehicle_data = DB::table('vehicles')->get();
+                                @endphp
+                                @if (!empty($vehicle_data))
+                                    <option value="" selected disabled>Choose vehicle</option>
+                                    @foreach ($vehicle_data as $key => $value)
+                                        <option @if ($driver->vehicle_id == $value->id)
+                                            @selected(true)
+                                        @endif  value="{{ $value->id }}">
+                                            {{ $value->reg_no }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
                         <div class="d-flex flex-row justify-content-between mt-4 flex-wrap">
                             <label for="driver_img">Image</label>
                             <input type="file" class="form-control" name="driver_img" id="driver_img"
                                 accept="image/png, image/gif, image/jpeg" required>
                         </div>
+                        
+                        
+                    </div>
+                    <div class="d-flex flex-row gap-5 mt-4 flex-wrap" style="width: 90%;">
+                        
+
                         <div class="d-flex flex-row mt-5 justify-content-end">
                             <a class="bigbutton bg-light text-dark" style="border:1px solid black;"
                                 href="{{ url('drivers') }}">Back</a>

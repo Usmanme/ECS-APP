@@ -18,8 +18,10 @@ class RidesContoller extends Controller
     {
         $perPage = $request->input('per_page', 25); // Default to 25 items per page
         $data = DB::table('rides')
-            ->orderByDesc('created_at')
-            ->paginate($perPage);
+        ->leftJoin('drivers', 'rides.driver_id', '=', 'drivers.id')
+        ->orderByDesc('rides.created_at')
+        ->select('rides.*', 'drivers.firstname','drivers.lastname') // Specify the columns you want to select
+        ->paginate($perPage);
 
         $customers = DB::table('customers')->get();
 

@@ -337,9 +337,45 @@
    
 @endsection
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
 
+        const input1 = document.getElementById('booking_pickup_airport');
+        const autocomplete1 = new google.maps.places.Autocomplete(input1, {
+            types: ['geocode'],  // You can restrict the search to geographical locations
+        });
+        const input2 = document.getElementById('booking_drop_airport');
+        const autocomplete2 = new google.maps.places.Autocomplete(input2, {
+            types: ['geocode'],  // You can restrict the search to geographical locations
+        });
+    
+
+        const input3 = document.getElementById('booking_pickup_hourly');
+        const autocomplete3 = new google.maps.places.Autocomplete(input3, {
+            types: ['geocode'],  // You can restrict the search to geographical locations
+        });
+        const input4 = document.getElementById('booking_drop_hourly');
+        const autocomplete4 = new google.maps.places.Autocomplete(input4, {
+            types: ['geocode'],  // You can restrict the search to geographical locations
+        });
+    
+
+        const input5 = document.getElementById('booking_pickup_full_day');
+        const autocomplete5 = new google.maps.places.Autocomplete(input5, {
+            types: ['geocode'],  // You can restrict the search to geographical locations
+        });
+        const input6 = document.getElementById('booking_drop_full_day');
+        const autocomplete6 = new google.maps.places.Autocomplete(input6, {
+            types: ['geocode'],  // You can restrict the search to geographical locations
+        });
+    
+
+    });
+    </script>
+    
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <script>
     $(document).on('click', '.edit_ride_btn', function() {
         let ride_id = $(this).attr('data-id');

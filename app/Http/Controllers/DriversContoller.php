@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 class DriversContoller extends Controller
 {
     /**
@@ -40,12 +40,26 @@ class DriversContoller extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'firstname' =>'required|max:50',
+            'lastname' =>'required|max:50',
+            'phone_number' =>'required|max:20|unique:drivers',
+            'iqama_number' =>'required|max:20',
+            'email_addr' =>'required|email|max:100',
+            'driver_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
         $destinationPath = 'uploads';
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';
         $data = [
-            'vehicle_id' => 0,
             'ride_id' => 0,
             'customer_id' => 0,
             'status' => '',
@@ -57,6 +71,10 @@ class DriversContoller extends Controller
             $data['firstname'] = $request->firstname;
         }
 
+        if (isset($request->vehicles) && $request->vehicles != '') {
+            $data['vehicle_id'] = $request->vehicles;
+        }
+        
         if (isset($request->lastname) && $request->lastname != '') {
             $data['lastname'] = $request->lastname;
         }
@@ -115,7 +133,6 @@ class DriversContoller extends Controller
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';
         $data = [
-            'vehicle_id' => 0,
             'ride_id' => 0,
             'customer_id' => 0,
             'status' => '',
@@ -123,6 +140,9 @@ class DriversContoller extends Controller
             'updated_at' => Carbon::now()
         ];
 
+        if (isset($request->vehicles) && $request->vehicles != '') {
+            $data['vehicle_id'] = $request->vehicles;
+        }
         if (isset($request->firstname) && $request->firstname != '') {
             $data['firstname'] = $request->firstname;
         }
@@ -193,6 +213,7 @@ class DriversContoller extends Controller
     {
 
         $driver = DB::table('drivers')->where('id', $id)->first();
+       
         return view('pages.editdriver', compact('driver'));
     }
 }
