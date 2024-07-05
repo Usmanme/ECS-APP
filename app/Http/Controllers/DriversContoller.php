@@ -60,7 +60,6 @@ class DriversContoller extends Controller
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';
         $data = [
-            'vehicle_id' => 0,
             'ride_id' => 0,
             'customer_id' => 0,
             'status' => '',
@@ -72,6 +71,10 @@ class DriversContoller extends Controller
             $data['firstname'] = $request->firstname;
         }
 
+        if (isset($request->vehicles) && $request->vehicles != '') {
+            $data['vehicle_id'] = $request->vehicles;
+        }
+        
         if (isset($request->lastname) && $request->lastname != '') {
             $data['lastname'] = $request->lastname;
         }
@@ -130,7 +133,6 @@ class DriversContoller extends Controller
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';
         $data = [
-            'vehicle_id' => 0,
             'ride_id' => 0,
             'customer_id' => 0,
             'status' => '',
@@ -138,6 +140,9 @@ class DriversContoller extends Controller
             'updated_at' => Carbon::now()
         ];
 
+        if (isset($request->vehicles) && $request->vehicles != '') {
+            $data['vehicle_id'] = $request->vehicles;
+        }
         if (isset($request->firstname) && $request->firstname != '') {
             $data['firstname'] = $request->firstname;
         }
@@ -208,6 +213,7 @@ class DriversContoller extends Controller
     {
 
         $driver = DB::table('drivers')->where('id', $id)->first();
+       
         return view('pages.editdriver', compact('driver'));
     }
 }
