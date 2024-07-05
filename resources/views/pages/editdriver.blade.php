@@ -84,7 +84,9 @@
                                 @if (!empty($vehicle_data))
                                     <option value="" selected disabled>Choose vehicle</option>
                                     @foreach ($vehicle_data as $key => $value)
-                                        <option value="{{ $value->id }}">
+                                        <option @if ($driver->vehicle_id == $value->id)
+                                            @selected(true)
+                                        @endif  value="{{ $value->id }}">
                                             {{ $value->reg_no }}</option>
                                     @endforeach
                                 @endif
