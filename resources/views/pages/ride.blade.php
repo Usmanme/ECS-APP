@@ -115,7 +115,7 @@
                                     <th>Ride Date</th>
                                     <th>Pick Up</th>
                                     <th>Drop Up</th>
-                                    <!--<th>Driver</th>-->
+                                    <th>Driver</th>
                                     <th>Vehicle</th>
                                     <th>Category</th>
                                     <th>Passenger</th>
@@ -146,7 +146,7 @@
                                             </td>
                                             <td>{{ $value->hotel_pickup }}</td>
                                             <td>{{ $value->hotel_drop }}</td>
-                                            <!--<td>Demo</td>-->
+                                           <td>{{ $value->firstname . " ". $value->lastname}}</td>
                                             <td>{{ $value->car_name }}</td>
                                             <td>{{ $value->category }}</td>
                                             <td>{{ $value->passengers }}</td>
