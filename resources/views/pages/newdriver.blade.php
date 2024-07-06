@@ -64,12 +64,12 @@
                                         <input type="file" class="form-control" name="driver_img" id="driver_img"
                                             accept="image/png, image/gif, image/jpeg" required>
                                     </div>
-                                </div>
+                                </div>  
                                 <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
                                     <button type="button" class="rideseditsubmit"
                                         style="width: 160px;background-color:white;border:2px solid red;color:red"
                                         data-dismiss="modal">Close</button>
-                                    <button class=" rideseditsubmit" style="width: 160px; ">Submit</button>
+                                    <button  data-dismiss="modal"  type="button" class=" rideseditsubmit" style="width: 160px; ">Submit</button>
                                 </div>
                             </div>
                         </div>
