@@ -16,7 +16,11 @@ class DriversContoller extends Controller
         $perPage = $request->input('per_page', 25); // Default to 25 items per page
 
         // Paginate drivers and vehicles
-        $data = DB::table('drivers')->paginate($perPage);
+
+        $data = DB::table('drivers')->
+        leftjoin('vehicles', 'drivers.vehicle_id', '=', 'vehicles.id')
+        ->paginate($perPage);
+
         $vehicle_data = DB::table('vehicles')->paginate($perPage);
 
         return view('pages.driver', compact('data', 'vehicle_data'));
@@ -40,7 +44,7 @@ class DriversContoller extends Controller
      */
     public function store(Request $request)
     {
-
+            //   @dd($request->all());
         $validator = Validator::make($request->all(), [
             'firstname' =>'required|max:50',
             'lastname' =>'required|max:50',
@@ -48,6 +52,7 @@ class DriversContoller extends Controller
             'iqama_number' =>'required|max:20',
             'email_addr' =>'required|email|max:100',
             'driver_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'vehicles' => 'required'
         ]);
         
         if ($validator->fails()) {

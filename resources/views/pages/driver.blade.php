@@ -92,11 +92,11 @@
                                             </td>
                                             <td>{{ $value->email_addr }}</td>
                                             <td>{{ $value->phone_number }}</td>
-                                            <td></td>
+                                            <td>{{$value->brand}}</td>
                                             <td>
                                                 <div class="booking_status">Available</div>
                                             </td>
-                                            <td></td>
+                                            <td>{{$value->reg_no}}</td>
                                             <td>
                                                 <a href="{{ url('editdriver/' . $value->id) }}">
                                                     <img src="{{ url('/assets/images/edit-icon.png') }}">
