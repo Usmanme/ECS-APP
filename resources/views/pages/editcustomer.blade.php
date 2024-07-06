@@ -35,13 +35,39 @@
                 </div>
             @endif
 
-            <form action="{{ url('/customers/update') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/customers/update/' . $customer->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="adddrivermain">
                     <div>
                         <img class="driverimage" src="{{ asset('/images/' . $customer->img) }}">
-                        <button class="driverbutton ">Upload Photo</button>
+                        <button class="driverbutton " data-toggle="modal" data-target="#vehicleModal">Upload Photo</button>
                     </div>
+
+                    <div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: white;">
+                            </div>
+                            <div class="modal-body m-auto mb-4">
+                                <p class="logoutsure">Upload Picture</p>
+                                <div class="form-group">
+                                    <label for="customer_img">Image</label>
+                            <input type="file" class="form-control" name="customer_img" id="customer_img"
+                                accept="image/png, image/gif, image/jpeg" >
+                                </div>
+                            </div>
+                            <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
+                                <button type="button" class="rideseditsubmit"
+                                    style="width: 160px;background-color:white;border:2px solid red;color:red"
+                                    data-dismiss="modal">Close</button>
+                                <button  type="button" data-dismiss="modal" class=" rideseditsubmit"
+                                    style="width: 160px; ">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                     <hr class="ecs-custom-divder mt-3" />
                     <div class="personaldetails">Personal Details</div>
@@ -72,15 +98,16 @@
                                 value="{{ $customer->nationality }}">
                         </div>
 
-                    </div>
-
-                    <div class="d-flex flex-row justify-content-between mt-4 flex-wrap" style="width: 90%">
-
                         <div>
                             <p class="driverinputnames">Company</p>
                             <input class="driverinputs" placeholder="Enter Company" type="text" name="company"
                                 value="{{ $customer->company }}">
                         </div>
+                    </div>
+
+                    <div class="d-flex flex-row mt-4 flex-wrap" style="width: 90%;gap:60px;">
+
+                        
                         <div>
                             <p class="driverinputnames">Department</p>
                             <input class="driverinputs" placeholder="Enter Department" type="text" name="department"
@@ -91,11 +118,7 @@
                             <input class="driverinputs" placeholder="Enter Designantion" type="text" name="designation"
                                 value="{{ $customer->designation }}">
                         </div>
-                        <div>
-                            <label for="customer_img">Image</label>
-                            <input type="file" class="form-control" name="customer_img" id="customer_img"
-                                accept="image/png, image/gif, image/jpeg" required>
-                        </div>
+                        
                     </div>
 
                     <div class="d-flex flex-row gap-5 mt-4 flex-wrap" style="width: 90%; justify-content: flex-end;">
