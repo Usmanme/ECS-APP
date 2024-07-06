@@ -48,6 +48,7 @@
                                         <th>Pick Up</th>
                                         <th>Drop Up</th>
                                         <th>Vehicle Assigned</th>
+                                        <th>Driver</th>
                                         <th>Booking Type</th>
                                         <th>Status</th>
                                         <th>Fare</th>
@@ -68,6 +69,7 @@
                                             <td>{{ $value->hotel_pickup }}</td>
                                             <td>{{ $value->hotel_drop }}</td>
                                             <td>{{ $value->car_name }}</td>
+                                            <td>{{ $value->firstname . " ". $value->lastname}}</td>
                                             <td>{{ $value->category }}</td>
                                             <td>
                                                 <div class="booking_status">Completed</div>
