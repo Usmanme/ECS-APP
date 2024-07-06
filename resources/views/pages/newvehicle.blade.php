@@ -14,27 +14,7 @@
         <div class="container-fluid pt-4">
 
                             <!-- Modal -->
-<div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header" style="background: white;">
-          </div>
-        <div class="modal-body m-auto mb-4">
-            <p class="logoutsure">Upload Picture</p>
-            <div class="form-group">
-                <label for="vehicle_img">Car Image</label>
-                <input type="file" class="form-control" name="vehicle_img" id="vehicle_img"
-                    accept="image/png, image/gif, image/jpeg" required>
-            </div>
-        </div>
-        <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
-            <button type="button" class="rideseditsubmit" style="width: 160px;background-color:white;border:2px solid red;color:red" data-dismiss="modal">Close</button>
-            <button class=" rideseditsubmit" style="width: 160px; " >Submit</button>
-        </div>
-    </div>
-</div>
-</div>
+
 
             <!-- Save -->
             @if (session('status_save') === 'true')
@@ -66,6 +46,27 @@ aria-hidden="true">
                         <button  class="driverbutton " data-toggle="modal" data-target="#vehicleModal">Upload Photo</button>
 
                     </div>
+                    <div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header" style="background: white;">
+          </div>
+        <div class="modal-body m-auto mb-4">
+            <p class="logoutsure">Upload Picture</p>
+            <div class="form-group">
+                <label for="vehicle_img">Car Image</label>
+                <input type="file" class="form-control" name="vehicle_img" id="vehicle_img"
+                    accept="image/png, image/gif, image/jpeg" required>
+            </div>
+        </div>
+        <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
+            <button type="button" class="rideseditsubmit" style="width: 160px;background-color:white;border:2px solid red;color:red" data-dismiss="modal">Close</button>
+            <button data-dismiss="modal" class=" rideseditsubmit" style="width: 160px; " >Submit</button>
+        </div>
+    </div>
+</div>
+</div>
 
                     <hr class="ecs-custom-divder mt-3" />
                     <div class="personaldetails">Vehicle Details</div>

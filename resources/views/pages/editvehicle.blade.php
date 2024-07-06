@@ -103,12 +103,12 @@
                         <div class="mb-2">
                             <label for="vehicle_img">Car Image</label>
                             <input type="file" class="form-control" name="vehicle_img" id="vehicle_img"
-                                accept="image/png, image/gif, image/jpeg" required>
+                                accept="image/png, image/gif, image/jpeg" >
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_attachment">Registration Attachment</label>
                             <input type="file" class="form-control" name="vehicle_attachment" id="vehicle_attachment"
-                                accept=".pdf" required>
+                                accept=".pdf" >
                         </div>
                     </div>
 
