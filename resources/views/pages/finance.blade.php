@@ -14,7 +14,10 @@
             <div class="d-flex flex-row justify-content-between text-light">
                 <div class="ecs-card-header-left">
                     <span class="heading pageheading">Finance</span>
-                    <span class="stats totalnumber"><span class="num">500</span></span>
+                    @php
+                        $finance = DB::table('rides')->where('status', 'Completed')->sum('fare');
+                    @endphp
+                    <span class="stats totalnumber"><span class="num">{{ $finance }}</span></span>
                 </div>
                 <div class="d-flex flex-row">
                     <span class="material-symbols-outlined p-2">
@@ -32,7 +35,7 @@
 
 
             <div class="ecs-table-card">
-                <p class="ecs-table-heading-main">Finance</p>
+                {{-- <p class="ecs-table-heading-main">Finance</p> --}}
                 <div class="ecs-table-container">
                     <div class="table-responsive">
                         <table  id="myTable" class="table table-hover">
@@ -45,14 +48,15 @@
                                         <th>Pick Up</th>
                                         <th>Drop Up</th>
                                         <th>Vehicle Assigned</th>
+                                        <th>Driver</th>
                                         <th>Booking Type</th>
                                         <th>Status</th>
                                         <th>Fare</th>
                                     </tr>
                                 </thead>
                             <tbody class="ecs-custom-body">
-                                @if (!empty($completed_rides))
-                                    @foreach ($completed_rides as $value)
+                                @if (!empty($data))
+                                    @foreach ($data as $value)
                                         <tr>
                                             <td>{{ $value->id }}</td>
                                             <td>{{ $value->customer_name }}</td>
@@ -65,6 +69,7 @@
                                             <td>{{ $value->hotel_pickup }}</td>
                                             <td>{{ $value->hotel_drop }}</td>
                                             <td>{{ $value->car_name }}</td>
+                                            <td>{{ $value->firstname . " ". $value->lastname}}</td>
                                             <td>{{ $value->category }}</td>
                                             <td>
                                                 <div class="booking_status">Completed</div>
@@ -78,21 +83,20 @@
                         </table>
                     </div>
                     <div class="ecs-table-pagination-main">
-                        <p class="rows-txt">Rows per page</p>
-                        <select class="custom-pages-ddl">
-                            <option>25</option>
-                            <option>55</option>
-                            <option>75</option>
-                        </select>
-                        <p class="rows-txt">1-75 of 89</p>
+                        <form method="GET" action="{{ route('finance') }}" style="display: flex">
+                            <p class="rows-txt">Rows per page</p>
+                            <select name="per_page" class="custom-pages-ddl" style="height:23px;" onchange="this.form.submit()">
+                                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                                <option value="55" {{ request('per_page') == 55 ? 'selected' : '' }}>55</option>
+                                <option value="75" {{ request('per_page') == 75 ? 'selected' : '' }}>75</option>
+                            </select>
+                            <p class="rows-txt">{{ $data->firstItem() }}-{{ $data->lastItem() }} of {{ $data->total() }}</p>
+                        </form>
                         <div class="rows-clicks-main">
-
-
-
-                            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
-                            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
-                            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
-                            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+                            <a href="{{ $data->url(1) }}"><img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" /></a>
+                            <a href="{{ $data->previousPageUrl() }}"><img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" /></a>
+                            <a href="{{ $data->nextPageUrl() }}"><img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" /></a>
+                            <a href="{{ $data->url($data->lastPage()) }}"><img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" /></a>
                         </div>
                     </div>
                 </div>
@@ -103,7 +107,7 @@
     <!-- ./Ride -->
 @endsection
 <script>
-     
+
    function myFunction() {
   // Declare variables
   var input, filter, table, tr, td, i, j, txtValue;
@@ -115,10 +119,10 @@
   for (i = 0; i < tr.length; i++) {
     // Skip the header row (assuming it's the first row)
     if (i === 0) continue;
-    
+
     // Initialize a variable to indicate if any column matches the filter
     var matchFound = false;
-    
+
     // Loop through all table columns in the current row
     for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
       td = tr[i].getElementsByTagName("td")[j];
@@ -131,7 +135,7 @@
         }
       }
     }
-    
+
     // Display or hide the row based on whether any column matched the filter
     if (matchFound) {
       tr[i].style.display = "";

@@ -27,15 +27,31 @@
 
                             <div class="modal-body m-auto">
                                 <input type="hidden" name="ride_id" id="ride_id">
-                                <select name="status" class="selectmodal" id="edit_status"
+                                {{-- <select name="status" class="selectmodal" id="edit_status"
                                     style="text-align-center; margin-left:40px">
                                     <option value="">Select Status</option>
                                     <option value="Created">Ride Created</option>
-                                    <option value="Waiting For Payment">Waiting For Payment</option>
+                                    <option value="Driver Assigned">Driver Assigned</option>
+                                    <option value="Completed">Completed</option>
+                                </select> --}}
+                                <select name="status" class="selectmodal" id="edit_status"
+                                    style="text-align-center; margin-left:40px" onchange="toggleDriverSelect(this)">
+                                    <option value="">Select Status</option>
+                                    <option value="Created">Ride Created</option>
                                     <option value="Driver Assigned">Driver Assigned</option>
                                     <option value="Completed">Completed</option>
                                 </select>
                             </div>
+                            <div class="modal-body m-auto" id="driver_select_row">
+                                <div class="col-lg-6">
+                                    <label style="margin-left:200px" for="driver_id">Driver</label>
+                                    <select name="driver_id" class="selectmodal" id="driver_id"
+                                        style="text-align-center; margin-left:40px">
+                                        <option value="">Select Driver</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="modal-footer m-auto">
                                 <button type="submit" class="rideseditsubmit m-auto">Submit</button>
                             </div>
@@ -44,6 +60,7 @@
                 </div>
             </div>
 
+           
 
 
             <!-- Save -->
@@ -71,7 +88,10 @@
             <div class="d-flex flex-row justify-content-between text-light">
                 <div class="ecs-card-header-left">
                     <span class="heading pageheading">Rides</span>
-                    <span class="stats totalnumber"><span class="num">500</span></span>
+                    @php
+                        $rides = DB::table('rides')->get();
+                    @endphp
+                    <span class="stats totalnumber"><span class="num">{{ count($rides) }}</span></span>
                 </div>
                 <div class="d-flex flex-row">
                     <span class="material-symbols-outlined p-2">
@@ -90,7 +110,7 @@
 
 
             <div class="ecs-table-card">
-                <p class="ecs-table-heading-main">Drivers</p>
+                {{-- <p class="ecs-table-heading-main">Drivers</p> --}}
                 <div class="ecs-table-container">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-hover">
@@ -101,7 +121,7 @@
                                     <th>Ride Date</th>
                                     <th>Pick Up</th>
                                     <th>Drop Up</th>
-                                    <!--<th>Driver</th>-->
+                                    <th>Driver</th>
                                     <th>Vehicle</th>
                                     <th>Category</th>
                                     <th>Passenger</th>
@@ -119,8 +139,8 @@
                                             </td>
                                             <td>
                                                 <div class="nameentry">
-                                                    <img width="100px" src="{{ asset('/assets/images/avarat.png') }}"
-                                                        class="customerpic">
+                                                    {{-- <img width="100px" src="{{ asset('/assets/images/avarat.png') }}"
+                                                        class="customerpic"> --}}
                                                     <p>{{ $value->customer_name }}</p>
                                                 </div>
                                             </td>
@@ -132,33 +152,33 @@
                                             </td>
                                             <td>{{ $value->hotel_pickup }}</td>
                                             <td>{{ $value->hotel_drop }}</td>
-                                            <!--<td>Demo</td>-->
+                                           <td>{{ $value->firstname . " ". $value->lastname}}</td>
                                             <td>{{ $value->car_name }}</td>
                                             <td>{{ $value->category }}</td>
                                             <td>{{ $value->passengers }}</td>
                                             <td>
                                                 @if ($value->status == 'Completed')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #00da3d; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #00CC39;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @elseif ($value->status == 'Ride Created')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #b6da00;; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #FF0000;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @elseif($value->status == 'Driver Assigned')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #da9c00;; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #FF0000;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @elseif($value->status == 'Waiting For Payment')
-                                                    <a href="javascript:void(0)" class="edit_ride_btn"
+                                                    <a href="javascript:void(0)" class="edit_ride_btn statusfont"
                                                         data-id="{{ $value->id }}"
-                                                        style="background-color: #0b00da; color: #f4f4f4; border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
+                                                        style="color: #0b00da;  border-radius: 20px; display: inline-block; padding: 5px; border-radius: 10;">
                                                         {{ Str::ucfirst($value->status) }}
                                                     </a>
                                                 @endif
@@ -176,21 +196,26 @@
                         </table>
                     </div>
                     <div class="ecs-table-pagination-main">
-                        <p class="rows-txt">Rows per page</p>
-                        <select class="custom-pages-ddl">
-                            <option>25</option>
-                            <option>55</option>
-                            <option>75</option>
-                        </select>
-                        <p class="rows-txt">1-75 of 89,33</p>
+                        <form method="GET" action="{{ route('rides') }}" style="display: flex">
+                            <p class="rows-txt">Rows per page</p>
+                            <select name="per_page" class="custom-pages-ddl" style="height:23px;"
+                                onchange="this.form.submit()">
+                                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                                <option value="55" {{ request('per_page') == 55 ? 'selected' : '' }}>55</option>
+                                <option value="75" {{ request('per_page') == 75 ? 'selected' : '' }}>75</option>
+                            </select>
+                            <p class="rows-txt">{{ $data->firstItem() }}-{{ $data->lastItem() }} of {{ $data->total() }}
+                            </p>
+                        </form>
                         <div class="rows-clicks-main">
-
-
-
-                            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
-                            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
-                            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
-                            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+                            <a href="{{ $data->url(1) }}"><img src="{{ asset('assets/icons/fast-left.png') }}"
+                                    alt="arrow-fast-left" /></a>
+                            <a href="{{ $data->previousPageUrl() }}"><img src="{{ asset('assets/icons/left.png') }}"
+                                    alt="arrow-left" /></a>
+                            <a href="{{ $data->nextPageUrl() }}"><img src="{{ asset('assets/icons/right.png') }}"
+                                    alt="arrow-right" /></a>
+                            <a href="{{ $data->url($data->lastPage()) }}"><img
+                                    src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" /></a>
                         </div>
                     </div>
                 </div>
@@ -367,8 +392,10 @@
         });
     }
 </script>
+
 <script>
     function toggleDriverSelect(obj) {
+
         var status = $(obj).val();
         var driverSelectRow = $('#driver_select_row');
         if (status === 'Driver Assigned') {

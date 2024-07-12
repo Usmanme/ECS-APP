@@ -13,9 +13,6 @@
     <main class="ecs-main-body" style="height: 100vh;">
         <div class="container-fluid pt-4">
 
-            <!-- Modal -->
-
-
             <!-- Save -->
             @if (session('status_save') === 'true')
                 <div class="ecs_alert alert alert-success" role="alert">
@@ -23,7 +20,7 @@
                 </div>
             @elseif (session('status_save') === 'false')
                 <div class="ecs_alert alert alert-danger" role="alert">
-                    <b>Error:</b> Your Vehicle could not be register.
+                    <b>Error:</b> Your vehicle could not be register.
                 </div>
             @endif
 
@@ -34,43 +31,42 @@
                 </div>
             @elseif (session('status_edit') === 'false')
                 <div class="ecs_alert alert alert-danger" role="alert">
-                    <b>Error:</b> Your Vehicle could not be update.
+                    <b>Error:</b> Your vehicle could not be update.
                 </div>
             @endif
 
-            <form action="{{ url('/vehicles/store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/vehicles/update/' . $vehicle->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="adddrivermain">
                     <div>
-                        <img class="driverimage" src="./assets/images/no driver.jpeg" alt="No driver">
-                        <button class="driverbutton " data-toggle="modal" data-target="#vehicleModal">Upload Photo</button>
-
+                        <img class="driverimage" src="{{ asset('/uploads/' . $vehicle->img) }}">
+                        <button  class="driverbutton " data-toggle="modal" data-target="#vehicleModal">Upload Photo</button>
                     </div>
 
                     <div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header" style="background: white;">
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: white;">
+                            </div>
+                            <div class="modal-body m-auto mb-4">
+                                <p class="logoutsure">Upload Picture</p>
+                                <div class="form-group">
+                                    <label for="vehicle_img">Car Image</label>
+                                    <input type="file" class="form-control" name="vehicle_img" id="vehicle_img"
+                                        accept="image/png, image/gif, image/jpeg" >
                                 </div>
-                                <div class="modal-body m-auto mb-4">
-                                    <p class="logoutsure">Upload Picture</p>
-                                    <div class="form-group">
-                                        <label for="vehicle_img">Car Image</label>
-                                        <input type="file" class="form-control" name="vehicle_img" id="vehicle_img"
-                                            accept="image/png, image/gif, image/jpeg" required>
-                                    </div>
-                                </div>
-                                <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
-                                    <button type="button" class="rideseditsubmit"
-                                        style="width: 160px;background-color:white;border:2px solid red;color:red"
-                                        data-dismiss="modal">Close</button>
-                                    <button data-dismiss="modal" class=" rideseditsubmit"
-                                        style="width: 160px; ">Submit</button>
-                                </div>
+                            </div>
+                            <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
+                                <button type="button" class="rideseditsubmit"
+                                    style="width: 160px;background-color:white;border:2px solid red;color:red"
+                                    data-dismiss="modal">Close</button>
+                                <button data-dismiss="modal" class=" rideseditsubmit"
+                                    style="width: 160px; ">Submit</button>
                             </div>
                         </div>
                     </div>
+                </div>
 
                     <hr class="ecs-custom-divder mt-3" />
                     <div class="personaldetails">Vehicle Details</div>
@@ -79,22 +75,22 @@
                         <div class="mb-2">
                             <label class="driverinputnames" id="vehicle_brand">Brand</label>
                             <input type="text" class="form-control" name="vehicle_brand" id="vehicle_brand"
-                                placeholder="Enter Brand" required>
+                                placeholder="Enter Brand" required value="{{ $vehicle->brand }}">
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_model">Model</label>
                             <input type="text" class="form-control" name="vehicle_model" id="vehicle_model"
-                                placeholder="Enter Model" required>
+                                placeholder="Enter Model" required value="{{ $vehicle->model }}">
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_year">Year</label>
                             <input type="text" class="form-control" name="vehicle_year" id="vehicle_year"
-                                placeholder="Enter Year" required>
+                                placeholder="Enter Year" required value="{{ $vehicle->year }}">
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_type">Type</label>
                             <input type="text" class="form-control" name="vehicle_type" id="vehicle_type"
-                                placeholder="Enter Type" required>
+                                placeholder="Enter Type" required value="{{ $vehicle->type }}">
                         </div>
                     </div>
 
@@ -102,36 +98,37 @@
                         <div class="mb-2">
                             <label for="registration_no">Registration No.</label>
                             <input type="text" class="form-control" name="registration_no" id="registration_no"
-                                placeholder="Enter Registration No." required>
+                                placeholder="Enter Registration No." required value="{{ $vehicle->reg_no }}">
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_pass_cap">Passenger Capacity</label>
                             <input type="text" class="form-control" name="vehicle_pass_cap" id="vehicle_pass_cap"
-                                placeholder="Enter Passenger Capacity" required>
+                                placeholder="Enter Passenger Capacity" required value="{{ $vehicle->pass_cap }}">
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_category">Category</label>
                             <input type="text" class="form-control" name="vehicle_category" id="vehicle_category"
-                                placeholder="Enter Category" required>
+                                placeholder="Enter Category" required value="{{ $vehicle->category }}">
                         </div>
                         <div class="mb-2">
                             <label for="vehicle_insurance">Insurance</label>
                             <input type="text" class="form-control" name="vehicle_insurance" id="vehicle_insurance"
-                                placeholder="Enter Insurance" required>
+                                placeholder="Enter Insurance" required value="{{ $vehicle->insurance }}">
                         </div>
                     </div>
 
-                    <div class="d-flex flex-row justify-content-between mt-4 flex-wrap" style="width: 90%">
+                    <div class="d-flex flex-row  mt-4 flex-wrap" style="width: 90%;gap:60px;">
                         <div class="mb-2">
                             <label for="vehicle_color">Color</label>
                             <input type="text" class="form-control" name="vehicle_color" id="vehicle_color"
-                                placeholder="Enter Color" required>
+                                placeholder="Enter Color" required value="{{ $vehicle->color }}">
                         </div>
 
+                        
                         <div class="mb-2">
                             <label for="vehicle_attachment">Registration Attachment</label>
                             <input type="file" class="form-control" name="vehicle_attachment" id="vehicle_attachment"
-                                accept=".pdf" required>
+                                accept=".pdf" >
                         </div>
                     </div>
 
@@ -142,6 +139,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

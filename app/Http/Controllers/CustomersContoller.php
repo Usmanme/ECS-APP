@@ -11,9 +11,10 @@ class CustomersContoller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('customers')->get();
+        $perPage = $request->input('per_page', 25);
+        $data = DB::table('customers')->paginate($perPage);
         return view('pages.customer', compact('data'));
     }
 
@@ -30,7 +31,7 @@ class CustomersContoller extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+       
         $destinationPath = 'uploads';
         $customer_img = $request->file('customer_img');
         $customer_img_name = '';
@@ -174,5 +175,12 @@ class CustomersContoller extends Controller
     public function newcustomer()
     {
         return view('pages.newcustomer');
+    }
+
+    public function editcustomer($id)
+    {
+
+        $customer = DB::table('customers')->where('id', $id)->first();
+        return view('pages.editcustomer', compact('customer'));
     }
 }

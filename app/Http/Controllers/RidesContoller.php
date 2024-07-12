@@ -2,25 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CompletedMail;
+use App\Mail\CustomerMail;
+use App\Mail\RideAssignMail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RideAssignMail;
-use App\Mail\CompletedMail;
+use Illuminate\Support\Facades\URL;
+
+
 
 class RidesContoller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $data = DB::table('rides')->get();
+        $perPage = $request->input('per_page', 25); // Default to 25 items per page
         $data = DB::table('rides')
-            ->orderByDesc('created_at')
-            ->get();
+        ->leftJoin('drivers', 'rides.driver_id', '=', 'drivers.id')
+        ->orderByDesc('rides.created_at')
+        ->select('rides.*', 'drivers.firstname','drivers.lastname') // Specify the columns you want to select
+        ->paginate($perPage);
+
         $customers = DB::table('customers')->get();
+
         return view('pages.ride', compact('data', 'customers'));
     }
 
@@ -38,233 +46,8 @@ class RidesContoller extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     dd($request->all());
-    //     $status_exists = array_key_exists('status',$request->all());
-    //     $id_exists = array_key_exists('id',$request->all());
-    //     $destinationPath = 'uploads';
-    //     $data = [
-    //         'driver_id' => 0,
-    //         'customer_id' => 0,
-    //         'vehicle_id' => 0,
-    //         'status' => 'Ride Created',
-    //         'created_at' => Carbon::now(),
-    //         'updated_at' => Carbon::now()
-    //     ];
-
-    //     if (isset($request->ride_city) && $request->ride_city != '') {
-    //         $data['ride_city'] = $request->ride_city;
-    //     }
-
-    //     if (isset($request->b2b_day_hour) && $request->b2b_day_hour != '') {
-    //         $data['b2b_day_hour'] = $request->b2b_day_hour;
-    //     }
-
-    //     if (isset($request->booking_pickup) && $request->booking_pickup != '') {
-    //         $data['booking_pickup'] = $request->booking_pickup;
-    //     }
-
-    //     if (isset($request->booking_drop) && $request->booking_drop != '') {
-    //         $data['booking_drop'] = $request->booking_drop;
-    //     }
-
-    //     if (isset($request->distance) && $request->distance != '') {
-    //         $data['distance'] = $request->distance;
-    //     }
-
-    //     if (isset($request->category) && $request->category != '') {
-    //         $data['category'] = $request->category;
-    //     }
-
-    //     if (isset($request->cutomer_number) && $request->cutomer_number != '') {
-    //         $data['cutomer_number'] = $request->cutomer_number;
-    //     }
-
-    //     if (isset($request->customer_name) && $request->customer_name != '') {
-    //         $data['customer_name'] = $request->customer_name;
-    //     }
-
-    //     if (isset($request->customer_email) && $request->customer_email != '') {
-    //         $data['customer_email'] = $request->customer_email;
-    //     }
-
-    //     if (isset($request->guest_number) && $request->guest_number != '') {
-    //         $data['guest_number'] = $request->guest_number;
-    //     }
-
-    //     if (isset($request->flight_number) && $request->flight_number != '') {
-    //         $data['flight_number'] = $request->flight_number;
-    //     }
-
-    //     if (isset($request->terminal_number) && $request->terminal_number != '') {
-    //         $data['terminal_number'] = $request->terminal_number;
-    //     }
-
-    //     if (isset($request->flight_detail) && $request->flight_detail != '') {
-    //         $data['flight_detail'] = $request->flight_detail;
-    //     }
-
-    //     if (isset($request->hotel_name) && $request->hotel_name != '') {
-    //         $data['hotel_name'] = $request->hotel_name;
-    //     }
-
-    //     if (isset($request->hotel_pickup) && $request->hotel_pickup != '') {
-    //         $data['hotel_pickup'] = $request->hotel_pickup;
-    //     }
-
-    //     if (isset($request->hotel_drop) && $request->hotel_drop != '') {
-    //         $data['hotel_drop'] = $request->hotel_drop;
-    //     }
-    //      if( $id_exists ) {
-    //         $res_up = DB::table('rides')->where('id', $request->input('id'))->update(['status' => $request->status]);
-
-    //         // $res_up = DB::table('rides')->where('id',$request->input('id'))->update($data);
-    //         $res = false;
-    //     } else {
-    //         $res = DB::table('rides')->insert($data);
-    //         $res_up = false;
-    //     }
-
-    //     if ($res ) {
-    //         $status_save = session('status_save');
-    //         return redirect('/rides')->with('status_save', 'true');
-    //     } else if ($res_up){
-    //         $status_save = session('status_update');
-    //         return redirect('/rides')->with('status_update', 'true');
-    //     }else {
-    //         $status_save = session('status_save');
-    //         return redirect('/rides')->with('status_save', 'false');
-    //     }
-
-    //     // $res = DB::table('rides')->insert($data);
-
-    //     // if ($res == true) {
-    //     //     $status_save = session('status_save');
-    //     //     return redirect('/rides')->with('status_save', 'true');
-    //     // } else {
-    //     //     $status_save = session('status_save');
-    //     //     return redirect('/rides')->with('status_save', 'false');
-    //     // }
-    // }
-    // public function store(Request $request)
-    // {
-    //     // dd($request->all());
-    //     // $this->validate($request, [
-    //     //     'customer_id' => 'exists:customers,customer_id'
-    //     // ]);
-
-
-    //     $customer = DB::table('customers')->where('id', $request->customer_id)->first();
-    //     $vehicle = Db::table('vehicles')->where('brand', 'like', '%' . $request->vehicle_id . '%')->first();
-
-    //     $data = [
-    //         'customer_id' => $request->customer_id,
-    //         'customer_name' => $customer->name,
-    //         'cutomer_number' => $customer->mobile_number,
-    //         'customer_email' => $customer->email,
-    //         'vehicle_id' => $vehicle->id,
-    //         'car_name' => $vehicle->brand,
-    //         'fare' => $vehicle->fare,
-    //         'booking_pickup' => $request->booking_pickup_date,
-    //         'booking_drop' => $request->booking_drop_time,
-    //         'status' => 'Ride Created',
-    //         'driver_pick_up_sign' => $request->driver_sign ?? 'null',
-    //         'additional_info' => $request->driver_note ?? 'null',
-    //         'passengers' => $request->passengers,
-    //         'category' => $request->category,
-    //         'hotel_pickup' =>$request->booking_pickup,
-    //         'hotel_drop' =>$request->booking_drop
-    //     ];
-    //     // dd($data, $request->all());
-    //     $destinationPath = 'uploads';
-    //     // $data = [
-
-    //     //     'driver_id' => 0,
-    //     //     'customer_id' => 0,
-    //     //     'vehicle_id' => 0,
-    //     //     'status' => 'booked',
-    //     //     'created_at' => Carbon::now(),
-    //     //     'updated_at' => Carbon::now()
-    //     // ];
-
-    //     // if (isset($request->ride_city) && $request->ride_city != '') {
-    //     //     $data['ride_city'] = $request->ride_city;
-    //     // }
-
-    //     // if (isset($request->b2b_day_hour) && $request->b2b_day_hour != '') {
-    //     //     $data['b2b_day_hour'] = $request->b2b_day_hour;
-    //     // }
-
-    //     // if (isset($request->booking_pickup) && $request->booking_pickup != '') {
-    //     //     $data['booking_pickup'] = $request->booking_pickup;
-    //     // }
-
-    //     // if (isset($request->booking_drop) && $request->booking_drop != '') {
-    //     //     $data['booking_drop'] = $request->booking_drop;
-    //     // }
-
-    //     // if (isset($request->distance) && $request->distance != '') {
-    //     //     $data['distance'] = $request->distance;
-    //     // }
-
-    //     // if (isset($request->category) && $request->category != '') {
-    //     //     $data['category'] = $request->category;
-    //     // }
-
-    //     // if (isset($request->cutomer_number) && $request->cutomer_number != '') {
-    //     //     $data['cutomer_number'] = $request->cutomer_number;
-    //     // }
-
-    //     // if (isset($request->customer_name) && $request->customer_name != '') {
-    //     //     $data['customer_name'] = $request->customer_name;
-    //     // }
-
-    //     // if (isset($request->customer_email) && $request->customer_email != '') {
-    //     //     $data['customer_email'] = $request->customer_email;
-    //     // }
-
-    //     // if (isset($request->guest_number) && $request->guest_number != '') {
-    //     //     $data['guest_number'] = $request->guest_number;
-    //     // }
-
-    //     // if (isset($request->flight_number) && $request->flight_number != '') {
-    //     //     $data['flight_number'] = $request->flight_number;
-    //     // }
-
-    //     // if (isset($request->terminal_number) && $request->terminal_number != '') {
-    //     //     $data['terminal_number'] = $request->terminal_number;
-    //     // }
-
-    //     // if (isset($request->flight_detail) && $request->flight_detail != '') {
-    //     //     $data['flight_detail'] = $request->flight_detail;
-    //     // }
-
-    //     // if (isset($request->hotel_name) && $request->hotel_name != '') {
-    //     //     $data['hotel_name'] = $request->hotel_name;
-    //     // }
-
-    //     // if (isset($request->hotel_pickup) && $request->hotel_pickup != '') {
-    //     //     $data['hotel_pickup'] = $request->hotel_pickup;
-    //     // }
-
-    //     // if (isset($request->hotel_drop) && $request->hotel_drop != '') {
-    //     //     $data['hotel_drop'] = $request->hotel_drop;
-    //     // }
-
-    //     $res = DB::table('rides')->insert($data);
-
-    //     if ($res == true) {
-    //         $status_save = session('status_save');
-    //         return redirect('/rides')->with('status_save', 'true');
-    //     } else {
-    //         $status_save = session('status_save');
-    //         return redirect('/rides')->with('status_save', 'false');
-    //     }
-    // }
+   
+ 
     public function store(Request $request)
     {
         $data = $request->all();
@@ -274,7 +57,7 @@ class RidesContoller extends Controller
         ];
         if ($request->catgory == 'airport') {
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
-            $customer_email = $customer->email;
+            $customer_email =  $customer->email;
             $customer_name = $customer->name;
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
@@ -295,6 +78,15 @@ class RidesContoller extends Controller
             $res = DB::table('rides')->insert($insert_data);
             if ($res == true) {
                 $status_save = session('status_save');
+                $url = URL::route('customers.mail');
+                $from = $request->booking_pickup_airport;
+                $to = $request->booking_drop_airport;
+                $date = $request->booking_pickup_date_airport;
+                $time = $request->booking_drop_time_airport;
+                $amount = $veh->fare;
+                $category = $veh->category;
+                Mail::to($customer_email)->send(new CustomerMail($url, $customer_email, $from, $to, $date, $time, $amount, $category));
+
                 return redirect('/rides')->with('status_save', 'true');
             } else {
                 $status_save = session('status_save');
@@ -302,7 +94,7 @@ class RidesContoller extends Controller
             }
         } elseif ($request->catgory == 'hourly') {
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
-            $customer_email = $customer->email;
+            $customer_email =  $customer->email;
             $customer_name = $customer->name;
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
@@ -324,6 +116,12 @@ class RidesContoller extends Controller
             $res = DB::table('rides')->insert($insert_data);
             if ($res == true) {
                 $status_save = session('status_save');
+                $url = URL::route('/customers/mail');
+
+                // Send the email
+                Mail::to($customer_email)->send(new CustomerMail($url));
+
+                // return 'Email sent!';
                 return redirect('/rides')->with('status_save', 'true');
             } else {
                 $status_save = session('status_save');
@@ -331,7 +129,7 @@ class RidesContoller extends Controller
             }
         } else {
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
-            $customer_email = $customer->email;
+            $customer_email =  $customer->email;
             $customer_name = $customer->name;
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
@@ -358,7 +156,6 @@ class RidesContoller extends Controller
                 return redirect('/rides')->with('status_save', 'false');
             }
         }
-
     }
     /**
      * Display the specified resource.
@@ -438,9 +235,9 @@ class RidesContoller extends Controller
 
             // Update the ride
             $res_up = DB::table('rides')
-                ->where('id', $request->input('id'))
+                ->where('id', $request->input('ride_id'))
                 ->update($updateData);
-            $ride = DB::table('rides')->where('id', $request->input('id'))->first();
+            $ride = DB::table('rides')->where('id', $request->input('ride_id'))->first();
 
             $driver = DB::table('drivers')->where('id', $request->input('driver_id'))->first();
 
@@ -468,9 +265,9 @@ class RidesContoller extends Controller
 
 
             // Update the ride
-            $res_up = DB::table('rides')->where('id', $request->input('id'))->update(['status' => $request->status]);
+            $res_up = DB::table('rides')->where('id', $request->input('ride_id'))->update(['status' => $request->status]);
 
-            $ride = DB::table('rides')->where('id', $request->input('id'))->first();
+            $ride = DB::table('rides')->where('id', $request->input('ride_id'))->first();
 
             $driver = DB::table('drivers')->where('id', $request->input('driver_id'))->first();
 
@@ -503,7 +300,7 @@ class RidesContoller extends Controller
             $status_save = session('status_update');
             return redirect('/rides')->with('status_update', 'true');
         }
-        $res_up = DB::table('rides')->where('id', $request->input('id'))->update(['status' => $request->status]);
+        $res_up = DB::table('rides')->where('id', $request->input('ride_id'))->update(['status' => $request->status]);
         $status_save = session('status_update');
         return redirect('/rides')->with('status_update', 'true');
     }
@@ -536,5 +333,4 @@ class RidesContoller extends Controller
             'driver' => $driver
         ]);
     }
-
 }

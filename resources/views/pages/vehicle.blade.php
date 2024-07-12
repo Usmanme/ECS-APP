@@ -102,11 +102,14 @@
                                                     target="_blank">View</a>
                                             </th>
                                             <td>
-                                                <a href="javascript:void(0)" class="edit_vehicle_btn"
+                                                <a href="{{ url('editvehicle/' . $value->id) }}">
+                                                    <img src="{{ url('/assets/images/edit-icon.png') }}">
+                                                </a>
+                                                {{-- <a href="javascript:void(0)" class="edit_vehicle_btn"
                                                     data-target="#editVehicleModal" data-toggle="modal"
                                                     data-edit_action="{{ url('/vehicles/update/' . $value->id) }}">
                                                     <img src="{{ url('/assets/images/edit-icon.png') }}">
-                                                </a>
+                                                </a> --}}
                                             </td>
                                             <input type="hidden" data-brand="{{ $value->brand }}"
                                                 data-model="{{ $value->model }}" data-year="{{ $value->year }}"
@@ -125,21 +128,20 @@
                         </table>
                     </div>
                     <div class="ecs-table-pagination-main">
-                        <p class="rows-txt">Rows per page</p>
-                        <select class="custom-pages-ddl">
-                            <option>25</option>
-                            <option>55</option>
-                            <option>75</option>
-                        </select>
-                        <p class="rows-txt">1-75 of 89,33</p>
+                        <form method="GET" action="{{ route('vehicles') }}" style="display: flex">
+                            <p class="rows-txt">Rows per page</p>
+                            <select name="per_page" class="custom-pages-ddl" style="height:23px;" onchange="this.form.submit()">
+                                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                                <option value="55" {{ request('per_page') == 55 ? 'selected' : '' }}>55</option>
+                                <option value="75" {{ request('per_page') == 75 ? 'selected' : '' }}>75</option>
+                            </select>
+                            <p class="rows-txt">{{ $data->firstItem() }}-{{ $data->lastItem() }} of {{ $data->total() }}</p>
+                        </form>
                         <div class="rows-clicks-main">
-
-
-
-                            <img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" />
-                            <img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" />
-                            <img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" />
-                            <img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" />
+                            <a href="{{ $data->url(1) }}"><img src="{{ asset('assets/icons/fast-left.png') }}" alt="arrow-fast-left" /></a>
+                            <a href="{{ $data->previousPageUrl() }}"><img src="{{ asset('assets/icons/left.png') }}" alt="arrow-left" /></a>
+                            <a href="{{ $data->nextPageUrl() }}"><img src="{{ asset('assets/icons/right.png') }}" alt="arrow-right" /></a>
+                            <a href="{{ $data->url($data->lastPage()) }}"><img src="{{ asset('assets/icons/fast-right.png') }}" alt="arrow-fast-right" /></a>
                         </div>
                     </div>
                 </div>
@@ -367,10 +369,10 @@
   for (i = 0; i < tr.length; i++) {
     // Skip the header row (assuming it's the first row)
     if (i === 0) continue;
-    
+
     // Initialize a variable to indicate if any column matches the filter
     var matchFound = false;
-    
+
     // Loop through all table columns in the current row
     for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
       td = tr[i].getElementsByTagName("td")[j];
@@ -383,7 +385,7 @@
         }
       }
     }
-    
+
     // Display or hide the row based on whether any column matched the filter
     if (matchFound) {
       tr[i].style.display = "";
@@ -392,5 +394,5 @@
     }
   }
 }
-   
+
 </script>

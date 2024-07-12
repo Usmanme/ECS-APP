@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\DB;
 
 class FinanceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->input('per_page', 25);
 
-        // $data = DB::table('rides')->get();
-        // $completed_rides = DB::table('rides')
-        // ->where('rides.status', 'Completed')
-        // ->join('drivers', 'rides.driver_id', '=', 'drivers.id')
-        // ->join('vehicles', 'rides.vehicle_id', '=', 'vehicles.id')
-        // ->get();
-        $completed_rides = DB::table('rides')->where('status', 'Completed')->get();
-        return view('pages.finance', compact('completed_rides'));
+        // $data = DB::table('rides')->where('status', 'Completed') ->paginate($perPage);
+        $data = DB::table('rides')->where('status', 'Completed')
+        ->leftJoin('drivers', 'rides.driver_id', '=', 'drivers.id')
+        ->orderByDesc('rides.created_at')
+        ->select('rides.*', 'drivers.firstname','drivers.lastname') // Specify the columns you want to select
+        ->paginate($perPage);
+        return view('pages.finance', compact('data'));
     }
 }
