@@ -40,7 +40,6 @@
             <form action="{{ url('/drivers/store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="adddrivermain">
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -50,7 +49,7 @@
                             </ul>
                         </div>
                     @endif
-
+            
                     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -66,24 +65,21 @@
                                     </div>
                                 </div>  
                                 <div class=" m-auto d-flex flex-row " style="gap: 17px;padding-bottom:27px;">
-                                    <button type="button" class="rideseditsubmit"
-                                        style="width: 160px;background-color:white;border:2px solid red;color:red"
-                                        data-dismiss="modal">Close</button>
-                                    <button  data-dismiss="modal"  type="button" class=" rideseditsubmit" style="width: 160px; ">Submit</button>
+                                    <button  class="rideseditsubmit" style="width: 160px;background-color:white;border:2px solid red;color:red" data-dismiss="modal">Close</button>
+                                    <button  class="rideseditsubmit" style="width: 160px;" id="modalSubmitButton">Submit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+            
                     <div>
                         <img class="driverimage" src="./assets/images/no driver.jpeg" alt="No driver">
                         <button class="driverbutton " data-toggle="modal" data-target="#imageModal">Upload Photo</button>
-
                     </div>
-
+            
                     <hr class="ecs-custom-divder mt-3" />
                     <div class="personaldetails">Personal Details</div>
-
+            
                     <div class="d-flex flex-row justify-content-between mt-4 flex-wrap" style="width: 90%">
                         <div class="mb-2">
                             <p class="driverinputnames">First name</p>
@@ -103,13 +99,12 @@
                         </div>
                         <div>
                             <p class="driverinputnames">Enter Email </p>
-                            <input type="email" class="driverinputs" placeholder="Enter Email" type="text"
-                                name="email_addr">
+                            <input type="email" class="driverinputs" placeholder="Enter Email" name="email_addr">
                         </div>
                     </div>
-
+            
                     <div class="personaldetails mt-4">Legal Details</div>
-
+            
                     <div class="d-flex flex-row gap-5 mt-4 flex-wrap" style="width: 90%">
                         <div class="mb-2">
                             <p class="driverinputnames">Choose vehicle</p>
@@ -120,17 +115,15 @@
                                 @if (!empty($vehicle_data))
                                     <option value="" selected disabled>Choose vehicle</option>
                                     @foreach ($vehicle_data as $key => $value)
-                                        <option value="{{ $value->id }}">
-                                            {{ $value->reg_no }}</option>
+                                        <option value="{{ $value->id }}">{{ $value->reg_no }}</option>
                                     @endforeach
                                 @endif
                             </select>
                         </div>
-
-
                     </div>
+            
                     <div class="personaldetails mt-4">Vehicle Details</div>
-
+            
                     <div class="d-flex flex-row justify-content-between mt-4 flex-wrap" style="width: 90%">
                         <div>
                             <div class="personaldetails">Vehicle Category</div>
@@ -153,14 +146,14 @@
                             <p id="vehicleColor" class="driverinputnames"></p>
                         </div>
                     </div>
-
+            
                     <div class="d-flex flex-row mt-5  justify-content-end">
-                        <a class="bigbutton bg-light text-dark " style="border:1px solid black;"
-                            href="{{ url('drivers') }}">Back</a>
-                        <button type="submit " class="bigbutton pt-0">Submit </button>
+                        <a class="bigbutton bg-light text-dark " style="border:1px solid black;" href="{{ url('drivers') }}">Back</a>
+                        <button type="submit" class="bigbutton pt-0">Submit</button>
                     </div>
                 </div>
             </form>
+            
         </div>
     </main>
 

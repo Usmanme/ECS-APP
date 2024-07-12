@@ -77,6 +77,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
+                           
                             <tbody class="ecs-custom-body">
                                 @if (!empty($data))
                                     @foreach ($data as $key => $value)
@@ -98,7 +99,7 @@
                                             </td>
                                             <td>{{$value->reg_no}}</td>
                                             <td>
-                                                <a href="{{ url('editdriver/' . $value->id) }}">
+                                                <a href="{{ url('editdriver/' . $value->driver_id) }}">
                                                     <img src="{{ url('/assets/images/edit-icon.png') }}">
                                                 </a>
                                             </td>

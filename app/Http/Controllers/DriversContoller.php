@@ -14,17 +14,45 @@ class DriversContoller extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('per_page', 25); // Default to 25 items per page
-
+    
         // Paginate drivers and vehicles
-
-        $data = DB::table('drivers')->
-        leftjoin('vehicles', 'drivers.vehicle_id', '=', 'vehicles.id')
-        ->paginate($perPage);
-
+        $data = DB::table('drivers')
+            ->leftJoin('vehicles', 'drivers.vehicle_id', '=', 'vehicles.id')
+            ->select(
+                'drivers.id as driver_id', 
+                'drivers.firstname', 
+                'drivers.lastname', 
+                'drivers.phone_number', 
+                'drivers.iqama_number', 
+                'drivers.email_addr', 
+                'drivers.img', 
+                'drivers.status', 
+                'drivers.created_at', 
+                'drivers.updated_at', 
+                'vehicles.id as vehicle_id', // Alias to avoid conflict
+                'vehicles.brand', 
+                'vehicles.model', 
+                'vehicles.year', 
+                'vehicles.type', 
+                'vehicles.code', 
+                'vehicles.reg_no', 
+                'vehicles.pass_cap', 
+                'vehicles.category', 
+                'vehicles.insurance', 
+                'vehicles.color', 
+                'vehicles.fare', 
+                'vehicles.destination_type', 
+                'vehicles.attachment', 
+                'vehicles.luggage'
+            )
+            ->paginate($perPage);
+    
         $vehicle_data = DB::table('vehicles')->paginate($perPage);
-
+    
         return view('pages.driver', compact('data', 'vehicle_data'));
     }
+    
+
     public function newdriver()
     {
         return view('pages.newdriver');
@@ -44,7 +72,7 @@ class DriversContoller extends Controller
      */
     public function store(Request $request)
     {
-            //   @dd($request->all());
+        
         $validator = Validator::make($request->all(), [
             'firstname' =>'required|max:50',
             'lastname' =>'required|max:50',
@@ -95,13 +123,14 @@ class DriversContoller extends Controller
         if (isset($request->email_addr) && $request->email_addr != '') {
             $data['email_addr'] = $request->email_addr;
         }
+        
 
         if (isset($driver_img) && $driver_img != null) {
             $driver_img_name = uniqid() . '_' . $driver_img->getClientOriginalName();
             $driver_img->move($destinationPath, $driver_img_name);
             $data['img'] = $driver_img_name;
         }
-
+      
         $res = DB::table('drivers')->insert($data);
 
         if ($res == true) {
@@ -134,6 +163,7 @@ class DriversContoller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         $destinationPath = 'uploads';
         $driver_img = $request->file('driver_img');
         $driver_img_name = '';
@@ -162,6 +192,9 @@ class DriversContoller extends Controller
 
         if (isset($request->iqama_number) && $request->iqama_number != '') {
             $data['iqama_number'] = $request->iqama_number;
+        }
+        if (isset($request->vehicles) && $request->vehicles != '') {
+            $data['vehicle_id'] = $request->vehicles;
         }
 
         if (isset($request->email_addr) && $request->email_addr != '') {
