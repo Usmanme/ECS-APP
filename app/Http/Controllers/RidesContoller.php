@@ -24,11 +24,13 @@ class RidesContoller extends Controller
         // $data = DB::table('rides')
         //     ->orderByDesc('created_at')
         //     ->paginate($perPage);
- $data = DB::table('rides')
-        ->leftJoin('drivers', 'rides.driver_id', '=', 'drivers.id')
-        ->orderByDesc('rides.created_at')
-        ->select('rides.*', 'drivers.firstname','drivers.lastname') // Specify the columns you want to select
-        ->paginate($perPage);
+        $data = DB::table('rides')
+            ->leftjoin('drivers', 'rides.vehicle_id', '=', 'drivers.vehicle_id')
+            ->orderByDesc('rides.created_at')
+            ->select('rides.*', 'drivers.firstname', 'drivers.lastname')
+            ->paginate($perPage);
+
+
         $customers = DB::table('customers')->get();
 
         return view('pages.ride', compact('data', 'customers'));
@@ -54,8 +56,8 @@ class RidesContoller extends Controller
 
     // public function store(Request $request)
     // {
-        
-        
+
+
     //     $insert_data = [
     //         'created_at' => Carbon::now(),
     //         'updated_at' => Carbon::now(),
@@ -156,8 +158,8 @@ class RidesContoller extends Controller
     //         }
     //     }
     // }
-    
-        public function store(Request $request)
+
+    public function store(Request $request)
     {
 
         $data = $request->all();
