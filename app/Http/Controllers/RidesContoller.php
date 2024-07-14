@@ -35,7 +35,8 @@ class RidesContoller extends Controller
     public function newride()
     {
         $customers = DB::table('customers')->get();
-        return view('pages.newride', compact('customers'));
+        $vehicles = DB::table('vehicles')->get();
+        return view('pages.newride', compact('customers','vehicles'));
     }
 
     /**
@@ -69,7 +70,7 @@ class RidesContoller extends Controller
             $insert_data['hotel_pickup'] = $request->booking_pickup_airport;
             $insert_data['hotel_drop'] = $request->booking_drop_airport;
             $insert_data['passengers'] = $request->passengers_airport;
-            $veh = DB::table('vehicles')->where('brand', 'like', '%' . $request->vehicle_id . '%')->first();
+            $veh = DB::table('vehicles')->where('id',$request->vehicle_id )->first();
             $insert_data['status'] = 'Ride Created';
             $insert_data['category'] = $veh->category;
             $insert_data['vehicle_id'] = $veh->id;
@@ -106,7 +107,7 @@ class RidesContoller extends Controller
             $insert_data['hotel_pickup'] = $request->booking_pickup_hourly;
             $insert_data['hotel_drop'] = $request->booking_drop_hourly;
             $insert_data['passengers'] = $request->passengers_hourly;
-            $veh = DB::table('vehicles')->where('brand', 'like', '%' . $request->vehicle_id . '%')->first();
+            $veh = DB::table('vehicles')->where('id',$request->vehicle_id )->first();
             $insert_data['status'] = 'Ride Created';
             $insert_data['category'] = $veh->category;
             $insert_data['vehicle_id'] = $veh->id;
@@ -141,7 +142,7 @@ class RidesContoller extends Controller
             $insert_data['hotel_pickup'] = $request->booking_pickup_full_day;
             $insert_data['hotel_drop'] = $request->booking_drop_full_day;
             $insert_data['passengers'] = $request->passengers_full_day;
-            $veh = DB::table('vehicles')->where('brand', 'like', '%' . $request->vehicle_id . '%')->first();
+            $veh = DB::table('vehicles')->where('id',$request->vehicle_id )->first();
             $insert_data['status'] = 'Ride Created';
             $insert_data['category'] = $veh->category;
             $insert_data['vehicle_id'] = $veh->id;

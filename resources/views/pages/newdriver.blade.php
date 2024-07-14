@@ -109,9 +109,7 @@
                         <div class="mb-2">
                             <p class="driverinputnames">Choose vehicle</p>
                             <select class="form-control" name="vehicles" id="vehicleSelect" required>
-                                @php
-                                    $vehicle_data = DB::table('vehicles')->get();
-                                @endphp
+                               
                                 @if (!empty($vehicle_data))
                                     <option value="" selected disabled>Choose vehicle</option>
                                     @foreach ($vehicle_data as $key => $value)
