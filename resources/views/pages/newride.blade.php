@@ -46,7 +46,7 @@
                     <div class="row mt-4 mb-3 " style=" margin-left:0px;">
                         <div class="col-md-2" style="margin-top: -15px;">
                             <label for="customer_id">ID Number</label>
-                            <select class="form-control" style="width:110%;" name="customer_id" id="customer_id" required>
+                            <select class="form-control" style="width:110%;" name="customer_id" id="customer_id" required >
                                 <option value="">Select Customer ID</option>
                                 @foreach ($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
@@ -83,30 +83,30 @@
                             <div class="col-md-3">
                                 <label for="">Pick & Drop</label>
                                 <input type="text" class="form-control" name="booking_pickup_airport"
-                                    id="booking_pickup_airport" placeholder="936 Route" required>
+                                    id="booking_pickup_airport" placeholder="936 Route"  >
                             </div>
                             <div class="col-md-3">
                                 <label for="">To</label>
                                 <input type="text" class="form-control" name="booking_drop_airport"
-                                    id="booking_drop_airport" placeholder="936 Route" required>
+                                    id="booking_drop_airport" placeholder="936 Route"  >
                             </div>
                         </div>
                         <div class="row mb-2" style="padding:17px 8px 9px 11px;">
                             <div class="col-md-3" style="padding-left: 0px;">
                                 <label for="">Pick Up Date</label>
                                 <input type="date" class="form-control" name="booking_pickup_date_airport"
-                                    id="booking_pickup_date_airport" placeholder="" required>
+                                    id="booking_pickup_date_airport" placeholder=""  >
                             </div>
                             <div class="col-md-3">
                                 <label for="">Pick Up Time</label>
                                 <input type="time" class="form-control" name="booking_drop_time_airport"
-                                    id="booking_drop_time_airport" placeholder="936 Kiehn Route" required>
+                                    id="booking_drop_time_airport" placeholder="936 Kiehn Route"  >
                             </div>
                         </div>
                         <div class="col-md-3" style="padding-left: 0px;">
                             <label for="">Passangers</label>
                             <input type="number" class="form-control" name="passengers_airport" id="passengers_airport"
-                                placeholder="0" required>
+                                placeholder="0"  >
                         </div>
                         <div class="row mb-2" style="padding:20px 10px 15px 0px;">
                             <div class="col-md-5">
@@ -130,12 +130,12 @@
                             <div class="col-md-3">
                                 <label for="">Driver Pickup Sign</label>
                                 <input type="text" class="form-control" name="driver_sign_airport"
-                                    placeholder="Driver Pickup Sign" required>
+                                    placeholder="Driver Pickup Sign"  >
                             </div>
                             <div class="col-md-3">
                                 <label for="">Add a note to driver</label>
                                 <input type="text" class="form-control" name="driver_note_airport" placeholder=""
-                                    required>
+                                     >
                             </div>
                         </div>
                         <h2 class="modelheadings">Fare:</h2>
@@ -143,11 +143,11 @@
                             <div class="col-md-3" style="padding: 13px;">
                                 <label for="">Fare</label>
                                 <input type="text" class="form-control" name="auto_fare" id="auto_fare"
-                                    placeholder="Auto Fare"required>
+                                    placeholder="Auto Fare" >
                             </div>
                             <!--<div class="col-md-3">-->
                             <!--    <label for="">Trip Fare</label>-->
-                            <!--    <input type="text" class="form-control" name="trip_fare" placeholder="Trip Fare" required>-->
+                            <!--    <input type="text" class="form-control" name="trip_fare" placeholder="Trip Fare"  >-->
                             <!--</div>-->
                         </div>
                         <h2 class="modelheadings">Airport Ride:</h2>
@@ -155,12 +155,12 @@
                             <div class="col-md-3" style="padding-left: 0px;">
                                 <label for="">Flight Number</label>
                                 <input type="text" class="form-control" name="flight_number_airport"
-                                    placeholder="Flight Number" required>
+                                    placeholder="Flight Number"  >
                             </div>
                             <div class="col-md-3">
                                 <label for="">Terminal Number</label>
                                 <input type="text" class="form-control" name="terminal_number_airport"
-                                    placeholder="Terminal Number" required>
+                                    placeholder="Terminal Number"  >
                             </div>
                         </div>
 

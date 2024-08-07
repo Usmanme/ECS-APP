@@ -168,9 +168,29 @@ class RidesContoller extends Controller
             'updated_at' => Carbon::now(),
         ];
         if ($request->catgory == 'airport') {
+
+
+            $rules = [
+                'customer_id' => 'required|exists:customers,id',
+                'flight_number_airport' => 'required',
+                'driver_sign_airport' => 'required',
+                'driver_note_airport' => 'required',
+                'booking_pickup_date_airport' => 'required|date',
+                'booking_drop_time_airport' => 'required|date_format:H:i',
+                'booking_pickup_airport' => 'required',
+                'booking_drop_airport' => 'required',
+                'passengers_airport' => 'required|integer',
+                'vehicle_id' => 'required',
+            ];
+    
+            // Validate request
+            $request->validate($rules);
+
+
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
             $customer_email = $customer->email;
             $customer_name = $customer->name;
+
             $insert_data['customer_email'] = $customer_email;
             $insert_data['customer_name'] = $customer_name;
             $insert_data['flight_number'] = $request->flight_number_airport;
@@ -181,6 +201,7 @@ class RidesContoller extends Controller
             $insert_data['hotel_pickup'] = $request->booking_pickup_airport;
             $insert_data['hotel_drop'] = $request->booking_drop_airport;
             $insert_data['passengers'] = $request->passengers_airport;
+
             $veh = DB::table('vehicles')->where('brand', 'like', '%' . $request->vehicle_id . '%')->first();
             $insert_data['status'] = 'Ride Created';
             $insert_data['category'] = $veh->category;
@@ -213,6 +234,25 @@ class RidesContoller extends Controller
                 return redirect('/rides')->with('status_save', 'false');
             }
         } elseif ($request->catgory == 'hourly') {
+
+            $rules = [
+                'customer_id' => 'required|exists:customers,id',
+                'flight_number_hourly' => 'required',
+                'driver_sign_hourly' => 'required',
+                'driver_note_hourly' => 'required',
+                'booking_pickup_date' => 'required|date',
+                'booking_drop_time_hourly' => 'required|date_format:H:i',
+                'booking_pickup_hourly' => 'required',
+                'booking_drop_hourly' => 'required',
+                'passengers_hourly' => 'required|integer',
+                'vehicle_id' => 'required',
+                'pickup_hours' => 'required|integer|min:1',
+            ];
+    
+            // Validate request
+            $request->validate($rules);
+    
+
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
             $customer_email = $customer->email;
             $customer_name = $customer->name;
@@ -250,6 +290,22 @@ class RidesContoller extends Controller
                 return redirect('/rides')->with('status_save', 'false');
             }
         } else {
+            $rules = [
+                'customer_id' => 'required|exists:customers,id',
+                'flight_number_full_day' => 'required',
+                'driver_sign_full_day' => 'required',
+                'driver_note_full_day' => 'required',
+                'booking_pickup_date_full_day' => 'required|date',
+                'booking_drop_time_full_day' => 'required|date_format:H:i',
+                'booking_pickup_full_day' => 'required',
+                'booking_drop_full_day' => 'required',
+                'passengers_full_day' => 'required|integer',
+                'vehicle_id' => 'required',
+            ];
+    
+            // Validate request
+            $request->validate($rules);
+            
             $customer = DB::table('customers')->where('id', $data['customer_id'])->first();
             $customer_email = $customer->email;
             $customer_name = $customer->name;
@@ -263,6 +319,7 @@ class RidesContoller extends Controller
             $insert_data['hotel_pickup'] = $request->booking_pickup_full_day;
             $insert_data['hotel_drop'] = $request->booking_drop_full_day;
             $insert_data['passengers'] = $request->passengers_full_day;
+
             $veh = DB::table('vehicles')->where('brand', 'like', '%' . $request->vehicle_id . '%')->first();
             $insert_data['status'] = 'Ride Created';
             $insert_data['category'] = $veh->category;
